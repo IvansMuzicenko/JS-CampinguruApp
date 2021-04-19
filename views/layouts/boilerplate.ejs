@@ -9,9 +9,10 @@
         integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
 
-<body class="d-flex flex-column vh-101">
+<body class="d-flex flex-column vh-100">
     <%- include('../partials/navbar') %>
     <main class="container mt-5">
+        <%- include('../partials/flash') %>
         <%- body %>
     </main>
     <%- include('../partials/footer') %>
@@ -22,25 +23,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
         integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
         crossorigin="anonymous"></script>
-    <script>
-        (function () {
-            'use strict'
 
-            const forms = document.querySelectorAll('.validated-form')
-
-            Array.from(forms) 
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        }) ()
-    </script>
+    <script src='/javascripts/validateForms.js'></script>
 </body>
 
 </html>
