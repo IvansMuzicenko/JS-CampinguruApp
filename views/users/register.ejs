@@ -1,37 +1,38 @@
+<link rel="stylesheet" href="/stylesheets/app.css">
 <% layout('layouts/boilerplate') %>
-<div class="col-md-4 offset-md-4">
-    <h1 class="text-center">Register</h1>
-    <form action="/register" method="POST" class="validated-form" novalidate>
-        <div class="mb-3">
-            <label for="username" class="form-label"> Username</label>
-            <input type="text" class="form-control" id="username" name="username" required>
-            <div class="valid-feedback">
-                Correct!
+    <div class="col-md-4 offset-md-4 card-body shadow-lg rounded p-5">
+        <h1 class="text-center mb-5">Register</h1>
+        <form action="/register" method="POST" class="validated-form" novalidate>
+            <div class="mb-4">
+                <label for="username" class="form-label"> Username</label>
+                <input type="text" class="form-control shadow-lg" id="username" name="username" required>
+                <div class="valid-feedback">
+                    Correct!
+                </div>
+                <div class="invalid-feedback">
+                    Provide an username!
+                </div>
             </div>
-            <div class="invalid-feedback">
-                Provide an username!
+            <div class="mb-4">
+                <label for="email" class="form-label"> E-mail</label>
+                <input type="email" class="form-control shadow-lg " id="email" name="email" required>
+                <div class="valid-feedback">
+                    Correct!
+                </div>
+                <div class="invalid-feedback">
+                    Provide an e-mail!
+                </div>
             </div>
-        </div>
-        <div class="mb-3">
-            <label for="email" class="form-label"> E-mail</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-            <div class="valid-feedback">
-                Correct!
+            <div class="mb-5">
+                <label for="password" class="form-label"> Passwordl</label>
+                <input type="password" class="form-control shadow-lg" id="password" name="password" required>
+                <div class="valid-feedback">
+                    Correct!
+                </div>
+                <div class="invalid-feedback">
+                    Provide an password!
+                </div>
             </div>
-            <div class="invalid-feedback">
-                Provide an e-mail!
-            </div>
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label"> Passwordl</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-            <div class="valid-feedback">
-                Correct!
-            </div>
-            <div class="invalid-feedback">
-                Provide an password!
-            </div>
-        </div>
-        <button class="btn btn-success">Register</button>
-    </form>
-</div>
+            <button class="btn btn-success btn-block">Register</button>
+        </form>
+    </div>

@@ -51,7 +51,7 @@ map.on('load', function () {
 			'circle-radius': [
 				'step',
 				['get', 'point_count'],
-				10,
+				15,
 				10,
 				15,
 				25,
@@ -87,7 +87,7 @@ map.on('load', function () {
 		filter: ['!', ['has', 'point_count']],
 		paint: {
 			'circle-color': '#11b4da',
-			'circle-radius': 4,
+			'circle-radius': 8,
 			'circle-stroke-width': 1,
 			'circle-stroke-color': '#fff'
 		}
@@ -118,6 +118,7 @@ map.on('load', function () {
 	map.on('click', 'unclustered-point', function (e) {
 		const { popUpMarkup } = e.features[0].properties;
 		const coordinates = e.features[0].geometry.coordinates.slice();
+		console.log(popUpMarkup);
 
 		// Ensure that if the map is zoomed out such that
 		// multiple copies of the feature are visible, the
@@ -133,6 +134,12 @@ map.on('load', function () {
 		map.getCanvas().style.cursor = 'pointer';
 	});
 	map.on('mouseleave', 'clusters', function () {
+		map.getCanvas().style.cursor = '';
+	});
+	map.on('mouseenter', 'unclustered-point', function () {
+		map.getCanvas().style.cursor = 'pointer';
+	});
+	map.on('mouseleave', 'unclustered-point', function () {
 		map.getCanvas().style.cursor = '';
 	});
 });

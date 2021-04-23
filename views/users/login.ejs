@@ -1,28 +1,17 @@
+<link rel="stylesheet" href="/stylesheets/app.css">
 <% layout('layouts/boilerplate') %>
-<div class="col-md-4 offset-md-4">
-    <h1 class="text-center">Log-in</h1>
+<div class="col-md-4 offset-md-4 shadow-lg card-body shadow p-5">
+    <h1 class="text-center mb-5">Log-in</h1>
     <form action="/login" method="POST" class="validated-form" novalidate>
-        <div class="mb-3">
+        <div class="mb-4">
             <label for="username" class="form-label"> Username</label>
-            <input type="text" class="form-control" id="username" name="username" required>
-            <div class="valid-feedback">
-                Correct!
-            </div>
-            <div class="invalid-feedback">
-                Provide an username!
-            </div>
+            <input type="text" class="form-control shadow-lg" id="username" name="username" required>
         </div>
         
-        <div class="mb-3">
+        <div class="mb-5">
             <label for="password" class="form-label"> Password</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-            <div class="valid-feedback">
-                Correct!
-            </div>
-            <div class="invalid-feedback">
-                Provide an password!
-            </div>
+            <input type="password" class="form-control shadow-lg rounded" id="password" name="password" required>
         </div>
-        <button class="btn btn-primary">Log-in</button>
+        <button class="btn btn-primary btn-block">Log-in</button>
     </form>
 </div>

@@ -50,7 +50,7 @@ CampgroundSchema.virtual('properties.popupMarkup').get(function () {
 	<a href="/campgrounds/${this._id}">${this.title}</a>
 	</strong>
 	<p>
-	${this.description.substring(0, 30)}...
+	${this.description.substring(0, 20)}...
 	</p>`;
 });
 
