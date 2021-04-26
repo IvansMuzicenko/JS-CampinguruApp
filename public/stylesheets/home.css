@@ -34,9 +34,9 @@ video {
 	color: white;
 	border-bottom: 5px solid white;
 }
-.nav-link.active {
+#navlinks a.active {
 	color: white;
-	border-bottom: 2px solid white;
+	border-bottom: 5px solid white;
 }
 
 #info {
@@ -52,10 +52,13 @@ video {
 }
 
 #name {
-	font-size: 4rem;
+	font-family: 'Rancho', sans-serif;
 }
 
 sub {
 	font-weight: 500;
-	font-size: 5rem;
+}
+
+footer {
+	margin-top: 100%;
 }
