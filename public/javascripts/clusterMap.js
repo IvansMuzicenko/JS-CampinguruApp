@@ -1,10 +1,12 @@
 mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
-	container: 'map',
+	container: 'cluster-map',
 	style: 'mapbox://styles/mapbox/light-v10',
 	center: [-103.59179687498357, 40.66995747013945],
 	zoom: 3
 });
+
+map.addControl(new mapboxgl.NavigationControl());
 
 map.on('load', function () {
 	// Add a new source from our GeoJSON data and
@@ -116,9 +118,8 @@ map.on('load', function () {
 	// the location of the feature, with
 	// description HTML from its properties.
 	map.on('click', 'unclustered-point', function (e) {
-		const { popUpMarkup } = e.features[0].properties;
+		const { popupMarkup } = e.features[0].properties;
 		const coordinates = e.features[0].geometry.coordinates.slice();
-		console.log(popUpMarkup);
 
 		// Ensure that if the map is zoomed out such that
 		// multiple copies of the feature are visible, the
@@ -127,7 +128,7 @@ map.on('load', function () {
 			coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
 		}
 
-		new mapboxgl.Popup().setLngLat(coordinates).setHTML(popUpMarkup).addTo(map);
+		new mapboxgl.Popup().setLngLat(coordinates).setHTML(popupMarkup).addTo(map);
 	});
 
 	map.on('mouseenter', 'clusters', function () {
