@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="/stylesheets/app.css">
 <% layout('layouts/boilerplate') %>
 <div class="row">
-    <div class="col-md-8 offset-md-2 shadow-lg p-5">
+    <div class="col-md-8 offset-md-2 shadow-light p-5 bg rounded mt-5">
         <h1 class="text-center">Add Campground</h1>
         <form action="/campgrounds" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label" for="title">Title</label>
-                <input class="form-control shadow-lg" type="text" id="title" name="campground[title]" required>
+                <input class="form-control shadow-light" type="text" id="title" name="campground[title]" required>
                 <div class="valid-feedback">
                     Correct!
                 </div>
@@ -16,7 +16,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label"l for="location">Location</label>
-                <input class="form-control shadow-lg" type="text" id="location" name="campground[location]" required>
+                <input class="form-control shadow-light" type="text" id="location" name="campground[location]" required>
                 <div class="valid-feedback">
                     Correct!
                 </div>
@@ -26,7 +26,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label" for="price">Campground Price</label>
-                <div class="input-group shadow-lg ">
+                <div class="input-group shadow-light ">
                     <span class="input-group-text" id="price-label">$</span>
                     <input type="number" class="form-control" id="price" placeholder="0.00" aria-label="price"
                     aria-describedby="price-label" name="campground[price]" required>
@@ -40,7 +40,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label" l for="description">Description</label>
-                <textarea class="form-control shadow-lg" type="text" id="description" name="campground[description]" required></textarea>
+                <textarea class="form-control shadow-light" type="text" id="description" name="campground[description]" required></textarea>
                 <div class="valid-feedback">
                     Correct!
                 </div>
@@ -50,7 +50,7 @@
             </div>
             <div class="mb-5">
                 <label class="form-label" for="image">Add image(s)</label>
-                <div class="form-file custom-file shadow-lg">
+                <div class="form-file custom-file shadow-light">
                     <input type="file" class="form-file-input" id="image" name="image" multiple>
                     <label class="form-file-label" for="image">
                         <span class="form-file-text custom-file-label">Choose image(s)...</span>

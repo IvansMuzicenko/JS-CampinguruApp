@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate')%>
 <link rel="stylesheet" href="/stylesheets/stars.css">
-<div class="row mb-3">
+<div class="row bg mt-5 rounded ">
     <h5><a class="mb-1" href="/campgrounds">&larr;All Campgrounds</a></h5>
     <div class="col-lg-6 mb-3">
         <div id="campgroundCarousel" class="carousel slide" data-ride="carousel" >
@@ -23,7 +23,7 @@
                 </a>
             <% } %>
         </div>
-        <div class="card mb-3">
+        <div class="card mb-3 black ">
             <div class="card-body">
                 <h5 class="card-title"><%= campground.title %></h5>
                 <p class="card-text"><%= campground.description %></p>
@@ -52,7 +52,7 @@
         <div id="reviews">
             <h3 class="text-center">Reviews</h3>
             <% if(currentUser) { %> 
-                <div class="card p-3 mb-3">
+                <div class=" card black p-3 mb-3">
                 <h4>Leave a Review</h4>
                 <form action="/campgrounds/<%= campground.id %>/reviews" method="POST" class="mb-3 validated-form" novalidate>
                     <!-- <div class="mb-3">
@@ -74,8 +74,8 @@
                         <label for="first-rate5" title="Amazing">5 stars</label>
                     </fieldset>
                     <div class="mb-3">
-                        <label for="body" class="form-label">Review</label>
-                        <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+                        <label for="body" class="form-label">Review:</label>
+                        <textarea class="form-control shadow-lg" name="review[body]" id="body" cols="30" rows="3" required></textarea>
                         <div class="valid-feedback">
                             Correct!
                         </div>

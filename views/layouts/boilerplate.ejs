@@ -15,8 +15,10 @@
 </head>
 
 <body class="d-flex flex-column vh-100">
+    <video id="BG-video" src="https://res.cloudinary.com/drhbngwfh/video/upload/v1619159209/campinguru/BG-video1_we4c93.mp4"
+        muted loop autoplay></video>
     <%- include('../partials/navbar') %>
-    <main class="container mt-5">
+    <main class="container">
         <%- include('../partials/flash') %>
         <%- body %>
     </main>
@@ -30,6 +32,7 @@
         crossorigin="anonymous"></script>
 
     <script src='/javascripts/validateForms.js'></script>
+    
 </body>
 
 </html>
