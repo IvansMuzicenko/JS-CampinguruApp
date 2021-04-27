@@ -15,6 +15,9 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
 	console.log('Database connected');
+	seedDB().then(() => {
+		mongoose.connection.close();
+	});
 });
 
 const sample = (array) => array[Math.floor(Math.random() * array.length)];
@@ -51,7 +54,3 @@ const seedDB = async () => {
 		await camp.save();
 	}
 };
-
-seedDB().then(() => {
-	mongoose.connection.close();
-});
