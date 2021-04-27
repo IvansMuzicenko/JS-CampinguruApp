@@ -21,7 +21,7 @@ const userRoutes = require('./routes/users');
 
 const app = express();
 
-const MongoDBStore = require('connect-mongo');
+const MongoStore = require('connect-mongo');
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/campinguru';
 
@@ -55,18 +55,12 @@ app.use(
 
 const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
 
-const store = new MongoDBStore({
-	mongoUrl: dbUrl,
-	secret,
-	touchAfter: 24 * 60 * 60
-});
-
 store.on('error', function (e) {
 	console.log('Session Store Error:', e);
 });
 
 const sessionConfig = {
-	store: MongoDbStore.create({
+	store: MongoStore.create({
 		mongoUrl: dbUrl
 	}),
 	name: 'session',
