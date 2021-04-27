@@ -3,7 +3,7 @@ const cities = require('./cities');
 const { places, descriptors } = require('./seedHelpers');
 const Campground = require('../models/campground');
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/campinguru';
+const dbUrl = 'mongodb://localhost:27017/campinguru';
 
 mongoose.connect(dbUrl, {
 	useNewUrlParser: true,
@@ -28,10 +28,10 @@ const seedDB = async () => {
 		const random1000 = Math.floor(Math.random() * 1000);
 		const price = Math.floor(Math.random() * 20) + 10;
 		const camp = new Campground({
-			author: '607f0d484fff0121cc161ef2',
+			author: '6087f6fe52bee0226470a514',
 			location: `${cities[random1000].city}, ${cities[random1000].state}`,
 			title: `${sample(descriptors)} ${sample(places)}`,
-			description:
+			description: 
 				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
 			price,
 			geometry: {
