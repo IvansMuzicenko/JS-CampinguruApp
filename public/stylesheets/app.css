@@ -12,20 +12,25 @@ video {
 	height: 100%;
 	opacity: 0.3;
 	object-fit: cover;
+	filter: blur(1px);
 	z-index: -10;
 }
 
 .bg {
-	background-color: rgba(0, 0, 0, 0.294);
+	background: rgba(0, 0, 0, 0.3);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
 }
 .border {
 	border: 1px solid white;
 }
 .white {
 	color: white;
+	filter: none !important;
 }
 .black {
 	color: black;
+	filter: none;
 }
 
 .form-control {
