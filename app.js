@@ -55,10 +55,6 @@ app.use(
 
 const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
 
-MongoStore.on('error', (e) => {
-	console.log('Mongo Store Session Error: ', e);
-});
-
 const sessionConfig = {
 	store: MongoStore.create({
 		mongoUrl: dbUrl,
