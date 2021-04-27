@@ -1,6 +1,7 @@
 if (process.env.NODE_ENV !== 'production') {
 	require('dotenv').config();
 }
+import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter';
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
