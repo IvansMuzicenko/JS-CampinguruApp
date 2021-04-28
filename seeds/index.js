@@ -15,7 +15,7 @@ const citiesObj = JSON.parse(
 );
 
 const localAuthor = '607f0d484fff0121cc161ef2';
-const serverAuthor = '60883767a70532004a39c317';
+const serverAuthor = '60894166d55a7e004aa5f6f6';
 
 const localUrl = 'mongodb://localhost:27017/campinguru';
 const serverUrl = process.env.DB_URL || 'mongodb://localhost:27017/campinguru';
