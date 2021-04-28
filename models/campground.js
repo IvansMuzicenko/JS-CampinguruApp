@@ -46,9 +46,11 @@ const CampgroundSchema = new Schema(
 );
 
 CampgroundSchema.virtual('properties.popupMarkup').get(function () {
-	return `<div class="black by-3"><strong><a href="/campgrounds/${
-		this._id
-	}">${this.title}</a></strong><p>${this.location}</p><p>$${this.price}/night</p><p>${this.description.substring(0, 20)}...</p></div>`;
+	return `<div class="black by-3"><img style='width: 100%' src='${
+		this.images.length
+			? this.images[0].url
+			: 'https://res.cloudinary.com/cateyken/image/upload/v1618999000/campinguru/campfire_wbrg1s.jpg'
+	}'><strong><a href="/campgrounds/${this._id}">${this.title}</a></strong><p>${this.location}</p><p>$${this.price}/night</p><p>${this.description.substring(0, 20)}...</p></div>`;
 });
 
 CampgroundSchema.post('findOneAndDelete', async function (doc) {
