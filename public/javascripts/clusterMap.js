@@ -2,8 +2,8 @@ mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
 	container: 'cluster-map',
 	style: 'mapbox://styles/mapbox/outdoors-v11',
-	center: [-103.59179687498357, 40.66995747013945],
-	zoom: 3
+	center: [34.566667, 40.866667],
+	zoom: 1
 });
 
 map.addControl(new mapboxgl.NavigationControl());
@@ -14,12 +14,11 @@ map.on('load', function () {
 	// add the point_count property to your source data.
 	map.addSource('campgrounds', {
 		type: 'geojson',
-		// Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
-		// from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
+		// Point to GeoJSON data.
 		data: campgrounds,
 		cluster: true,
 		clusterMaxZoom: 14, // Max zoom to cluster points on
-		clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+		clusterRadius: 25 // Radius of each cluster when clustering points (defaults to 50)
 	});
 
 	map.addLayer({
@@ -30,42 +29,55 @@ map.on('load', function () {
 		paint: {
 			// Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
 			// with three steps to implement three types of circles:
-			//   * Blue, 20px circles when point count is less than 100
-			//   * Yellow, 30px circles when point count is between 100 and 750
-			//   * Pink, 40px circles when point count is greater than or equal to 750
 			'circle-color': [
 				'step',
 				['get', 'point_count'],
+				'#ffff00',
+				3,
 				'#80ff00',
-				10,
+				6,
 				'#00ff00',
-				25,
+				12,
 				'#00ff80',
-				50,
+				24,
 				'#00ffff',
-				100,
+				48,
 				'#0080ff',
-				150,
+				96,
 				'#0000ff',
-				250,
-				'#8000ff'
+				192,
+				'#8000ff',
+				384,
+				'#ff00ff',
+				768,
+				'#ff0080',
+				1024,
+				'#ff0000',
+				1500,
+				'#ff8000'
 			],
 			'circle-radius': [
 				'step',
 				['get', 'point_count'],
-				15,
 				10,
+				10,
+				12,
+				25,
 				15,
-				25,
-				20,
 				50,
-				25,
+				17,
 				100,
-				30,
+				20,
 				150,
-				35,
+				22,
 				250,
-				40
+				25,
+				400,
+				27,
+				650,
+				30,
+				1000,
+				32
 			]
 		}
 	});
