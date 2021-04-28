@@ -25,11 +25,11 @@ const MongoStore = require('connect-mongo');
 
 let dbUrl = '';
 
-if (process.env.NODE_ENV !== 'production') {
-	dbUrl = 'mongodb://localhost:27017/campinguru';
-} else {
-	dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/campinguru';
-}
+// if (process.env.NODE_ENV !== 'production') {
+// 	dbUrl = 'mongodb://localhost:27017/campinguru';
+// } else {
+// }
+dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/campinguru';
 
 mongoose.connect(dbUrl, {
 	useNewUrlParser: true,
@@ -108,7 +108,7 @@ const fontSrcUrls = [];
 app.use(
 	helmet.contentSecurityPolicy({
 		directives: {
-			defaultSrc: ['https://res.cloudinary.com/drhbngwfh/'],
+			defaultSrc: ['https://res.cloudinary.com/cateyken/'],
 			connectSrc: ["'self'", ...connectSrcUrls],
 			scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
 			styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
@@ -118,7 +118,7 @@ app.use(
 				"'self'",
 				'blob:',
 				'data:',
-				'https://res.cloudinary.com/drhbngwfh/',
+				'https://res.cloudinary.com/cateyken/',
 				'https://images.unsplash.com'
 			],
 			fontSrc: ["'self'", ...fontSrcUrls]

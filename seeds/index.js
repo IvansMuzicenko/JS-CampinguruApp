@@ -14,14 +14,16 @@ const citiesObj = JSON.parse(
 	)
 );
 
-const localAuthor = '607f0d484fff0121cc161ef2';
-const serverAuthor = '60894166d55a7e004aa5f6f6';
+let dbUrl = '';
+let author = '';
 
-const localUrl = 'mongodb://localhost:27017/campinguru';
-const serverUrl = process.env.DB_URL || 'mongodb://localhost:27017/campinguru';
-
-const author = serverAuthor;
-const dbUrl = serverUrl;
+// if (process.env.NODE_ENV !== 'production') {
+// 	dbUrl = 'mongodb://localhost:27017/campinguru';
+// 	author = '607f0d484fff0121cc161ef2';
+// } else {
+// }
+dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/campinguru';
+author = '60894166d55a7e004aa5f6f6';
 
 mongoose.connect(dbUrl, {
 	useNewUrlParser: true,
@@ -68,12 +70,12 @@ const seedDB = async () => {
 				images: [
 					{
 						url:
-							'https://res.cloudinary.com/drhbngwfh/image/upload/v1618999000/campinguru/campfire_wbrg1s.jpg',
+							'https://res.cloudinary.com/cateyken/image/upload/v1618999000/campinguru/campfire_wbrg1s.jpg',
 						filename: 'campinguru/campfire_wbrg1s.jpg'
 					},
 					{
 						url:
-							'https://res.cloudinary.com/drhbngwfh/image/upload/v1618999002/campinguru/river_ayeamb.jpg',
+							'https://res.cloudinary.com/cateyken/image/upload/v1618999002/campinguru/river_ayeamb.jpg',
 						filename: 'campinguru/river_ayeamb.jpg'
 					}
 				]
