@@ -9,5 +9,6 @@
 }
 
 #navlinks a:hover {
+	box-sizing: border-box !important;
 	border-bottom: 3px solid white;
 }
