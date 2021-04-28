@@ -100,10 +100,10 @@ map.on('load', function () {
 		source: 'campgrounds',
 		filter: ['!', ['has', 'point_count']],
 		paint: {
-			'circle-color': '#11b4da',
-			'circle-radius': 8,
-			'circle-stroke-width': 1,
-			'circle-stroke-color': '#fff'
+			'circle-color': '#fff',
+			'circle-radius': 5,
+			'circle-stroke-width': 3,
+			'circle-stroke-color': '#737373'
 		}
 	});
 

@@ -87,24 +87,31 @@
                 </form>
                 </div>
             <% } %> 
-            <% for(let review of campground.reviews) { %>
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">By <%= review.author.username%></h5>
-                        <p class="starability-result" data-rating="<%=review.rating%>">
-                            Rated: <%= review.rating %> stars
-                        </p>
-                        <p class="card-text">Review: <br> <%= review.body %></p>
-                        <% if(currentUser && review.author.equals(currentUser._id)) { %> 
-                        <form action="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
-                            <button class="btn btn-sm btn-danger">DELETE</button>
-                        </form>
-                        <% } %> 
+            <% if (campground.reviews.length) { %>
+                <% for(let review of campground.reviews) { %>
+                    <div class="card mb-3 black">
+                        <div class="card-body">
+                            <h5 class="card-title">By <%= review.author.username%></h5>
+                            <p class="starability-result" data-rating="<%=review.rating%>">
+                                Rated: <%= review.rating %> stars
+                            </p>
+                            <p class="card-text">Review: <br> <%= review.body %></p>
+                            <% if(currentUser && review.author.equals(currentUser._id)) { %> 
+                            <form action="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                                <button class="btn btn-sm btn-danger">DELETE</button>
+                            </form>
+                            <% } %> 
+                        </div>
                     </div>
+                <% } %>
+            <% } else { %>
+                <div class="mb-3">
+                    <% if (currentUser) { %> 
+                        <h5 class="text-center">No reviews yet! Write and be first!</h5>
+                    <% } else { %>
+                        <h5 class="text-center">No reviews yet! <a href="/login">Login</a>, write and be first!</h5>
+                    <% } %>  
                 </div>
-            <% } %>
-            <% if (!campground.reviews.length) { %>
-                <h5 class="text-center">No reviews yet! Write and be first!</h5>
             <% } %>
         </div>
     </div>
