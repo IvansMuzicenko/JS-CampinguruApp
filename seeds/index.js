@@ -6,7 +6,6 @@ const { places, descriptors } = require('./seedHelpers');
 const Campground = require('../models/campground');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapBoxToken = process.env.MAPBOX_TOKEN;
-console.log(process.env.MAPBOX_TOKEN);
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const fs = require('fs');
 const citiesObj = JSON.parse(
@@ -41,9 +40,13 @@ db.once('open', () => {
 const sample = (array) => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
-	await Campground.deleteMany({});
+	// await Campground.deleteMany({});
 	for (const [country, city] of Object.entries(citiesObj)) {
-		for (const name of city) {
+		const cityArr = [];
+		for (let i = 0; i < 10; i++) {
+			cityArr.push(sample(city));
+		}
+		for (const name of cityArr) {
 			const location = `${name}, ${country}`;
 			console.log(location);
 			const geoData = await geocoder
