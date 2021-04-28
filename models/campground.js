@@ -61,4 +61,8 @@ CampgroundSchema.post('findOneAndDelete', async function (doc) {
 	}
 });
 
+CampgroundSchema.post('save', function (doc) {
+	console.log('%s has been saved', doc._id);
+});
+
 module.exports = mongoose.model('Campground', CampgroundSchema);

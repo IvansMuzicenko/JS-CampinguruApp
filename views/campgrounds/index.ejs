@@ -6,6 +6,9 @@
         <a class="btn btn-outline-success" href="/campgrounds/new">Add campground</a>
     </div>
     <% for(let campground of campgrounds) { %>
+        <% if (campground == campgrounds[100]) { %>
+            <% break;  %>
+        <% } %>   
         <div class="shadow-light mb-3 bg rounded">
             <div class="row">
                 <div class="col-md-4">

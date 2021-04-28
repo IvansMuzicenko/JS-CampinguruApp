@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.12.1",
+    "all-countries-and-cities-json": "^1.0.0",
     "cloudinary": "^1.25.1",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^4.4.1",
