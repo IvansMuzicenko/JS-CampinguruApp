@@ -23,10 +23,13 @@ const app = express();
 
 const MongoStore = require('connect-mongo');
 
-const localUrl = 'mongodb://localhost:27017/campinguru';
-const serverUrl = process.env.DB_URL || 'mongodb://localhost:27017/campinguru';
+let dbUrl = '';
 
-const dbUrl = localUrl;
+if (process.env.NODE_ENV !== 'production') {
+	dbUrl = 'mongodb://localhost:27017/campinguru';
+} else {
+	dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/campinguru';
+}
 
 mongoose.connect(dbUrl, {
 	useNewUrlParser: true,

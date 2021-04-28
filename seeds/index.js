@@ -20,8 +20,8 @@ const serverAuthor = '60883767a70532004a39c317';
 const localUrl = 'mongodb://localhost:27017/campinguru';
 const serverUrl = process.env.DB_URL || 'mongodb://localhost:27017/campinguru';
 
-const author = localAuthor;
-const dbUrl = localUrl;
+const author = serverAuthor;
+const dbUrl = serverUrl;
 
 mongoose.connect(dbUrl, {
 	useNewUrlParser: true,
@@ -40,11 +40,11 @@ db.once('open', () => {
 const sample = (array) => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
-	// await Campground.deleteMany({});
+	await Campground.deleteMany({});
 	for (const [country, city] of Object.entries(citiesObj)) {
 		const cityArr = [];
-		for (let i = 0; i < 10; i++) {
-			cityArr.push(sample(city));
+		for (let i = 0; i < 40 && i < city.length; i++) {
+			cityArr.push(city[i]);
 		}
 		for (const name of cityArr) {
 			const location = `${name}, ${country}`;
