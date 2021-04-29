@@ -74,6 +74,7 @@ div.carousel-item img {
 
 @media screen and (max-width: 768px) {
 	video {
+		src: url();
 		display: none;
 		position: fixed;
 		top: 0;

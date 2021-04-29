@@ -34,6 +34,9 @@
         crossorigin="anonymous"></script>
 
     <script src='/javascripts/validateForms.js'></script>
+    <script>
+        window.onload = () => document.querySelectorAll('nav a[href^="' + location.pathname + '"]')[0].classList.toggle("active");
+    </script>
     
     
 </body>
