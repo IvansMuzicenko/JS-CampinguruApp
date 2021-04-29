@@ -71,3 +71,22 @@ div.carousel-item img {
 	font-size: 2rem;
 	left: 1rem;
 }
+
+@media screen and (max-width: 768px) {
+	video {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		object-fit: cover;
+	}
+	body {
+		background: fixed no-repeat center
+			url(https://res.cloudinary.com/cateyken/image/upload/v1619697900/campinguru/photo-1448234033678-91c13d8cbbad_qpttag.jpg);
+		object-fit: cover;
+		backdrop-filter: blur(2px);
+	}
+}
