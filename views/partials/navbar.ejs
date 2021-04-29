@@ -16,7 +16,7 @@
 
             </div>
             <div id="navlinks" class="navbar-nav ml-auto">
-                <a class="nav-link active" href="/">Home</a>
+                <a class="nav-link" href="/">Home</a>
                 <a class="nav-link mr-5" href="/campgrounds">Campgrounds</a>
                 <a href="/campgrounds/new" class="nav-link mr-5"> New Campground</a>
                 <% if(!currentUser) { %>
@@ -39,3 +39,6 @@
         </div>
     </div>
 </nav>
+<script>
+    window.onload = () => document.querySelectorAll('nav a[href^="' + location.pathname + '"]')[0].classList.toggle("active");
+</script>

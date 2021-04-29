@@ -56,7 +56,7 @@ div.carousel-item img {
 	object-fit: cover;
 }
 
-.form-control:focus {
+#search:focus {
 	box-sizing: border-box !important;
 	background: inherit !important;
 	outline: 1px solid white !important;
