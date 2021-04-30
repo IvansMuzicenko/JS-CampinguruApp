@@ -11,16 +11,30 @@ body {
 	background-color: black;
 	z-index: -100;
 }
-video {
-	position: absolute;
+#bg-video {
+	position: fixed;
 	top: 0;
 	left: 0;
+	min-height: 100vh;
 	width: 100%;
 	height: 100%;
+	opacity: 0.3;
 	object-fit: cover;
-	opacity: 0.4;
-	z-index: -10;
 	filter: blur(2px);
+	z-index: -10;
+}
+
+#bg-image {
+	position: fixed;
+	top: 0;
+	left: 0;
+	min-height: 100vh;
+	width: 100%;
+	height: 100%;
+	opacity: 0.5;
+	object-fit: cover;
+	filter: blur(2px);
+	z-index: -10;
 }
 
 #navlinks {
