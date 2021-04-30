@@ -9,6 +9,9 @@ window.onload = () => {
 		bgChange.innerHTML =
 			'<img id="bg-image" src="https://res.cloudinary.com/cateyken/image/upload/v1619697900/campinguru/photo-1448234033678-91c13d8cbbad_qpttag.jpg" alt="" />';
 	}
+	//  if ($('#some-element').css('display') == 'none') {
+	// 		is_mobile = true;
+	// 	}
 
 	// Navbar active links
 

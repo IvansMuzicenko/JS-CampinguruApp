@@ -1,42 +1,59 @@
-<link rel="stylesheet" href="/stylesheets/navbar.css">
+<link rel="stylesheet" href="/stylesheets/navbar.css" />
 <nav class="navbar sticky-top navbar-expand-md navbar-dark bg">
-    <div class="container-fluid">
-        <button class="navbar-toggler mr-0" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class=""><img id="nav-images" class="m-0"
-                    src="https://res.cloudinary.com/cateyken/image/upload/v1619003422/campinguru/campfire_1_aekxn1.png"
-                    alt=""></span>
-        </button>
-        <a class="navbar-brand mx-auto mt-3" href="/"><img class="m-0" id="nav-images"
-                src="https://res.cloudinary.com/cateyken/image/upload/v1619004488/campinguru/New_Project_3_j2wv3n.png"
-                alt=""></a>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <hr>
-            <div class="navbar-nav">
-
-            </div>
-            <div id="navlinks" class="navbar-nav ml-auto">
-                <a class="nav-link" href="/">Home</a>
-                <a class="nav-link mr-5" href="/campgrounds">Campgrounds</a>
-                <a href="/campgrounds/new" class="nav-link mr-5"> New Campground</a>
-                <% if(!currentUser) { %>
-                    <a href="/login" class="nav-link">Login</a>
-                    <a href="/register" class="nav-link">Register</a>
-                <% } else {%>
-                    <div class="btn-group">
-                        <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            <%= currentUser.username %>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right bg white mt-3">
-                            <a class="dropdown-item white" href="#">My profile</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item white" href="/logout">Log out</a>
-                        </div>
-                    </div>
-                <% } %>
-            </div>
-        </div>
-    </div>
+	<div class="container-fluid">
+		<button
+			class="navbar-toggler mr-0"
+			type="button"
+			data-toggle="collapse"
+			data-target="#navbarNavAltMarkup"
+			aria-controls="navbarNavAltMarkup"
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+		>
+			<span class=""
+				><img
+					id="nav-images"
+					class="m-0"
+					src="https://res.cloudinary.com/cateyken/image/upload/v1619003422/campinguru/campfire_1_aekxn1.png"
+					alt=""
+			/></span>
+		</button>
+		<a class="navbar-brand mx-auto mt-3" href="/"
+			><img
+				class="m-0"
+				id="nav-images"
+				src="https://res.cloudinary.com/cateyken/image/upload/v1619004488/campinguru/New_Project_3_j2wv3n.png"
+				alt=""
+		/></a>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<hr />
+			<div class="navbar-nav"></div>
+			<div id="navlinks" class="navbar-nav ml-auto">
+				<a class="nav-link" href="/">Home</a>
+				<a class="nav-link mr-5" href="/campgrounds">Campgrounds</a>
+				<a href="/campgrounds/new" class="nav-link mr-5"> New Campground</a>
+				<% if(!currentUser) { %>
+				<a href="/login" class="nav-link">Login</a>
+				<a href="/register" class="nav-link">Register</a>
+				<% } else {%>
+				<div class="btn-group">
+					<a
+						type="button"
+						class="nav-link dropdown-toggle"
+						data-toggle="dropdown"
+						aria-haspopup="true"
+						aria-expanded="false"
+					>
+						<%= currentUser.username %>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right bg white mt-3">
+						<a class="dropdown-item white" href="#">My profile</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item white" href="/logout">Log out</a>
+					</div>
+				</div>
+				<% } %>
+			</div>
+		</div>
+	</div>
 </nav>
-

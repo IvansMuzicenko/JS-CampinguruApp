@@ -6,8 +6,36 @@ const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary, storage } = require('../cloudinary');
 
 module.exports.index = async (req, res) => {
-	const campgrounds = await Campground.find({}).populate('popupText');
-	res.render('campgrounds/index', { campgrounds });
+	let pageCount = await Campground.count({});
+	pageCount = Math.ceil(pageCount / 25);
+	let page = parseInt(req.query.page) || 1;
+	if (page > pageCount) {
+		page = 1;
+	}
+	const campgrounds = await Campground.find(
+		{},
+		{},
+		{ skip: (page - 1) * 25, limit: 25 }
+	).populate('popupText');
+
+	let pages = [...Array(pageCount).keys()].map((x) => ++x);
+	const start = page - 6;
+	const before = pages.slice(start);
+	const all = before.concat(pages);
+	const pagination = all.slice(0, 11);
+
+	const prevPage = pages.slice(page - 2).slice(0, 1);
+
+	const nextPage = pages.concat(pages).slice(page, page + 1);
+
+	res.render('campgrounds/index', {
+		campgrounds,
+		page,
+		pages,
+		pagination,
+		prevPage,
+		nextPage
+	});
 };
 
 module.exports.renderNewForm = (req, res) => {
