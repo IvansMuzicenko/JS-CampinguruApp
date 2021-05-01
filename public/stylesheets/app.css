@@ -86,6 +86,8 @@ div.carousel-item img {
 
 .toUp {
 	/* position: absolute; */
+	display: none;
+	transition: all 1s;
 	width: 4rem;
 	height: 4rem;
 	top: 90vh;
