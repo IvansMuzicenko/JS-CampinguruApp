@@ -1,5 +1,4 @@
 <% layout('layouts/boilerplate')%>
-<div class="black my-3" id="cluster-map"></div>
 <div class="container shadow-light bg pt-3">
 	<h1 class="text-center">All Campgrounds</h1>
 	<div class="mx-2 mb-3 row">
@@ -42,18 +41,15 @@
 		</div>
 	</div>
 
-	<div>
+	<nav>
 		<ul class="pagination justify-content-center">
 			<li class="page-item">
 				<a class="page-link" href="?page=<%= prevPage %> " aria-label="Previous">
 					<span aria-hidden="true">&laquo;</span>
 				</a>
 			</li>
-			<% for (let n = 0; n < pagination.length; n++) { %> <% if (n == 5) { %>
-			<li class="page-item active" aria-current="page"><% } else { %></li>
-
-			<li class="page-item">
-				<% } %>
+			<% for (let n = 0; n < pagination.length; n++) { %>
+			<li class="page-item <% if (pagination[n] == page) { %>active<%}%>">
 				<a class="page-link" href="?page=<%= pagination[n] %> "
 					><%= pagination[n] %>
 				</a>
@@ -65,7 +61,7 @@
 				</a>
 			</li>
 		</ul>
-	</div>
+	</nav>
 
 	<% for(let campground of campgrounds) { %>
 
@@ -108,11 +104,8 @@
 					<span aria-hidden="true">&laquo;</span>
 				</a>
 			</li>
-			<% for (let n = 0; n < pagination.length; n++) { %> <% if (n == 5) { %>
-			<li class="page-item active" aria-current="page"><% } else { %></li>
-
-			<li class="page-item">
-				<% } %>
+			<% for (let n = 0; n < pagination.length; n++) { %>
+			<li class="page-item <% if (pagination[n] == page) { %>active <%}%>">
 				<a class="page-link" href="?page=<%= pagination[n] %> "
 					><%= pagination[n] %>
 				</a>
@@ -131,5 +124,3 @@
 	const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
 	const campgrounds = { features: <%- JSON.stringify(campgrounds) %>}
 </script>
-
-<script src="/javascripts/clusterMap.js"></script>
