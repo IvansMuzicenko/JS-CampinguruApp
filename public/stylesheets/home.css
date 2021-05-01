@@ -48,6 +48,7 @@ body {
 .nav-link:hover {
 	color: white;
 	border-bottom: 5px solid white;
+	transition: all 0.2s linear;
 }
 #navlinks a.active {
 	color: white;

@@ -12,4 +12,5 @@
 #navlinks a.active {
 	box-sizing: border-box !important;
 	border-bottom: 3px solid white;
+	transition: all 150ms linear;
 }
