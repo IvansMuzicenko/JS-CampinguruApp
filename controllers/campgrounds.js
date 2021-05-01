@@ -24,10 +24,21 @@ module.exports.index = async (req, res) => {
 	).populate('popupText');
 
 	let pages = [...Array(pageCount).keys()].map((x) => ++x);
-	const start = page - 6;
-	const before = pages.slice(start);
-	const all = before.concat(pages);
-	const pagination = all.slice(0, 11);
+	let start;
+	let before;
+	let all;
+	let pagination;
+
+	if (page < 6) {
+		pagination = pages.slice(0, 11);
+	} else if (page > pageCount - 6) {
+		pagination = pages.slice(-11);
+	} else {
+		start = page - 6;
+		before = pages.slice(start);
+		all = before.concat(pages);
+		pagination = all.slice(0, 11);
+	}
 
 	const prevPage = pages.slice(page - 2).slice(0, 1);
 
