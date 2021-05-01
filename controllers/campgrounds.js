@@ -50,7 +50,8 @@ module.exports.index = async (req, res) => {
 		pages,
 		pagination,
 		prevPage,
-		nextPage
+		nextPage,
+		pageCount
 	});
 };
 
