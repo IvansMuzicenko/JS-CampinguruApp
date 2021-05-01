@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>CampMap</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+			integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+			crossorigin="anonymous"
+		/>
+		<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+		<script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+		<link
+			href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="/stylesheets/app.css" />
+		<link rel="stylesheet" href="/stylesheets/mapPage.css" />
+	</head>
+	<body>
+		<main>
+			<div class="btn-group">
+				<button
+					id="menu"
+					type="button"
+					class="btn dropdown-toggle bg"
+					data-toggle="dropdown"
+					aria-haspopup="true"
+					aria-expanded="false"
+				>
+					<img
+						class="m-0"
+						id="nav-images"
+						src="https://res.cloudinary.com/cateyken/image/upload/v1619004488/campinguru/New_Project_3_j2wv3n.png"
+						alt=""
+					/>
+				</button>
+				<div class="dropdown-menu bg">
+					<nav class="navbar navbar-dark">
+						<div class="container-fluid">
+							<div class="" id="navbarNavAltMarkup">
+								<div id="navlinks" class="navbar-nav">
+									<a class="dropdown-item white" href="/">Home</a>
+									<a class="dropdown-item white active" href="/campgrounds/map"
+										>Campgrounds Map</a
+									>
+									<a class="dropdown-item white mr-5" href="/campgrounds"
+										>Campgrounds List</a
+									>
+									<a href="/campgrounds/new" class="dropdown-item white mr-5">
+										New Campground</a
+									>
+									<% if(!currentUser) { %>
+									<a href="/login" class="dropdown-item white">Login</a>
+									<a href="/register" class="dropdown-item white">Register</a>
+									<% } else {%>
+									<a class="dropdown-item white" href="#">My profile</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item white" href="/logout">Log out</a>
+									<% } %>
+								</div>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</div>
+			<div class="black mb-0 map justify-content-center" id="cluster-map"></div>
+
+			<script>
+				const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
+				const campgrounds = { features: <%- JSON.stringify(campgrounds) %>}
+			</script>
+			<script
+				src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+				integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+				crossorigin="anonymous"
+			></script>
+			<script
+				src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+				integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+				crossorigin="anonymous"
+			></script>
+			<script src="/javascripts/validateForms.js"></script>
+			<script src="/javascripts/clusterMap.js"></script>
+		</main>
+	</body>
+</html>

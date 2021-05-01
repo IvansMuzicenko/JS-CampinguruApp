@@ -5,6 +5,11 @@ const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary, storage } = require('../cloudinary');
 
+module.exports.map = async (req, res) => {
+	const campgrounds = await Campground.find({}).populate('popupText');
+	res.render('campgrounds/map', { campgrounds });
+};
+
 module.exports.index = async (req, res) => {
 	let pageCount = await Campground.count({});
 	pageCount = Math.ceil(pageCount / 25);

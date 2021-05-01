@@ -1,0 +1,37 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+#menu {
+	position: relative;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+}
+.dropdown-menu {
+	background: rgba(0, 0, 0, 0.7);
+}
+.dropdown-toggle::after {
+	color: white;
+}
+#nav-images {
+	top: 2rem;
+	left: 1rem;
+	width: 12vw;
+	min-width: 10rem;
+}
+
+#navlinks {
+	font-size: 20px;
+	font-weight: 700;
+}
+
+#navlinks a:hover,
+#navlinks a.active {
+	transition: 0.5s;
+	transform: translateX(5%);
+	color: white;
+	background: none;
+	box-sizing: border-box !important;
+	border-bottom: 3px solid white;
+}

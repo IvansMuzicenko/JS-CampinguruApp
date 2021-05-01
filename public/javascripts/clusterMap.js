@@ -6,8 +6,8 @@ const map = new mapboxgl.Map({
 	zoom: 1
 });
 
-map.addControl(new mapboxgl.NavigationControl());
-map.addControl(new mapboxgl.FullscreenControl());
+map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
+map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
 
 map.on('load', function () {
 	// Add a new source from our GeoJSON data and
