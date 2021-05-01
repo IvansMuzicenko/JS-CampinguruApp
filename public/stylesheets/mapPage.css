@@ -28,10 +28,13 @@
 
 #navlinks a:hover,
 #navlinks a.active {
-	transition: 0.5s;
+	transition: all 0.5s;
 	transform: translateX(5%);
 	color: white;
 	background: none;
 	box-sizing: border-box !important;
+}
+
+#navlinks a.active {
 	border-bottom: 3px solid white;
 }

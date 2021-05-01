@@ -52,8 +52,8 @@
 						<div class="navbar-nav"></div>
 						<div id="navlinks" class="navbar-nav ml-auto">
 							<a class="nav-link active" href="/">Home</a>
-							<a class="nav-link" href="/campgrounds/map">Campgrounds Map</a>
-							<a class="nav-link mr-5" href="/campgrounds">Campgrounds List</a>
+							<a class="nav-link" href="/campgrounds">Campgrounds List</a>
+							<a class="nav-link mr-5" href="/campgrounds/map">Campgrounds Map</a>
 							<% if(!currentUser) { %>
 							<a href="/login" class="nav-link">Login</a>
 							<a href="/register" class="nav-link">Register</a>
@@ -77,9 +77,11 @@
 					aliquam eaque architecto suscipit, nam totam? Ex, ad dicta enim animi
 					mollitia odio, ut nostrum provident ipsa, placeat sit.
 				</p>
-				<a href="/campgrounds" class="btn btn-lg btn-outline-light">
+				<a href="/campgrounds" class="btn btn-lg btn-outline-primary my-3">
 					View campgrounds</a
 				>
+				<br />
+				<a href="/campgrounds/map" class="btn btn-lg btn-outline-info"> View Map</a>
 			</div>
 		</main>
 		<%- include('./partials/footer') %>
