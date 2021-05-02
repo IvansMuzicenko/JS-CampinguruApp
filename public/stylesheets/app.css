@@ -49,6 +49,9 @@ body {
 .form-control {
 	border: 0;
 }
+.cover {
+	object-fit: cover;
+}
 
 #map {
 	width: 100%;
@@ -94,7 +97,27 @@ div.carousel-item img {
 	font-size: 2rem;
 	left: 1rem;
 }
-#unclustered-point {
-	background-image: url(https://res.cloudinary.com/cateyken/image/upload/v1619937161/campinguru/campfire_gln9of.svg);
-	color: rgb(165, 42, 42);
+
+.mapboxgl-popup-close-button {
+	margin: 2px;
+	width: 50px;
+	height: 50px;
+	background: white;
+	border-radius: 50%;
+}
+
+.mapboxgl-popup-close-button:hover {
+	background: white;
+	transform: scale(1.05);
+}
+.mapboxgl-popup-content {
+	width: 70vw;
+	max-width: 400px;
+	left: 0;
+	padding: 0;
+	font-size: 15px;
+}
+.mapboxgl-popup-content img {
+	height: 250px;
+	object-fit: cover;
 }

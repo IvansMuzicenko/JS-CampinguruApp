@@ -46,11 +46,23 @@ const CampgroundSchema = new Schema(
 );
 
 CampgroundSchema.virtual('properties.popupMarkup').get(function () {
-	return `<div class="black by-3"><img style='width: 100%' src='${
-		this.images.length
-			? this.images[0].url
-			: 'https://res.cloudinary.com/cateyken/image/upload/v1618999000/campinguru/campfire_wbrg1s.jpg'
-	}'><strong><a href="/campgrounds/${this._id}">${this.title}</a></strong><p>${this.location}</p><p>$${this.price}/night</p><p>${this.description.substring(0, 20)}...</p></div>`;
+	return `<div class="black by-3"><a href="/campgrounds/${
+		this._id
+	}"><img class="w-100 cover" src='${this.images.length ? this.images[0].url : 'https://res.cloudinary.com/cateyken/image/upload/v1618999000/campinguru/campfire_wbrg1s.jpg'}'><div class="card mb-3 black ">
+	<div class="card-body">
+		<h5 class="card-title">
+			<a href="/campgrounds/${this._id}">${this.title}</a>
+		</h5>
+		<p class="card-text">${this.description}</p>
+		<ul class="list-group list-group-flush">
+		<li class="list-group-item text-muted">${this.location} </li>
+		<li class="list-group-item">$${this.price}/night</li>
+		</ul>
+	</div>
+	<a class="btn btn-outline-primary" href="/campgrounds/${this._id}"
+						>View ${this.title}</a
+					>
+</a></div>`;
 });
 
 CampgroundSchema.post('findOneAndDelete', async function (doc) {
