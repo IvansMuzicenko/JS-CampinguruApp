@@ -30,14 +30,14 @@ module.exports.index = async (req, res) => {
 	let pagination;
 
 	if (page < 6) {
-		pagination = pages.slice(0, 11);
-	} else if (page > pageCount - 6) {
-		pagination = pages.slice(-11);
+		pagination = pages.slice(0, 10);
+	} else if (page > pageCount - 5) {
+		pagination = pages.slice(-10);
 	} else {
 		start = page - 6;
 		before = pages.slice(start);
 		all = before.concat(pages);
-		pagination = all.slice(0, 11);
+		pagination = all.slice(1, 10);
 	}
 
 	const prevPage = pages.slice(page - 2).slice(0, 1);
