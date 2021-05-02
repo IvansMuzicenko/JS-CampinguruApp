@@ -94,3 +94,7 @@ div.carousel-item img {
 	font-size: 2rem;
 	left: 1rem;
 }
+#unclustered-point {
+	background-image: url(https://res.cloudinary.com/cateyken/image/upload/v1619937161/campinguru/campfire_gln9of.svg);
+	color: rgb(165, 42, 42);
+}

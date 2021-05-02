@@ -97,14 +97,12 @@ map.on('load', function () {
 
 	map.addLayer({
 		id: 'unclustered-point',
-		type: 'circle',
+		type: 'symbol',
 		source: 'campgrounds',
 		filter: ['!', ['has', 'point_count']],
-		paint: {
-			'circle-color': '#fff',
-			'circle-radius': 5,
-			'circle-stroke-width': 3,
-			'circle-stroke-color': '#737373'
+		layout: {
+			'icon-image': 'campsite-15',
+			'icon-size': 1
 		}
 	});
 
