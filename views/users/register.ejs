@@ -1,38 +1,43 @@
-<link rel="stylesheet" href="/stylesheets/app.css">
 <% layout('layouts/boilerplate') %>
-    <div class="col-lg-4 offset-lg-4 card-body shadow-light rounded p-5 bg mt-5">
-        <h1 class="text-center mb-5">Register</h1>
-        <form action="/register" method="POST" class="validated-form" novalidate>
-            <div class="mb-4">
-                <label for="username" class="form-label"> Username</label>
-                <input type="text" class="form-control shadow-light" id="username" name="username" required>
-                <div class="valid-feedback">
-                    Correct!
-                </div>
-                <div class="invalid-feedback">
-                    Provide an username!
-                </div>
-            </div>
-            <div class="mb-4">
-                <label for="email" class="form-label"> E-mail</label>
-                <input type="email" class="form-control shadow-light " id="email" name="email" required>
-                <div class="valid-feedback">
-                    Correct!
-                </div>
-                <div class="invalid-feedback">
-                    Provide an e-mail!
-                </div>
-            </div>
-            <div class="mb-5">
-                <label for="password" class="form-label"> Password</label>
-                <input type="password" class="form-control shadow-light" id="password" name="password" required>
-                <div class="valid-feedback">
-                    Correct!
-                </div>
-                <div class="invalid-feedback">
-                    Provide an password!
-                </div>
-            </div>
-            <button class="btn btn-success btn-block">Register</button>
-        </form>
-    </div>
+<div class="col-lg-4 offset-lg-4 card-body shadow-light rounded p-5 bg mt-5">
+	<h1 class="text-center mb-5">Register</h1>
+	<form action="/register" method="POST" class="validated-form" novalidate>
+		<div class="mb-4">
+			<label for="username" class="form-label"> Username</label>
+			<input
+				type="text"
+				class="form-control shadow-light"
+				id="username"
+				name="username"
+				required
+			/>
+			<div class="valid-feedback">Correct!</div>
+			<div class="invalid-feedback">Provide an username!</div>
+		</div>
+		<div class="mb-4">
+			<label for="email" class="form-label"> E-mail</label>
+			<input
+				type="email"
+				class="form-control shadow-light"
+				id="email"
+				name="email"
+				required
+			/>
+			<div class="valid-feedback">Correct!</div>
+			<div class="invalid-feedback">Provide an e-mail!</div>
+		</div>
+		<div class="mb-5">
+			<label for="password" class="form-label"> Password</label>
+			<input
+				type="password"
+				class="form-control shadow-light"
+				id="password"
+				name="password"
+				required
+			/>
+			<div class="valid-feedback">Correct!</div>
+			<div class="invalid-feedback">Provide an password!</div>
+		</div>
+		<button class="btn btn-success btn-block">Register</button>
+	</form>
+</div>
