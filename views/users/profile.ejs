@@ -1,0 +1,87 @@
+<% layout('layouts/boilerplate') %>
+<div class="container shadow-light bg white">
+	<h2 class="text-center mt-3 mb-5">My profile</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h5>Username: <%= currentUser.username %></h4>
+			<h5>E-mail: <%= currentUser.email %></h4>
+		</div>
+		<div class="col-md-6">
+			<h3 class="mb-3">Change password</h4>
+			<form action="/profile" method="post">
+				<div class="mb-3 col-6">
+					<label class="form-label" for="password"> Password:</label>
+					<input
+						class="form-control shadow-light"
+						type="password"
+						name="password"
+						id="password"
+						inputmode="verbatim"
+						minlength="8"
+						aria-required="true"
+						autocomplete="current-password"
+					/>
+				</div>
+				<div class="mb-3 col-6">
+					<label class="form-label" for="newPassword"> New password:</label>
+					<input
+						class="form-control shadow-light"
+						type="password"
+						name="newPassword"
+						id="newPassword"
+						inputmode="verbatim"
+						minlength="8"
+						aria-required="true"
+						autocomplete="new-password"
+					/>
+				</div>
+				<div class="mb-3 col-6">
+					<label class="form-label" for="confirmPassword">
+						Confirm new password:</label
+					>
+					<input
+						class="form-control shadow-light"
+						type="password"
+						name="confirmPassword"
+						id="confirmPassword"
+						inputmode="verbatim"
+						minlength="8"
+						aria-required="true"
+						autocomplete="new-password"
+					/>
+				</div>
+				<button class="brn btn-outline-info bg p-2 rounded mb-3" type="submit">
+					Change
+				</button>
+			</form>
+		</div>
+	</div>
+    <div class="btn-group bg border mb-5 w-100">
+        <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <h3>My reviews:</h3>
+        </button>
+        <div class="dropdown-menu w-100">
+            <a class="dropdown-item" href="#camp/reviewId">Review</a>
+            <% for(let review of reviews) {%> 
+                <h5><%= review.body %> </h5>
+            <% } %> 
+        
+        </div>
+    </div>
+    <div class="btn-group bg border mb-5 w-100">
+        <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <h3>My campgrounds:</h3>
+        </button>
+        <div class="dropdown-menu w-100">
+            <% for(let campground of campgrounds) {%> 
+				<a class="dropdown-item" href="/campgrounds/<%=campground._id%> ">
+                <h5><%= campground.title %> </h5></a>
+                <h6><%= campground.location %> </h6>
+				<hr>
+            <% } %> 
+        </div>
+    </div>
+    
+</div>
+
+

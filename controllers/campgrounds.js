@@ -13,6 +13,11 @@ module.exports.map = async (req, res) => {
 module.exports.index = async (req, res) => {
 	let pageCount = await Campground.count({});
 	pageCount = Math.ceil(pageCount / 25);
+	let pages = [...Array(pageCount).keys()].map((x) => ++x);
+	let start;
+	let before;
+	let all;
+	let pagination;
 	let page = parseInt(req.query.page) || 1;
 	if (page > pageCount) {
 		page = 1;
@@ -22,12 +27,6 @@ module.exports.index = async (req, res) => {
 		{},
 		{ skip: (page - 1) * 25, limit: 25 }
 	).populate('popupText');
-
-	let pages = [...Array(pageCount).keys()].map((x) => ++x);
-	let start;
-	let before;
-	let all;
-	let pagination;
 
 	if (page < 6) {
 		pagination = pages.slice(0, 10);

@@ -1,4 +1,6 @@
 const User = require('../models/user');
+const Review = require('../models/review');
+const Campground = require('../models/campground');
 
 module.exports.renderRegister = (req, res) => {
 	res.render('users/register');
@@ -37,4 +39,14 @@ module.exports.logout = (req, res) => {
 	const redirectUrl = req.session.returnTo || '/';
 	delete req.session.returnTo;
 	res.redirect(redirectUrl);
+};
+
+module.exports.renderProfile = async (req, res, next) => {
+	const reviews = await Review.find({ author: `${req.user._id}` });
+	const campgrounds = await Campground.find(
+		{ author: req.user._id },
+		'title location _id'
+	);
+	console.log(campgrounds[0]);
+	res.render('users/profile', { reviews, campgrounds });
 };
