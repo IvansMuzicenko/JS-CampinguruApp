@@ -1,0 +1,31 @@
+<nav>
+	<ul class="pagination justify-content-center">
+		<li class="page-item">
+			<a class="page-link" href="?page=<%= pages[0] %> " aria-label="First">
+				<span aria-hidden="true">&laquo;</span>
+			</a>
+		</li>
+		<li class="page-item">
+			<a class="page-link" href="?page=<%= prevPage %> " aria-label="Previous">
+				<span aria-hidden="true">&lsaquo;</span>
+			</a>
+		</li>
+		<% for (let n = 0; n < pagination.length; n++) { %>
+		<li class="page-item <% if (pagination[n] == page) { %>active<%}%>">
+			<a class="page-link" href="?page=<%= pagination[n] %> "
+				><%= pagination[n] %>
+			</a>
+		</li>
+		<% } %>
+		<li class="page-item">
+			<a class="page-link" href="?page=<%= nextPage %> " aria-label="Next">
+				<span aria-hidden="true">&rsaquo;</span>
+			</a>
+		</li>
+		<li class="page-item">
+			<a class="page-link" href="?page=<%= pageCount %> " aria-label="Next">
+				<span aria-hidden="true">&raquo;</span>
+			</a>
+		</li>
+	</ul>
+</nav>
