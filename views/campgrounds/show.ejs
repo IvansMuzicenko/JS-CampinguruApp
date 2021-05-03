@@ -124,9 +124,11 @@
 			</div>
 			<% } %> <% if (campground.reviews.length) { %> <% for(let review of
 			campground.reviews) { %>
-			<div id="<%= review._id %> " class="card mb-3 black">
+			<div class="card mb-3 black">
 				<div class="card-body">
-					<h5 class="card-title">By <%= review.author.username%></h5>
+					<h5 id="<%= review._id %>" class="card-title">
+						By <%= review.author.username%>
+					</h5>
 					<p class="starability-result" data-rating="<%=review.rating%>">
 						Rated: <%= review.rating %> stars
 					</p>

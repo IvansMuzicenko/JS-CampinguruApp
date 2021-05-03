@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const users = require('../controllers/users');
 const catchAsync = require('../utils/catchAsync');
+const { isLoggedIn } = require('../middleware');
 
 router
 	.route('/register')
@@ -20,7 +21,7 @@ router
 		users.login
 	);
 
-router.route('/profile').get(users.renderProfile);
+router.route('/profile').get(isLoggedIn, users.renderProfile);
 
 router.get('/logout', users.logout);
 

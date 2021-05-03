@@ -11,7 +11,7 @@ module.exports.map = async (req, res) => {
 };
 
 module.exports.index = async (req, res) => {
-	let pageCount = await Campground.count({});
+	let pageCount = await Campground.countDocuments({});
 	pageCount = Math.ceil(pageCount / 25);
 	let pages = [...Array(pageCount).keys()].map((x) => ++x);
 	let start;

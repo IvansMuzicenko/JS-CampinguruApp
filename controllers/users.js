@@ -42,10 +42,24 @@ module.exports.logout = (req, res) => {
 };
 
 module.exports.renderProfile = async (req, res, next) => {
-	const reviews = await Review.find({ author: `${req.user._id}` });
 	const campgrounds = await Campground.find(
-		{ author: req.user._id },
-		'title location _id'
-	);
-	res.render('users/profile', { reviews, campgrounds });
+		{ author: `${req.user._id}` },
+		'title location _id reviews author'
+	)
+		.populate({
+			path: 'reviews',
+			populate: {
+				path: 'author'
+			}
+		})
+		.populate('author');
+	const reviewCount = await Review.countDocuments({ author: `${req.user._id}` });
+	const campgroundCount = await Campground.countDocuments({
+		author: `${req.user._id}`
+	});
+	res.render('users/profile', {
+		campgrounds,
+		reviewCount,
+		campgroundCount
+	});
 };
