@@ -47,6 +47,5 @@ module.exports.renderProfile = async (req, res, next) => {
 		{ author: req.user._id },
 		'title location _id'
 	);
-	console.log(campgrounds[0]);
 	res.render('users/profile', { reviews, campgrounds });
 };
