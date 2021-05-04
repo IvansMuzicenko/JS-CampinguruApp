@@ -41,27 +41,25 @@
 				<div class="dropdown-menu bg">
 					<nav class="navbar navbar-dark">
 						<div class="container-fluid">
-							<div class="" id="navbarNavAltMarkup">
-								<div id="navlinks" class="navbar-nav">
-									<a class="dropdown-item white" href="/">Home</a>
-									<a class="dropdown-item white mr-5" href="/campgrounds"
-										>Campgrounds List</a
-									>
-									<a class="dropdown-item white active" href="/campgrounds/map"
-										>Campgrounds Map</a
-									>
-									<a href="/campgrounds/new" class="dropdown-item white mr-5">
-										New Campground</a
-									>
-									<% if(!currentUser) { %>
-									<a href="/login" class="dropdown-item white">Login</a>
-									<a href="/register" class="dropdown-item white">Register</a>
-									<% } else {%>
-									<a class="dropdown-item white" href="/profile">My profile</a>
-									<div class="dropdown-divider"></div>
-									<a class="dropdown-item white" href="/logout">Log out</a>
-									<% } %>
-								</div>
+							<div id="navlinks" class="navbar-nav">
+								<a class="dropdown-item white" href="/">Home</a>
+								<a class="dropdown-item white mr-5" href="/campgrounds"
+									>Campgrounds List</a
+								>
+								<a class="dropdown-item white active" href="/campgrounds/map"
+									>Campgrounds Map</a
+								>
+								<a href="/campgrounds/new" class="dropdown-item white mr-5">
+									New Campground</a
+								>
+								<% if(!currentUser) { %>
+								<a href="/login" class="dropdown-item white">Login</a>
+								<a href="/register" class="dropdown-item white">Register</a>
+								<% } else {%>
+								<a class="dropdown-item white" href="/profile">My profile</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item white" href="/logout">Log out</a>
+								<% } %>
 							</div>
 						</div>
 					</nav>

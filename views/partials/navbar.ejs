@@ -38,6 +38,7 @@
 				<a href="/register" class="nav-link">Register</a>
 				<% } else {%>
 				<div class="btn-group">
+					<a href="/profile" class="nav-link"><%= currentUser.username %></a>
 					<a
 						type="button"
 						class="nav-link dropdown-toggle"
@@ -45,7 +46,6 @@
 						aria-haspopup="true"
 						aria-expanded="false"
 					>
-						<%= currentUser.username %>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right bg white mt-3">
 						<a class="dropdown-item white" href="/profile">My profile</a>

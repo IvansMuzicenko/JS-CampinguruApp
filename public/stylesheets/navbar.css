@@ -10,6 +10,8 @@
 
 #navlinks a:hover,
 #navlinks a.active {
+	background: none;
+	color: inherit;
 	box-sizing: border-box !important;
 	border-bottom: 3px solid white;
 	transition: all 150ms linear;
