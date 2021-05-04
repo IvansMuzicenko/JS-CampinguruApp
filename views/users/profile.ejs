@@ -5,8 +5,16 @@
         <div class="col-md-6">
             <h5>Username: <%= currentUser.username %></h5>
 			<h5>E-mail: <%= currentUser.email %></h5>
-			<h5>My reviews: <%= reviewCount %> </h5>
-			<h5>My campgrounds: <%= campgroundCount %> </h5>
+			<h5 >My reviews: 
+				<a class="white" href="#collapseReviews" data-toggle="collapse" data-target="#collapseReviews" aria-expanded="false" aria-controls="collapseReviews">
+					<%= reviewCount %>
+				</a> 
+			</h5>
+			<h5>My campgrounds: 
+				<a class="white" href="#collapseCampgrounds" data-toggle="collapse" data-target="#collapseCampgrounds" aria-expanded="false" aria-controls="collapseCampgrounds">
+					<%= campgroundCount %> 
+				</a> 
+			</h5>
 
 		</div>
 		<div class="col-md-6">
@@ -68,14 +76,20 @@
 				<% if(campground.reviews.length) {%> 
 					<% for(let review of campground.reviews) {%> 
 						<% if(review.author._id.toString() == currentUser._id.toString()) { %> 
-							<h4>Camp title:
-								<a class="" href="/campgrounds/<%= campground._id %>">
-									<%= campground.title %>
-								</a>
-							</h4>
-							<a class="" href="/campgrounds/<%= campground._id %>#<%= review._id %>">
-								<h5><%= review.body %> </h5>
-							</a>  
+							<div class="col-12 col-lg-6 border">
+								<h4>Campground:
+									<a class="" href="/campgrounds/<%= campground._id %>">
+										<%= campground.title %>
+									</a>
+								</h4>
+								<h4>Review: </h4> 
+								<p class="starability-result" data-rating="<%=review.rating%>">
+										Rated: <%= review.rating %> stars
+								</p> 
+								<a class="" href="/campgrounds/<%= campground._id %>#<%= review._id %>">
+									<p><%= review.body %> </p>
+								</a> 
+							</div>
 						<% } %> 
 					<% } %> 
 				<% } %> 
@@ -88,12 +102,10 @@
         </button>
         <div class="collapse row px-3" id="collapseCampgrounds">
             <% for(let campground of campgrounds) {%> 
-				<div class="border col-3">
-					<a class="" href="/campgrounds/<%=campground._id%> ">
-						<h5><%= campground.title %> </h5>
-					</a>
+				<a class="border col-6 col-sm-4 col-md-3" href="/campgrounds/<%=campground._id%> ">
+					<h5><%= campground.title %> </h5>
 					<h6><%= campground.location %> </h6>
-				</div>
+				</a>
             <% } %> 
         </div>
     </div>
