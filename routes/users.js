@@ -24,14 +24,7 @@ router
 router
 	.route('/profile')
 	.get(isLoggedIn, users.renderProfile)
-	.post(
-		isLoggedIn,
-		passport.authenticate('local', {
-			failureFlash: true,
-			failureRedirect: '/profile'
-		}),
-		users.passChange
-	);
+	.post(isLoggedIn, users.passChange);
 
 router.get('/logout', users.logout);
 

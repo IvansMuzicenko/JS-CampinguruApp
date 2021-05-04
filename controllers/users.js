@@ -69,36 +69,39 @@ module.exports.renderProfile = async (req, res, next) => {
 module.exports.passChange = async (req, res, next) => {
 	try {
 		console.log(req.body);
-		const { username, password, newPassword, confirmPassword } = req.body;
+		const { password, newPassword, confirmPassword } = req.body;
 		if (!newPassword) {
 			req.flash('error', 'Must provide new password');
 			return res.redirect('/profile');
 		}
+
 		if (newPassword.length < 8) {
 			req.flash('error', 'Password must be at least 8 characters long');
 			return res.redirect('/profile');
 		}
+
 		if (!confirmPassword) {
 			req.flash('error', 'Must provide new password confirmation');
 			return res.redirect('/profile');
 		}
+
 		if (newPassword !== confirmPassword) {
 			req.flash('error', 'Password does not match');
 			return res.redirect('/profile');
 		}
 
+		const { username } = req.user;
 		User.findByUsername(username).then(function (sanitizedUser) {
 			if (sanitizedUser) {
-				sanitizedUser.setPassword(newPassword, async () => {
+				sanitizedUser.changePassword(password, newPassword, async (err) => {
 					await sanitizedUser.save();
+					if (err) return next(err);
 				});
 			}
 		});
-		req.login((username, newPassword), (err) => {
-			if (err) return next(err);
-			req.flash('success', 'Password changed!');
-			res.redirect('/profile');
-		});
+
+		req.flash('success', 'Password changed!');
+		res.redirect('/profile');
 	} catch (e) {
 		req.flash('error', e.message);
 		res.redirect('/profile');
