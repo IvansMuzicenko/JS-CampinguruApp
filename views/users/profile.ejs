@@ -2,7 +2,7 @@
 <div class="container shadow-light bg white">
 	<h2 class="text-center mt-3 mb-5">My profile</h2>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-5">
             <h5>Username: <%= currentUser.username %></h5>
 			<h5>E-mail: <%= currentUser.email %></h5>
 			<h5 >My reviews: 
@@ -15,12 +15,15 @@
 					<%= campgroundCount %> 
 				</a> 
 			</h5>
+			<a class="btn btn-outline-success col-4" href="/campgrounds/new"
+			>Add campground</a
+		>
 
 		</div>
 		<div class="col-md-6">
 			<h3 class="mb-3">Change password</h4>
-			<form action="/profile" method="post">
-				<div class="mb-3 col-6">
+			<form action="/profile" method="POST" class="validated-form mb-5" novalidate>
+				<div class="mb-3 col-md-6">
 					<label class="form-label" for="password"> Password:</label>
 					<input
 						class="form-control shadow-light"
@@ -33,7 +36,7 @@
 						autocomplete="current-password"
 					/>
 				</div>
-				<div class="mb-3 col-6">
+				<div class="mb-3 col-md-6">
 					<label class="form-label" for="newPassword"> New password:</label>
 					<input
 						class="form-control shadow-light"
@@ -46,7 +49,7 @@
 						autocomplete="new-password"
 					/>
 				</div>
-				<div class="mb-3 col-6">
+				<div class="mb-3 col-md-6">
 					<label class="form-label" for="confirmPassword">
 						Confirm new password:</label
 					>
@@ -61,7 +64,7 @@
 						autocomplete="new-password"
 					/>
 				</div>
-				<button class="brn btn-outline-info bg p-2 rounded mb-3" type="submit">
+				<button class="brn btn-outline-info bg p-2 rounded mb-3 col-12 col-md-6" type="submit">
 					Change
 				</button>
 			</form>
@@ -78,7 +81,7 @@
 						<% if(review.author._id.toString() == currentUser._id.toString()) { %> 
 							<div class="col-12 col-lg-6 border">
 								<h4>Campground:
-									<a class="" href="/campgrounds/<%= campground._id %>">
+									<a class="white" href="/campgrounds/<%= campground._id %>">
 										<%= campground.title %>
 									</a>
 								</h4>
@@ -86,7 +89,7 @@
 								<p class="starability-result" data-rating="<%=review.rating%>">
 										Rated: <%= review.rating %> stars
 								</p> 
-								<a class="" href="/campgrounds/<%= campground._id %>#<%= review._id %>">
+								<a class="white" href="/campgrounds/<%= campground._id %>#<%= review._id %>">
 									<p><%= review.body %> </p>
 								</a> 
 							</div>
