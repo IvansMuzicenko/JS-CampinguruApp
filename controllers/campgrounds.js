@@ -12,12 +12,13 @@ module.exports.map = async (req, res) => {
 
 module.exports.index = async (req, res) => {
 	let pageCount = await Campground.countDocuments({});
-	pageCount = Math.ceil(pageCount / 25);
+	const limit = limit;
+	pageCount = Math.ceil(pageCount / limit);
 	let pages = [...Array(pageCount).keys()].map((x) => ++x);
-	let start;
-	let before;
-	let all;
-	let pagination;
+	let start,
+		before,
+		all,
+		pagination = null;
 	let page = parseInt(req.query.page) || 1;
 	if (page > pageCount) {
 		page = 1;
@@ -25,7 +26,7 @@ module.exports.index = async (req, res) => {
 	const campgrounds = await Campground.find(
 		{},
 		{},
-		{ skip: (page - 1) * 25, limit: 25 }
+		{ skip: (page - 1) * limit, limit: limit }
 	).populate('popupText');
 
 	if (page < 6) {
@@ -91,9 +92,9 @@ module.exports.showCampground = async (req, res) => {
 		return res.redirect('/campgrounds');
 	}
 
-	let rating = 0;
-	let ratingCount = 0;
-	let avgRating = 0;
+	let rating,
+		ratingCount,
+		avgRating = 0;
 
 	for (let review of campground.reviews) {
 		ratingCount++;
