@@ -28,12 +28,18 @@ body {
 	filter: blur(2px);
 	z-index: -10;
 }
-
 .bg {
-	background: rgba(0, 0, 0, 0.3);
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
+	background: rgba(0, 0, 0, 0.7);
 }
+
+@supports (backdrop-filter: blur()) {
+	.bg {
+		background: rgba(0, 0, 0, 0.3);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+	}
+}
+
 .border {
 	border: 1px solid white;
 }
