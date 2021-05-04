@@ -90,7 +90,17 @@ module.exports.showCampground = async (req, res) => {
 		req.flash('error', 'Campground not found!');
 		return res.redirect('/campgrounds');
 	}
-	res.render('campgrounds/show', { campground });
+
+	let rating = 0;
+	let ratingCount = 0;
+	let avgRating = 0;
+
+	for (let review of campground.reviews) {
+		ratingCount++;
+		rating += review.rating;
+		avgRating = Math.round(rating / ratingCount);
+	}
+	res.render('campgrounds/show', { campground, avgRating });
 };
 
 module.exports.renderEditForm = async (req, res) => {
