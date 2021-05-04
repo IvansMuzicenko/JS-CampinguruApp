@@ -120,7 +120,8 @@ app.use(
 				'blob:',
 				'data:',
 				'https://res.cloudinary.com/cateyken/',
-				'https://images.unsplash.com'
+				'https://images.unsplash.com',
+				'https://source.unsplash.com'
 			],
 			fontSrc: ["'self'", ...fontSrcUrls]
 		}

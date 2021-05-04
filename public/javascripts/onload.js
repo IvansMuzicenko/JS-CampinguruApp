@@ -13,8 +13,7 @@ window.onload = () => {
 	if (window.innerWidth > 768) {
 		bgChange.innerHTML = `<video id="bg-video" src="${backgrounds[randomBg]}" muted loop autoplay></video>`;
 	} else {
-		bgChange.innerHTML =
-			'<img id="bg-image" src="https://res.cloudinary.com/cateyken/image/upload/v1619697900/campinguru/photo-1448234033678-91c13d8cbbad_qpttag.jpg" alt="" />';
+		bgChange.innerHTML = `<img id="bg-image" src="https://source.unsplash.com/collection/2184453" alt="" />`;
 	}
 	//  if ($('#some-element').css('display') == 'none') {
 	// 		is_mobile = true;
