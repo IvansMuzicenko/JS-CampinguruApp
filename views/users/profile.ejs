@@ -24,6 +24,18 @@
 			<h3 class="mb-3">Change password</h4>
 			<form action="/profile" method="POST" class="validated-form mb-5" novalidate>
 				<div class="mb-3 col-md-6">
+					<input
+						class="form-control shadow-light"
+						type="text"
+						name="username"
+						id="username"
+						inputmode="verbatim"
+						aria-required="true"
+						value=<%= currentUser.username  %> 
+						readonly
+					/>
+				</div>
+				<div class="mb-3 col-md-6">
 					<label class="form-label" for="password"> Password:</label>
 					<input
 						class="form-control shadow-light"
@@ -31,9 +43,9 @@
 						name="password"
 						id="password"
 						inputmode="verbatim"
-						minlength="8"
 						aria-required="true"
-						autocomplete="current-password"
+						autocomplete="off"
+
 					/>
 				</div>
 				<div class="mb-3 col-md-6">

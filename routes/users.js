@@ -21,7 +21,17 @@ router
 		users.login
 	);
 
-router.route('/profile').get(isLoggedIn, users.renderProfile);
+router
+	.route('/profile')
+	.get(isLoggedIn, users.renderProfile)
+	.post(
+		isLoggedIn,
+		passport.authenticate('local', {
+			failureFlash: true,
+			failureRedirect: '/profile'
+		}),
+		users.passChange
+	);
 
 router.get('/logout', users.logout);
 

@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const Review = require('../models/review');
 const Campground = require('../models/campground');
+const ExpressError = require('../utils/ExpressError');
 
 module.exports.renderRegister = (req, res) => {
 	res.render('users/register');
@@ -11,6 +12,7 @@ module.exports.register = async (req, res, next) => {
 		const { email, username, password } = req.body;
 		const user = new User({ email, username });
 		const registeredUser = await User.register(user, password);
+		console.log(registeredUser);
 		req.login(registeredUser, (err) => {
 			if (err) return next(err);
 			req.flash('success', 'Welcome to CampinGuru');
@@ -62,4 +64,43 @@ module.exports.renderProfile = async (req, res, next) => {
 		reviewCount,
 		campgroundCount
 	});
+};
+
+module.exports.passChange = async (req, res, next) => {
+	try {
+		console.log(req.body);
+		const { username, password, newPassword, confirmPassword } = req.body;
+		if (!newPassword) {
+			req.flash('error', 'Must provide new password');
+			return res.redirect('/profile');
+		}
+		if (newPassword.length < 8) {
+			req.flash('error', 'Password must be at least 8 characters long');
+			return res.redirect('/profile');
+		}
+		if (!confirmPassword) {
+			req.flash('error', 'Must provide new password confirmation');
+			return res.redirect('/profile');
+		}
+		if (newPassword !== confirmPassword) {
+			req.flash('error', 'Password does not match');
+			return res.redirect('/profile');
+		}
+
+		User.findByUsername(username).then(function (sanitizedUser) {
+			if (sanitizedUser) {
+				sanitizedUser.setPassword(newPassword, async () => {
+					await sanitizedUser.save();
+				});
+			}
+		});
+		req.login((username, newPassword), (err) => {
+			if (err) return next(err);
+			req.flash('success', 'Password changed!');
+			res.redirect('/profile');
+		});
+	} catch (e) {
+		req.flash('error', e.message);
+		res.redirect('/profile');
+	}
 };
