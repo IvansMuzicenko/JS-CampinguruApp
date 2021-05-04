@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 const mongoose = require('mongoose');
 const { places, descriptors } = require('./seedHelpers');
 const Campground = require('../models/campground');
+const Review = require('../models/review');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
@@ -43,6 +44,10 @@ const sample = (array) => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
 	await Campground.deleteMany({});
+	await Review.deleteMany({});
+	Campground.images.forEach(function (img) {
+		cloudinary.uploader.destroy(img.filename);
+	});
 	for (const [country, city] of Object.entries(citiesObj)) {
 		const cityArr = [];
 		for (let i = 0; i < 40 && i < city.length; i++) {
