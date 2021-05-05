@@ -1,116 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link
-			rel="stylesheet"
-			href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-			integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
-			crossorigin="anonymous"
-		/>
-		<link rel="stylesheet" href="/stylesheets/home.css" />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Rancho&display=swap"
-			rel="stylesheet"
-		/>
-		<title>CampinGuru</title>
-	</head>
-	<div id="bgChange"></div>
-
-	<body class="d-flex flex-column vh-100">
-		<main class="container">
-			<nav class="navbar navbar-expand-md navbar-dark mt-2">
-				<div class="container-fluid">
-					<button
-						class="navbar-toggler mr-0"
-						type="button"
-						data-toggle="collapse"
-						data-target="#navbarNavAltMarkup"
-						aria-controls="navbarNavAltMarkup"
-						aria-expanded="false"
-						aria-label="Toggle navigation"
-					>
-						<span class=""
-							><img
-								id="nav-images"
-								class="m-0"
-								src="https://res.cloudinary.com/cateyken/image/upload/v1619003422/campinguru/Images/campfire_1_aekxn1.png"
-								alt=""
-						/></span>
-					</button>
-					<a class="navbar-brand mx-auto mt-3" href="/"
-						><img
-							class="m-0"
-							id="nav-images"
-							src="https://res.cloudinary.com/cateyken/image/upload/v1619004488/campinguru/Images/New_Project_3_j2wv3n.png"
-							alt=""
-					/></a>
-					<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-						<hr />
-						<div class="navbar-nav"></div>
-						<div id="navlinks" class="navbar-nav ml-auto">
-							<a class="nav-link active" href="/">Home</a>
-							<a class="nav-link" href="/campgrounds">Campgrounds List</a>
-							<a class="nav-link mr-5" href="/campgrounds/map">Campgrounds Map</a>
-							<% if(!currentUser) { %>
-							<a href="/login" class="nav-link">Login</a>
-							<a href="/register" class="nav-link">Register</a>
-							<% } else {%>
-							<div class="btn-group">
-								<a
-									type="button"
-									class="nav-link dropdown-toggle"
-									data-toggle="dropdown"
-									aria-haspopup="true"
-									aria-expanded="false"
-								>
-									<%= currentUser.username %>
-								</a>
-								<div class="dropdown-menu dropdown-menu-right bg white mt-3">
-									<a class="dropdown-item white" href="/profile">My profile</a>
-									<div class="dropdown-divider"></div>
-									<a class="dropdown-item white" href="/logout">Log out</a>
-								</div>
-							</div>
-							<% } %>
-						</div>
-					</div>
-				</div>
-			</nav>
-
-			<div id="info" class="text-center col-sm-8">
-				<h1>
-					Welcome to
-					<br />
-					Campin<sub>G</sub>uru
-				</h1>
-				<h1 id="name"></h1>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat illum autem
-					aliquam eaque architecto suscipit, nam totam? Ex, ad dicta enim animi
-					mollitia odio, ut nostrum provident ipsa, placeat sit.
-				</p>
-				<a href="/campgrounds" class="btn btn-lg btn-outline-primary my-3">
-					View campgrounds</a
-				>
-				<br />
-				<a href="/campgrounds/map" class="btn btn-lg btn-outline-info"> View Map</a>
-			</div>
-		</main>
-		<%- include('./partials/footer') %>
-
-		<script
-			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-			crossorigin="anonymous"
-		></script>
-		<script
-			src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-			integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-			crossorigin="anonymous"
-		></script>
-		<script src="/javascripts/onload.js"></script>
-	</body>
-</html>
+<link
+	href="https://fonts.googleapis.com/css2?family=Rancho&display=swap"
+	rel="stylesheet"
+/>
+<link rel="stylesheet" href="/stylesheets/home.css" />
+<% layout('layouts/boilerplate') %>
+<div id="info" class="text-center col-sm-8">
+	<h1>
+		Welcome to
+		<br />
+		Campin<sub>G</sub>uru
+	</h1>
+	<h1 id="name"></h1>
+	<p>
+		Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat illum autem
+		aliquam eaque architecto suscipit, nam totam? Ex, ad dicta enim animi mollitia
+		odio, ut nostrum provident ipsa, placeat sit.
+	</p>
+	<a href="/campgrounds" class="btn btn-lg btn-outline-primary my-3">
+		View campgrounds</a
+	>
+	<br />
+	<a href="/campgrounds/map" class="btn btn-lg btn-outline-info"> View Map</a>
+</div>

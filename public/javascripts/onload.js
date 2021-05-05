@@ -21,7 +21,9 @@ window.onload = () => {
 
 	// Navbar active links
 
-	document
-		.querySelectorAll('nav a[href^="' + location.pathname + '"]')[0]
-		.classList.toggle('active');
+	const active = document
+		.querySelectorAll('nav a[href="' + location.pathname + '"]')
+		.forEach((el) => {
+			el.classList.toggle('active');
+		});
 };
