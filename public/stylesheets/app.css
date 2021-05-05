@@ -52,6 +52,19 @@ body {
 	filter: none;
 }
 
+#campDropdown {
+	display: none;
+}
+
+@media screen and (max-width: 1080px) {
+	nav a[href^='/campground'] {
+		display: none;
+	}
+	#campDropdown {
+		display: block;
+	}
+}
+
 #nav-images {
 	top: 2rem;
 	left: 1rem;

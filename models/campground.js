@@ -48,7 +48,7 @@ const CampgroundSchema = new Schema(
 CampgroundSchema.virtual('properties.popupMarkup').get(function () {
 	return `<div class="black by-3"><a href="/campgrounds/${
 		this._id
-	}"><img class="w-100 cover" src='${this.images.length ? this.images[0].url : 'https://res.cloudinary.com/cateyken/image/upload/v1618999000/campinguru/campfire_wbrg1s.jpg'}'><div class="card mb-3 black ">
+	}"><img class="w-100 cover" src='${this.images.length ? this.images[0].url : 'https://res.cloudinary.com/cateyken/image/upload/w_200/v1618999000/campinguru/campfire_wbrg1s.jpg'}'><div class="card mb-3 black ">
 	<div class="card-body">
 		<h5 class="card-title">
 			<a href="/campgrounds/${this._id}">${this.title}</a>
