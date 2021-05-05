@@ -135,6 +135,11 @@ a.scrollUp:hover {
 	border: 0;
 }
 
+img.img-thumbnail {
+	width: 200px;
+	height: 150px;
+}
+
 /* -------------------------MAP CSS--------------------------*/
 #map {
 	width: 100%;

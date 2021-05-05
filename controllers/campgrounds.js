@@ -15,10 +15,10 @@ module.exports.index = async (req, res) => {
 	const limit = 25;
 	pageCount = Math.ceil(pageCount / limit);
 	let pages = [...Array(pageCount).keys()].map((x) => ++x);
-	let start,
-		before,
-		all,
-		pagination = null;
+	let start;
+	let before;
+	let all;
+	let pagination;
 	let page = parseInt(req.query.page) || 1;
 	if (page > pageCount) {
 		page = 1;
@@ -92,9 +92,9 @@ module.exports.showCampground = async (req, res) => {
 		return res.redirect('/campgrounds');
 	}
 
-	let rating,
-		ratingCount,
-		avgRating = 0;
+	let rating = 0;
+	let ratingCount = 0;
+	let avgRating = 0;
 
 	for (let review of campground.reviews) {
 		ratingCount++;
