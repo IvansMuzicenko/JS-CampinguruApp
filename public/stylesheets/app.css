@@ -104,6 +104,10 @@ div.carousel-item img {
 	left: 1rem;
 }
 
+.dropdown-toggle {
+	cursor: pointer;
+}
+
 .mapboxgl-popup-close-button {
 	margin: 2px;
 	width: 50px;
