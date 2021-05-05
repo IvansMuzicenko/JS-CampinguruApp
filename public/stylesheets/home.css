@@ -11,13 +11,15 @@
 	filter: blur(2px);
 }
 
-.bg {
-	background: none;
-}
-
-@media screen and (min-width: 1150px) {
+@media screen and (min-width: 1530px) {
 	#navbar {
 		margin: 0 15%;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.bg {
+		background: none;
 	}
 }
 
@@ -26,14 +28,14 @@
 	font-weight: 900;
 	box-sizing: border-box;
 }
-#nav-images {
-	height: 2.5em;
-}
-.nav-link:hover {
+#navlinks a:hover {
 	border-bottom: 5px solid white;
 }
 #navlinks a.active {
 	border-bottom: 5px solid white;
+}
+#nav-images {
+	height: 2.5em;
 }
 
 #info {

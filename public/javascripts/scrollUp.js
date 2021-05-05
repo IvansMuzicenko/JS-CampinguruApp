@@ -1,4 +1,4 @@
-toUp = document.querySelector('.toUp');
+scrollUp = document.querySelector('.scrollUp');
 
 window.onscroll = function () {
 	scrollFunction();
@@ -6,9 +6,9 @@ window.onscroll = function () {
 
 function scrollFunction() {
 	if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-		toUp.style.display = 'block';
+		scrollUp.style.display = 'block';
 	} else {
-		toUp.style.display = 'none';
+		scrollUp.style.display = 'none';
 	}
 }
 

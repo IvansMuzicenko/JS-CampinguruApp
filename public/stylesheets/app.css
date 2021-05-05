@@ -3,6 +3,7 @@ body {
 	background-color: black;
 	color: white;
 }
+/* ------------------------Backrounds-----------------------*/
 #bg-video {
 	position: fixed;
 	top: 0;
@@ -40,29 +41,46 @@ body {
 	}
 }
 
+/* --------------------Often usable classes--------------------*/
+
 .border {
 	border: 1px solid white;
 }
+
 .white {
 	color: white;
 	filter: none !important;
 }
+
 .black {
 	color: black;
 	filter: none;
 }
 
-#campDropdown {
-	display: none;
+.cover {
+	object-fit: cover;
 }
 
-@media screen and (max-width: 1080px) {
-	nav a[href^='/campground'] {
+.shadow-light {
+	box-shadow: 0px 3px 5px 2px rgba(255, 255, 255, 0.445) !important;
+}
+/* --------------------Navbar--------------------*/
+@media screen and (min-width: 1080px) {
+	#campDropdown {
 		display: none;
 	}
-	#campDropdown {
-		display: block;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1080px) {
+	.collapse-link {
+		display: none;
 	}
+}
+nav a {
+	border-bottom: 3px solid rgba(0, 0, 0, 0);
+}
+.dropdown-menu a {
+	border-bottom: 3px solid rgba(0, 0, 0, 0);
 }
 
 #nav-images {
@@ -83,14 +101,41 @@ body {
 	border-bottom: 3px solid white;
 	transition: all 150ms linear;
 }
+/* --------------------------Other--------------------------*/
+div.carousel-item img {
+	height: 25rem;
+	object-fit: cover;
+}
+
+a.scrollUp {
+	display: none;
+	transition: all 0.1s;
+	width: 4rem;
+	height: 4rem;
+	top: 90vh;
+	font-size: 2rem;
+	left: 1rem;
+}
+a.scrollUp:hover {
+	transform: scale(1.05);
+}
+/* ---------------------Bootstrap rewrite--------------------*/
+.dropdown-toggle {
+	cursor: pointer;
+}
+
+#search:focus {
+	box-sizing: border-box !important;
+	background: inherit !important;
+	outline: 1px solid white !important;
+	color: white !important;
+}
 
 .form-control {
 	border: 0;
 }
-.cover {
-	object-fit: cover;
-}
 
+/* -------------------------MAP CSS--------------------------*/
 #map {
 	width: 100%;
 	height: 400px;
@@ -107,37 +152,6 @@ body {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-}
-
-.shadow-light {
-	box-shadow: 0px 3px 5px 2px rgba(255, 255, 255, 0.445) !important;
-}
-
-div.carousel-item img {
-	height: 25rem;
-	object-fit: cover;
-}
-
-#search:focus {
-	box-sizing: border-box !important;
-	background: inherit !important;
-	outline: 1px solid white !important;
-	color: white !important;
-}
-
-.toUp {
-	/* position: absolute; */
-	display: none;
-	transition: all 1s;
-	width: 4rem;
-	height: 4rem;
-	top: 90vh;
-	font-size: 2rem;
-	left: 1rem;
-}
-
-.dropdown-toggle {
-	cursor: pointer;
 }
 
 .mapboxgl-popup-close-button {

@@ -29,19 +29,25 @@
 			<div class="navbar-nav"></div>
 			<div id="navlinks" class="navbar-nav ml-auto">
 				<a class="nav-link mr-4" href="/">Home</a>
-				<a class="nav-link" href="/campgrounds">Campgrounds List</a>
-				<a class="nav-link" href="/campgrounds/map">Campgrounds Map</a>
-				<a class="nav-link mr-4" href="/campgrounds/new"> New Campground</a>
+				<a class="nav-link collapse-link" href="/campgrounds">Campgrounds List</a>
+				<a class="nav-link collapse-link" href="/campgrounds/map"
+					>Campgrounds Map</a
+				>
+				<a class="nav-link collapse-link mr-4" href="/campgrounds/new">
+					New Campground</a
+				>
 				<div id="campDropdown" class="btn-group mr-4">
-					<a
-						type="button"
-						class="nav-link dropdown-toggle"
-						data-toggle="dropdown"
-						aria-haspopup="true"
-						aria-expanded="false"
-					>
-						Campgrounds
-					</a>
+					<a href="/campgrounds" class="nav-link"
+						>Campgrounds<a
+							type="button"
+							class="nav-link dropdown-toggle"
+							data-toggle="dropdown"
+							aria-haspopup="true"
+							aria-expanded="false"
+						>
+						</a
+					></a>
+
 					<div class="dropdown-menu dropdown-menu-right bg white mt-3">
 						<a class="dropdown-item white" href="/campgrounds">Campgrounds List</a>
 						<a class="dropdown-item white" href="/campgrounds/map">Campgrounds Map</a>
