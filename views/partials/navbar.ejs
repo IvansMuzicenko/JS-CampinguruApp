@@ -28,17 +28,41 @@
 			<hr />
 			<div class="navbar-nav"></div>
 			<div id="navlinks" class="navbar-nav ml-auto">
-				<a class="nav-link mr-4" href="/">Home</a>
-				<a class="nav-link collapse-link" href="/campgrounds">Campgrounds List</a>
+				<a class="nav-link mr-4" href="/"
+					><img
+						class="icon"
+						src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/tent_f6yzdg.svg"
+						alt=""
+					/>
+					Home</a
+				>
+				<a class="nav-link collapse-link" href="/campgrounds"
+					><img
+						class="icon"
+						src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/list_zmiikx.svg"
+						alt=""
+					/>Camps List</a
+				>
 				<a class="nav-link collapse-link" href="/campgrounds/map"
-					>Campgrounds Map</a
+					><img
+						class="icon"
+						src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/map_sklko0.svg"
+						alt=""
+					/>Camps Map</a
 				>
 				<a class="nav-link collapse-link mr-4" href="/campgrounds/new">
-					New Campground</a
+					<img
+						class="icon"
+						src="https://res.cloudinary.com/cateyken/image/upload/v1620230839/campinguru/Images/new_zhh0xh.svg"
+						alt=""
+					/>Create Camp</a
 				>
 				<div id="campDropdown" class="btn-group mr-4">
 					<a href="/campgrounds" class="nav-link"
-						>Campgrounds<a
+						><img
+							class="icon"
+							src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/list_zmiikx.svg"
+							alt="" />Campgrounds<a
 							type="button"
 							class="nav-link dropdown-toggle"
 							data-toggle="dropdown"
@@ -49,17 +73,47 @@
 					></a>
 
 					<div class="dropdown-menu dropdown-menu-right bg white mt-3">
-						<a class="dropdown-item white" href="/campgrounds">Campgrounds List</a>
-						<a class="dropdown-item white" href="/campgrounds/map">Campgrounds Map</a>
-						<a class="dropdown-item white" href="/campgrounds/new">New Campground</a>
+						<a class="dropdown-item white" href="/campgrounds"
+							><img
+								class="icon"
+								src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/list_zmiikx.svg"
+								alt=""
+							/>Campgrounds List</a
+						>
+						<a class="dropdown-item white" href="/campgrounds/map"
+							><img
+								class="icon"
+								src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/map_sklko0.svg"
+								alt=""
+							/>Campgrounds Map</a
+						>
+						<a class="dropdown-item white" href="/campgrounds/new"
+							><img
+								class="icon"
+								src="https://res.cloudinary.com/cateyken/image/upload/v1620230839/campinguru/Images/new_zhh0xh.svg"
+								alt=""
+							/>New Campground</a
+						>
 					</div>
 				</div>
 				<% if(!currentUser) { %>
-				<a href="/login" class="nav-link">Login</a>
+				<a href="/login" class="nav-link login"
+					><img
+						class="icon"
+						src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/login_oslgsf.svg"
+						alt=""
+					/>Login</a
+				>
 				<a href="/register" class="nav-link">Register</a>
 				<% } else {%>
 				<div class="btn-group">
-					<a href="/profile" class="nav-link"><%= currentUser.username %></a>
+					<a href="/profile" class="nav-link"
+						><img
+							class="icon"
+							src="https://res.cloudinary.com/cateyken/image/upload/v1620230007/campinguru/Images/user_r8bzmm.svg"
+							alt=""
+						/><%= currentUser.username %></a
+					>
 					<a
 						type="button"
 						class="nav-link dropdown-toggle"
@@ -69,9 +123,21 @@
 					>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right bg white mt-3">
-						<a class="dropdown-item white" href="/profile">My profile</a>
+						<a class="dropdown-item white" href="/profile"
+							><img
+								class="icon"
+								src="https://res.cloudinary.com/cateyken/image/upload/v1620230007/campinguru/Images/user_r8bzmm.svg"
+								alt=""
+							/>My profile</a
+						>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item white" href="/logout">Log out</a>
+						<a class="dropdown-item white logout" href="/logout"
+							><img
+								class="icon"
+								src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/logout_mwjuyj.svg"
+								alt=""
+							/>Log out</a
+						>
 					</div>
 				</div>
 				<% } %>

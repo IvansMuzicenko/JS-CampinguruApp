@@ -13,14 +13,7 @@
 
 @media screen and (min-width: 1530px) {
 	#navbar {
-		margin: 0 15%;
-	}
-}
-
-@media screen and (min-width: 768px) {
-	.bg {
-		background: none;
-		backdrop-filter: none;
+		padding: 0 15%;
 	}
 }
 
