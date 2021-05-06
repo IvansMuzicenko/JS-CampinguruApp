@@ -15,8 +15,6 @@ module.exports.index = async (req, res) => {
 	const limit = 25;
 	pageCount = Math.ceil(pageCount / limit);
 	let pages = [...Array(pageCount).keys()].map((x) => ++x);
-	let start;
-	let before;
 	let all;
 	let pagination;
 	let page = parseInt(req.query.page) || 1;
@@ -34,9 +32,7 @@ module.exports.index = async (req, res) => {
 	} else if (page > pageCount - 5) {
 		pagination = pages.slice(-10);
 	} else {
-		start = page - 6;
-		before = pages.slice(start);
-		all = before.concat(pages);
+		all = pages.slice(page - 6);
 		pagination = all.slice(1, 10);
 	}
 
@@ -45,9 +41,7 @@ module.exports.index = async (req, res) => {
 	} else if (page > pageCount - 3) {
 		pagination2 = pages.slice(-5);
 	} else {
-		start = page - 4;
-		before = pages.slice(start);
-		all = before.concat(pages);
+		all = pages.slice(page - 4);
 		pagination2 = all.slice(1, 6);
 	}
 
