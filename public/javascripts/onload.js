@@ -1,3 +1,17 @@
+let isMobile = false;
+
+if (window.innerWidth < 768) {
+	isMobile = true;
+}
+if (isMobile) {
+	if (location.hostname.slice(0, 2) !== 'm.') {
+		location.hostname = 'm.' + location.hostname;
+	}
+} else {
+	if (location.hostname.slice(0, 2) == 'm.') {
+		location.hostname = location.hostname.slice(2);
+	}
+}
 window.onload = () => {
 	// Background Image/video
 	const bgChange = document.getElementById('bgChange');
@@ -10,17 +24,13 @@ window.onload = () => {
 	];
 	const randomBg = Math.floor(Math.random() * backgrounds.length);
 
-	if (window.innerWidth > 768) {
+	if (!isMobile) {
 		bgChange.innerHTML = `<video id="bg-video" src="${backgrounds[randomBg]}" muted loop autoplay></video>`;
 	} else {
 		bgChange.innerHTML = `<img id="bg-image" src="https://source.unsplash.com/collection/2184453" alt="" />`;
 	}
-	//  if ($('#some-element').css('display') == 'none') {
-	// 		is_mobile = true;
-	// 	}
 
 	// Navbar active links
-
 	const active = document
 		.querySelectorAll('nav a[href="' + location.pathname + '"]')
 		.forEach((el) => {
