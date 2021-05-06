@@ -11,10 +11,6 @@ module.exports.map = async (req, res) => {
 };
 
 module.exports.index = async (req, res) => {
-	let isMobile = false;
-	if (req.headers.host.slice(0, 2) == 'm.') {
-		isMobile = true;
-	}
 	let pageCount = await Campground.countDocuments({});
 	const limit = 25;
 	pageCount = Math.ceil(pageCount / limit);
@@ -33,28 +29,26 @@ module.exports.index = async (req, res) => {
 		{ skip: (page - 1) * limit, limit: limit }
 	).populate('popupText');
 
-	if (!isMobile) {
-		if (page < 6) {
-			pagination = pages.slice(0, 10);
-		} else if (page > pageCount - 5) {
-			pagination = pages.slice(-10);
-		} else {
-			start = page - 6;
-			before = pages.slice(start);
-			all = before.concat(pages);
-			pagination = all.slice(1, 10);
-		}
+	if (page < 6) {
+		pagination = pages.slice(0, 10);
+	} else if (page > pageCount - 5) {
+		pagination = pages.slice(-10);
 	} else {
-		if (page < 3) {
-			pagination = pages.slice(0, 5);
-		} else if (page > pageCount - 3) {
-			pagination = pages.slice(-5);
-		} else {
-			start = page - 4;
-			before = pages.slice(start);
-			all = before.concat(pages);
-			pagination = all.slice(1, 6);
-		}
+		start = page - 6;
+		before = pages.slice(start);
+		all = before.concat(pages);
+		pagination = all.slice(1, 10);
+	}
+
+	if (page < 3) {
+		pagination2 = pages.slice(0, 5);
+	} else if (page > pageCount - 3) {
+		pagination2 = pages.slice(-5);
+	} else {
+		start = page - 4;
+		before = pages.slice(start);
+		all = before.concat(pages);
+		pagination2 = all.slice(1, 6);
 	}
 
 	const prevPage = pages.slice(page - 2).slice(0, 1);
@@ -66,6 +60,7 @@ module.exports.index = async (req, res) => {
 		page,
 		pages,
 		pagination,
+		pagination2,
 		prevPage,
 		nextPage,
 		pageCount

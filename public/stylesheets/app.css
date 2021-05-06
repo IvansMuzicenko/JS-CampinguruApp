@@ -81,6 +81,10 @@ body {
 	padding: 0;
 	height: 25px;
 }
+
+.none {
+	display: none;
+}
 /* --------------------Navbar--------------------*/
 @media screen and (min-width: 1081px) {
 	#campDropdown {

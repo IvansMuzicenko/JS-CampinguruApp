@@ -1,16 +1,14 @@
 let isMobile = false;
+const pagination = document.getElementById('pagination');
+const pagination2 = document.getElementById('pagination2');
 
 if (window.innerWidth < 768) {
 	isMobile = true;
 }
 if (isMobile) {
-	if (location.hostname.slice(0, 2) !== 'm.') {
-		location.hostname = 'm.' + location.hostname;
-	}
+	pagination2.classList.remove('none');
 } else {
-	if (location.hostname.slice(0, 2) == 'm.') {
-		location.hostname = location.hostname.slice(2);
-	}
+	pagination.classList.remove('none');
 }
 window.onload = () => {
 	// Background Image/video
