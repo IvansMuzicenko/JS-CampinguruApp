@@ -5,10 +5,13 @@ const pagination2 = document.getElementById('pagination2');
 if (window.innerWidth < 768) {
 	isMobile = true;
 }
-if (isMobile) {
-	pagination2.classList.remove('none');
-} else {
-	pagination.classList.remove('none');
+
+if (pagination) {
+	if (isMobile) {
+		pagination2.classList.remove('none');
+	} else {
+		pagination.classList.remove('none');
+	}
 }
 window.onload = () => {
 	// Background Image/video
