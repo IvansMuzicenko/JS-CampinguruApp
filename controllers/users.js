@@ -4,10 +4,6 @@ const Campground = require('../models/campground');
 const ExpressError = require('../utils/ExpressError');
 
 module.exports.renderRegister = (req, res) => {
-	const redirectUrl = req.session.returnTo || '/';
-	if (req.isAuthenticated()) {
-		res.redirect(redirectUrl);
-	}
 	res.render('users/register');
 };
 
@@ -29,16 +25,12 @@ module.exports.register = async (req, res, next) => {
 };
 
 module.exports.renderLogin = (req, res) => {
-	const redirectUrl = req.session.returnTo || '/';
-	if (req.isAuthenticated()) {
-		res.redirect(redirectUrl);
-	}
 	res.render('users/login');
 };
 
 module.exports.login = (req, res) => {
-	const redirectUrl = req.session.returnTo || '/';
 	req.flash('success', 'Logged in!');
+	const redirectUrl = req.session.returnTo || '/';
 	delete req.session.returnTo;
 	res.redirect(redirectUrl);
 };

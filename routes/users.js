@@ -3,17 +3,17 @@ const router = express.Router();
 const passport = require('passport');
 const users = require('../controllers/users');
 const catchAsync = require('../utils/catchAsync');
-const { isLoggedIn } = require('../middleware');
-
+const { isLoggedIn, redirect } = require('../middleware');
 router
 	.route('/register')
-	.get(users.renderRegister)
-	.post(catchAsync(users.register));
+	.get(redirect, users.renderRegister)
+	.post(redirect, catchAsync(users.register));
 
 router
 	.route('/login')
-	.get(users.renderLogin)
+	.get(redirect, users.renderLogin)
 	.post(
+		redirect,
 		passport.authenticate('local', {
 			failureFlash: true,
 			failureRedirect: '/login'
