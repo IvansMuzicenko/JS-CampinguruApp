@@ -7,6 +7,7 @@ const { cloudinary, storage } = require('../cloudinary');
 
 module.exports.map = async (req, res) => {
 	const campgrounds = await Campground.find({}).populate('popupText');
+	req.session.returnTo = req.originalUrl;
 	res.render('campgrounds/map', { campgrounds });
 };
 
@@ -48,6 +49,8 @@ module.exports.index = async (req, res) => {
 	const prevPage = pages.slice(page - 2).slice(0, 1);
 
 	const nextPage = pages.concat(pages).slice(page, page + 1);
+
+	req.session.returnTo = req.originalUrl;
 
 	res.render('campgrounds/index', {
 		campgrounds,
@@ -107,6 +110,7 @@ module.exports.showCampground = async (req, res) => {
 		rating += review.rating;
 		avgRating = Math.round(rating / ratingCount);
 	}
+	req.session.returnTo = req.originalUrl;
 	res.render('campgrounds/show', { campground, avgRating });
 };
 

@@ -4,6 +4,10 @@ const Campground = require('../models/campground');
 const ExpressError = require('../utils/ExpressError');
 
 module.exports.renderRegister = (req, res) => {
+	const redirectUrl = req.session.returnTo || '/';
+	if (req.isAuthenticated()) {
+		res.redirect(redirectUrl);
+	}
 	res.render('users/register');
 };
 
@@ -12,11 +16,11 @@ module.exports.register = async (req, res, next) => {
 		const { email, username, password } = req.body;
 		const user = new User({ email, username });
 		const registeredUser = await User.register(user, password);
-		console.log(registeredUser);
 		req.login(registeredUser, (err) => {
 			if (err) return next(err);
 			req.flash('success', 'Welcome to CampinGuru');
-			res.redirect('/campgrounds');
+			const redirectUrl = req.session.returnTo || '/';
+			res.redirect(redirectUrl);
 		});
 	} catch (e) {
 		req.flash('error', e.message);
@@ -25,12 +29,16 @@ module.exports.register = async (req, res, next) => {
 };
 
 module.exports.renderLogin = (req, res) => {
+	const redirectUrl = req.session.returnTo || '/';
+	if (req.isAuthenticated()) {
+		res.redirect(redirectUrl);
+	}
 	res.render('users/login');
 };
 
 module.exports.login = (req, res) => {
+	const redirectUrl = req.session.returnTo || '/';
 	req.flash('success', 'Logged in!');
-	const redirectUrl = req.session.returnTo || '/campgrounds';
 	delete req.session.returnTo;
 	res.redirect(redirectUrl);
 };
@@ -68,7 +76,6 @@ module.exports.renderProfile = async (req, res, next) => {
 
 module.exports.passChange = async (req, res, next) => {
 	try {
-		console.log(req.body);
 		const { password, newPassword, confirmPassword } = req.body;
 		if (!newPassword) {
 			req.flash('error', 'Must provide new password');
