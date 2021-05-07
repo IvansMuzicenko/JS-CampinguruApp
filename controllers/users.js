@@ -24,6 +24,23 @@ module.exports.register = async (req, res, next) => {
 	}
 };
 
+module.exports.registerCheck = async (req, res, next) => {
+	const { username, email } = req.body;
+	console.log(req.body);
+	const usernameCheck = await User.find({ username });
+	const emailCheck = await User.find({ email });
+
+	let response = [];
+
+	if (usernameCheck.length) {
+		response.push({ input: 'username', message: 'Username already registered' });
+	}
+	if (emailCheck.length) {
+		response.push({ input: 'email', message: 'E-mail already registered' });
+	}
+	return res.send(response);
+};
+
 module.exports.renderLogin = (req, res) => {
 	res.render('users/login');
 };

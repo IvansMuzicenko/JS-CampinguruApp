@@ -8,7 +8,7 @@ router
 	.route('/register')
 	.get(redirect, users.renderRegister)
 	.post(redirect, catchAsync(users.register));
-
+router.route('/register-check').post(users.registerCheck);
 router
 	.route('/login')
 	.get(redirect, users.renderLogin)

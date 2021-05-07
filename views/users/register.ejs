@@ -1,7 +1,13 @@
 <% layout('layouts/boilerplate') %>
 <div class="col-lg-4 offset-lg-4 card-body shadow-light rounded p-5 bg mt-5">
 	<h1 class="text-center mb-5">Register</h1>
-	<form action="/register" method="POST" class="validated-form" novalidate>
+	<form
+		id="registerForm"
+		action="/register"
+		method="POST"
+		class="validated-form"
+		novalidate
+	>
 		<div class="mb-4">
 			<label for="username" class="form-label"> Username</label>
 			<input
@@ -9,10 +15,13 @@
 				class="form-control shadow-light"
 				id="username"
 				name="username"
+				minlength="6"
 				required
 			/>
 			<div class="valid-feedback">Correct!</div>
-			<div class="invalid-feedback">Provide an username!</div>
+			<div class="invalid-feedback">
+				Username must be at least 6 characters long!
+			</div>
 		</div>
 		<div class="mb-4">
 			<label for="email" class="form-label"> E-mail</label>
@@ -24,7 +33,7 @@
 				required
 			/>
 			<div class="valid-feedback">Correct!</div>
-			<div class="invalid-feedback">Provide an e-mail!</div>
+			<div class="invalid-feedback">Provide a valid e-mail!</div>
 		</div>
 		<div class="mb-5">
 			<label for="password" class="form-label"> Password</label>
@@ -33,11 +42,16 @@
 				class="form-control shadow-light"
 				id="password"
 				name="password"
+				minlength="8"
 				required
 			/>
 			<div class="valid-feedback">Correct!</div>
-			<div class="invalid-feedback">Provide an password!</div>
+			<div class="invalid-feedback">
+				Password must be at least 8 characters long!
+			</div>
 		</div>
-		<button class="btn btn-success btn-block">Register</button>
+		<button id="checkRegister" class="btn btn-success btn-block">Register</button>
 	</form>
 </div>
+
+<script src="/javascripts/registerCheck.js"></script>
