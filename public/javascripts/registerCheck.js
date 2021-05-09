@@ -1,4 +1,3 @@
-const checkRegister = document.getElementById('checkRegister');
 const registerForm = document.getElementById('registerForm');
 
 const validate = (e) => {
@@ -77,4 +76,3 @@ const validate = (e) => {
 
 registerForm.addEventListener('focusout', validate);
 registerForm.addEventListener('submit', validate);
-// checkRegister.addEventListener('click', validate);
