@@ -63,6 +63,29 @@ module.exports.registerCheck = async (req, res, next) => {
 	return res.send(response);
 };
 
+module.exports.loginCheck = async (req, res, next) => {
+	const { username, password } = req.body;
+	const usernameCheck = await User.find({ username });
+	const emailCheck = await User.find({ email: username });
+	const user = emailCheck.username;
+	let loginData = {};
+	if (usernameCheck) {
+		loginData = { usernameCheck, password };
+	} else {
+		loginData = { user, password };
+	}
+	let response = [];
+	if (!usernameCheck.length || !emailCheck.length) {
+		response.push({ input: 'username', message: 'Incorrect login or password' });
+	}
+	req.login(loginData, (err) => {
+		if (err) {
+			response.push({ input: 'username', message: 'Incorrect login or password' });
+		}
+	});
+	return res.send(response);
+};
+
 module.exports.renderLogin = (req, res) => {
 	res.render('users/login');
 };

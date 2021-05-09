@@ -38,11 +38,8 @@ const validate = (e) => {
 			} else {
 				registerForm.classList.remove('was-validated');
 				userInput.classList.remove('is-valid', 'is-invalid');
-				userInput.classList.add('is-valid');
 				emailInput.classList.remove('is-valid', 'is-invalid');
-				emailInput.classList.add('is-valid');
 				passwordInput.classList.remove('is-valid', 'is-invalid');
-				passwordInput.classList.add('is-valid');
 				invalidUser.innerHTML = '';
 				invalidEmail.innerHTML = '';
 				invalidPassword.innerHTML = '';
@@ -66,8 +63,6 @@ const validate = (e) => {
 							invalidPassword.innerHTML += el.message + '<br>';
 						passwordInput.classList.add('is-invalid');
 					}
-
-					console.log(el.message);
 				});
 			}
 		})

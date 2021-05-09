@@ -3,14 +3,22 @@
 	class="col-lg-4 offset-lg-4 shadow-light card-body shadow p-5 rounded bg mt-5"
 >
 	<h1 class="text-center mb-5">Log-in</h1>
-	<form action="/login" method="POST" class="validated-form" novalidate>
+	<form
+		id="loginForm"
+		action="/login"
+		method="POST"
+		class="validated-form"
+		novalidate
+	>
+		<div id="invalidFeedback" class="invalid-feedback"></div>
 		<div class="mb-4">
-			<label for="username" class="form-label"> Username</label>
+			<label for="username" class="form-label"> Username or e-mail</label>
 			<input
 				type="text"
 				class="form-control shadow-light"
 				id="username"
 				name="username"
+				placeholder="Username or e-mail"
 				required
 			/>
 		</div>
@@ -28,3 +36,4 @@
 		<button class="btn btn-primary btn-block">Log-in</button>
 	</form>
 </div>
+<script src="/javascripts/loginCheck.js"></script>
