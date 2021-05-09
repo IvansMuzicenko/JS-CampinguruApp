@@ -18,7 +18,7 @@ const validate = (e) => {
 	const invalidPassword = document.getElementById('invalidPassword');
 	const body = { username, email, password };
 
-	fetch('http://localhost:3000/register-check', {
+	fetch('/register-check', {
 		method: 'POST',
 		body: JSON.stringify(body),
 		headers: { 'Content-type': 'application/json; charset=UTF-8' }
