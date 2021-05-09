@@ -3,9 +3,6 @@ const registerForm = document.getElementById('registerForm');
 
 const validate = (e) => {
 	e.preventDefault();
-	if (!registerForm.checkValidity()) {
-		return;
-	}
 
 	const username = document.getElementById('username').value;
 	const email = document.getElementById('email').value;
