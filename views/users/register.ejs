@@ -1,5 +1,7 @@
 <% layout('layouts/boilerplate') %>
-<div class="col-lg-4 offset-lg-4 card-body shadow-light rounded p-5 bg mt-5">
+<div
+	class="col-xl-4 offset-xl-4 col-md-6 offset-md-3 card-body shadow-light rounded p-5 bg mt-5"
+>
 	<h1 class="text-center mb-5">Register</h1>
 	<form
 		id="registerForm"
@@ -15,23 +17,22 @@
 				class="form-control shadow-light"
 				id="username"
 				name="username"
-				minlength="6"
+				placeholder="Username(at least 6 characters)"
 				required
 			/>
-			<div class="invalid-feedback">
-				Username must be at least 6 characters long!
-			</div>
+			<div id="invalidUser" class="invalid-feedback"></div>
 		</div>
 		<div class="mb-4">
 			<label for="email" class="form-label"> E-mail</label>
 			<input
-				type="email"
+				type="text"
 				class="form-control shadow-light"
 				id="email"
 				name="email"
+				placeholder="E-mail(example@example.com)"
 				required
 			/>
-			<div class="invalid-feedback">Provide a valid e-mail!</div>
+			<div id="invalidEmail" class="invalid-feedback"></div>
 		</div>
 		<div class="mb-5">
 			<label for="password" class="form-label"> Password</label>
@@ -40,12 +41,10 @@
 				class="form-control shadow-light"
 				id="password"
 				name="password"
-				minlength="8"
+				placeholder="Password(at least 8 characters)"
 				required
 			/>
-			<div class="invalid-feedback">
-				Password must be at least 8 characters long!
-			</div>
+			<div id="invalidPassword" class="invalid-feedback"></div>
 		</div>
 		<button id="checkRegister" class="btn btn-success btn-block">Register</button>
 	</form>

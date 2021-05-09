@@ -25,19 +25,41 @@ module.exports.register = async (req, res, next) => {
 };
 
 module.exports.registerCheck = async (req, res, next) => {
-	const { username, email } = req.body;
-	console.log(req.body);
+	const { username, email, password } = req.body;
 	const usernameCheck = await User.find({ username });
 	const emailCheck = await User.find({ email });
+	const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 	let response = [];
 
 	if (usernameCheck.length) {
-		response.push({ input: 'username', message: 'Username already registered' });
+		response.push({ input: 'username', message: 'Username already taken' });
+	}
+	if (username.length < 6) {
+		response.push({
+			input: 'username',
+			message: 'Username must contain at least 6 characters!'
+		});
+	}
+	if (!mailFormat.test(email)) {
+		response.push({ input: 'email', message: 'Provide a valid e-mail!' });
 	}
 	if (emailCheck.length) {
-		response.push({ input: 'email', message: 'E-mail already registered' });
+		response.push({ input: 'email', message: 'E-mail already taken' });
 	}
+	if (password.includes(username)) {
+		response.push({
+			input: 'password',
+			message: 'Password can not contain username'
+		});
+	}
+	if (password.length < 8) {
+		response.push({
+			input: 'password',
+			message: 'Password must be at least 8 characters long!'
+		});
+	}
+
 	return res.send(response);
 };
 
