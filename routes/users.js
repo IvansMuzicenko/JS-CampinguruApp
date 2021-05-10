@@ -9,19 +9,18 @@ router
 	.get(redirect, users.renderRegister)
 	.post(redirect, catchAsync(users.register));
 router.route('/register-check').post(users.registerCheck);
-router.route('/login-check').post(
-	redirect,
-	passport.authenticate('local', {
-		failureFlash: true,
-		failureRedirect: '/login'
-	}),
-	users.login
-);
+router.post('/login-check', function (req, res, next) {
+	passport.authenticate('local', { session: false }, function (err, user, info) {
+		if (user) {
+			return res.send({});
+		}
+		return res.send(info);
+	})(req, res, next);
+});
 router
 	.route('/login')
 	.get(redirect, users.renderLogin)
 	.post(
-		redirect,
 		passport.authenticate('local', {
 			failureFlash: true,
 			failureRedirect: '/login'
