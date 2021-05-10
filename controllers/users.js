@@ -11,8 +11,8 @@ module.exports.renderRegister = (req, res) => {
 
 module.exports.register = async (req, res, next) => {
 	try {
-		const { email, username, password } = req.body;
-		const user = new User({ email, username });
+		const { username, password } = req.body;
+		const user = new User({ username });
 		const registeredUser = await User.register(user, password);
 		req.login(registeredUser, (err) => {
 			if (err) return next(err);
@@ -27,32 +27,22 @@ module.exports.register = async (req, res, next) => {
 };
 
 module.exports.registerCheck = async (req, res, next) => {
-	const { username, email, password } = req.body;
+	const { username, password } = req.body;
 	const usernameCheck = await User.find({ username });
-	const emailCheck = await User.find({ email });
 	const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 	let response = [];
 
+	if (!mailFormat.test(username)) {
+		response.push({ input: 'login', message: 'Provide a valid e-mail!' });
+	}
 	if (usernameCheck.length) {
-		response.push({ input: 'username', message: 'Username already taken' });
-	}
-	if (username.length < 6) {
-		response.push({
-			input: 'username',
-			message: 'Username must contain at least 6 characters!'
-		});
-	}
-	if (!mailFormat.test(email)) {
-		response.push({ input: 'email', message: 'Provide a valid e-mail!' });
-	}
-	if (emailCheck.length) {
-		response.push({ input: 'email', message: 'E-mail already taken' });
+		response.push({ input: 'login', message: 'E-mail already taken' });
 	}
 	if (password.includes(username)) {
 		response.push({
 			input: 'password',
-			message: 'Password can not contain username'
+			message: 'Password can not contain e-mail'
 		});
 	}
 	if (password.length < 8) {

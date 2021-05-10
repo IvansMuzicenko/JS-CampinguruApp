@@ -112,7 +112,8 @@
 							class="icon"
 							src="https://res.cloudinary.com/cateyken/image/upload/v1620230007/campinguru/Images/user_r8bzmm.svg"
 							alt=""
-						/><%= currentUser.username %></a
+						/><%= currentUser.username.slice(0, currentUser.username.indexOf("@"))
+						%></a
 					>
 					<a
 						type="button"
