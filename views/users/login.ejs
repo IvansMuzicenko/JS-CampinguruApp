@@ -10,17 +10,17 @@
 		class="validated-form"
 		novalidate
 	>
-		<div id="invalidFeedback" class="invalid-feedback"></div>
 		<div class="mb-4">
-			<label for="Login" class="form-label"> Username or e-mail</label>
+			<label for="Login" class="form-label"> E-mail</label>
 			<input
-				type="text"
+				type="email"
 				class="form-control shadow-light"
-				id="login"
-				name="login"
-				placeholder="Username or e-mail"
+				id="username"
+				name="username"
+				placeholder="E-mail"
 				required
 			/>
+			<div id="invalidFeedback" class="invalid-feedback"></div>
 		</div>
 
 		<div class="mb-5">
@@ -30,6 +30,7 @@
 				class="form-control shadow-light rounded"
 				id="password"
 				name="password"
+				placeholder="Password"
 				required
 			/>
 		</div>

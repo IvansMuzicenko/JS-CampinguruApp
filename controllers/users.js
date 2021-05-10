@@ -65,26 +65,6 @@ module.exports.registerCheck = async (req, res, next) => {
 	return res.send(response);
 };
 
-module.exports.loginCheck = async (err, req, res, next) => {
-	const { login, password } = req.body;
-	const usernameCheck = await User.findOne({ username: login });
-	const emailCheck = await User.findOne({ email: login });
-	console.log('username', usernameCheck);
-	console.log('email', emailCheck);
-	let response = [];
-	let loginData = {};
-	if (usernameCheck) {
-		loginData = usernameCheck;
-	} else if (emailCheck) {
-		loginData = emailCheck;
-	} else {
-		response.push({ input: 'login', message: 'Incorrect login or password' });
-	}
-	console.log('loginData', loginData);
-
-	return res.send(response);
-};
-
 module.exports.renderLogin = (req, res) => {
 	res.render('users/login');
 };
