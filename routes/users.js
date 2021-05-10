@@ -9,6 +9,14 @@ router
 	.get(redirect, users.renderRegister)
 	.post(redirect, catchAsync(users.register));
 router.route('/register-check').post(users.registerCheck);
+router.route('/login-check').post(
+	redirect,
+	passport.authenticate('local', {
+		failureFlash: true,
+		failureRedirect: '/login'
+	}),
+	users.login
+);
 router
 	.route('/login')
 	.get(redirect, users.renderLogin)

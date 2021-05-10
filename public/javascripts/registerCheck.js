@@ -3,10 +3,10 @@ const registerForm = document.getElementById('registerForm');
 const validate = (e) => {
 	e.preventDefault();
 
-	const username = document.getElementById('username').value;
-	const password = document.getElementById('password').value;
 	const userInput = document.getElementById('username');
 	const passwordInput = document.getElementById('password');
+	const username = userInput.value;
+	const password = passwordInput.value;
 	const invalidUser = document.getElementById('invalidUser');
 	const invalidPassword = document.getElementById('invalidPassword');
 	const body = { username, password };
