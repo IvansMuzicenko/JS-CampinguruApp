@@ -12,6 +12,10 @@ window.onload = () => {
 const validateLogin = (e) => {
 	e.preventDefault();
 
+	if (!registerForm.checkValidity()) {
+		return;
+	}
+
 	const invalidFeedback = document.getElementById('invalidFeedback');
 	invalidFeedback.innerHTML = 'Incorrect e-mail or password';
 	userInput.classList.add('is-invalid');
