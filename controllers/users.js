@@ -2,6 +2,8 @@ const User = require('../models/user');
 const Review = require('../models/review');
 const Campground = require('../models/campground');
 const ExpressError = require('../utils/ExpressError');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
 
 module.exports.renderRegister = (req, res) => {
 	res.render('users/register');
@@ -63,26 +65,23 @@ module.exports.registerCheck = async (req, res, next) => {
 	return res.send(response);
 };
 
-module.exports.loginCheck = async (req, res, next) => {
-	const { username, password } = req.body;
-	const usernameCheck = await User.find({ username });
-	const emailCheck = await User.find({ email: username });
-	const user = emailCheck.username;
+module.exports.loginCheck = async (err, req, res, next) => {
+	const { login, password } = req.body;
+	const usernameCheck = await User.findOne({ username: login });
+	const emailCheck = await User.findOne({ email: login });
+	console.log('username', usernameCheck);
+	console.log('email', emailCheck);
+	let response = [];
 	let loginData = {};
 	if (usernameCheck) {
-		loginData = { usernameCheck, password };
+		loginData = usernameCheck;
+	} else if (emailCheck) {
+		loginData = emailCheck;
 	} else {
-		loginData = { user, password };
+		response.push({ input: 'login', message: 'Incorrect login or password' });
 	}
-	let response = [];
-	if (!usernameCheck.length || !emailCheck.length) {
-		response.push({ input: 'username', message: 'Incorrect login or password' });
-	}
-	req.login(loginData, (err) => {
-		if (err) {
-			response.push({ input: 'username', message: 'Incorrect login or password' });
-		}
-	});
+	console.log('loginData', loginData);
+
 	return res.send(response);
 };
 

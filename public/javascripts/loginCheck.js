@@ -3,10 +3,10 @@ const loginForm = document.getElementById('loginForm');
 const validate = (e) => {
 	e.preventDefault();
 
-	const username = document.getElementById('username').value;
-	const password = document.getElementById('password').value;
-	const userInput = document.getElementById('username');
+	const userInput = document.getElementById('login');
 	const passwordInput = document.getElementById('password');
+	const username = userInput.value;
+	const password = passwordInput.value;
 	const invalidFeedback = document.getElementById('invalidFeedback');
 	const body = { username, password };
 
@@ -19,8 +19,7 @@ const validate = (e) => {
 		.then((json) => {
 			if (!json.length) {
 				loginForm.classList.add('was-validated');
-				invalidUser.innerHTML = '';
-				invalidPassword.innerHTML = '';
+				invalidFeedback.innerHTML = '';
 				userInput.classList.remove('is-valid', 'is-invalid');
 				passwordInput.classList.remove('is-valid', 'is-invalid');
 				userInput.classList.add('is-valid');
