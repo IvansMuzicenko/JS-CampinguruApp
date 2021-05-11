@@ -22,7 +22,7 @@ router
 	.get(redirect, users.renderLogin)
 	.post(
 		passport.authenticate('local', {
-			failureFlash: true,
+			failureFlash: false,
 			failureRedirect: '/login'
 		}),
 		users.login

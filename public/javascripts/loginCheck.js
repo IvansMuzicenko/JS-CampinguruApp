@@ -12,14 +12,11 @@ window.onload = () => {
 const validateLogin = (e) => {
 	e.preventDefault();
 
-	if (!registerForm.checkValidity()) {
+	if (!loginForm.checkValidity()) {
 		return;
 	}
 
 	const invalidFeedback = document.getElementById('invalidFeedback');
-	invalidFeedback.innerHTML = 'Incorrect e-mail or password';
-	userInput.classList.add('is-invalid');
-	passwordInput.classList.add('is-invalid');
 	const username = userInput.value;
 	const password = passwordInput.value;
 	const body = { username, password };
@@ -32,9 +29,14 @@ const validateLogin = (e) => {
 		.then((response) => response.json())
 		.then((json) => {
 			if (!json.message) {
+				loginForm.classList.add('was-validated');
+				invalidFeedback.innerHTML = '';
+				userInput.classList.remove('is-valid', 'is-invalid');
+				passwordInput.classList.remove('is-valid', 'is-invalid');
+				userInput.classList.add('is-valid');
+				passwordInput.classList.add('is-valid');
 				return loginForm.submit();
 			}
-
 			invalidFeedback.innerHTML = 'Incorrect e-mail or password';
 			loginForm.classList.remove('was-validated');
 			userInput.classList.remove('is-valid', 'is-invalid');
