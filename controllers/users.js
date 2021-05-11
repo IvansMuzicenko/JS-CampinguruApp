@@ -16,7 +16,10 @@ module.exports.register = async (req, res, next) => {
 		const registeredUser = await User.register(user, password);
 		req.login(registeredUser, (err) => {
 			if (err) return next(err);
-			req.flash('success', 'Welcome to CampinGuru');
+			req.flash(
+				'registered',
+				'Welcome to CampinGuru, visit and add more information!'
+			);
 			const redirectUrl = req.session.returnTo || '/';
 			res.redirect(redirectUrl);
 		});

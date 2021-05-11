@@ -9,13 +9,25 @@
 		<span aria-hidden="true">&times;</span>
 	</button>
 </div>
-<% } %> <% if(error && error.length) {%>
+<% } if(error && error.length) {%>
 <div
 	id="alert"
 	class="alert alert-danger alert-dismissible fade show"
 	role="alert"
 >
 	<%= error %>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<% } if(registered && registered.length) {%>
+<div
+	id="alert"
+	class="alert alert-success alert-dismissible fade show text-center"
+	role="alert"
+>
+	Welcome to CampinGuru, visit <a href="/profile">your profile</a> and add more
+	information!
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	</button>
