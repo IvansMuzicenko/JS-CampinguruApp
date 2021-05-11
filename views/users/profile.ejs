@@ -3,8 +3,37 @@
 	<h2 class="text-center mt-3 mb-5">My profile</h2>
 	<div class="row">
 		<div class="col-md-6 mb-5">
-			<h5>Username: <%= currentUser.username %></h5>
-			<h5>E-mail: <%= currentUser.email %></h5>
+			<form
+				action="/changeProfile"
+				method="POST"
+				class="validated-form mb-5"
+				novalidate
+			>
+				<div id="span" class="mb-3 col-md-6">
+					<label class="form-label" for="username">Username:</label>
+					<br />
+					<span id="username" class="username"
+						><%= currentUser.username.slice(0, currentUser.username.indexOf("@"))
+						%></span
+					>
+					<input id="username" class="username none" type="text" value="<%=
+					currentUser.username.slice(0, currentUser.username.indexOf("@")) %>">
+				</div>
+				<div class="mb-3 col-md-6">
+					<label class="form-label" for="username">E-mail:</label>
+					<br />
+					<span><%= currentUser.username %></span>
+				</div>
+				<div class="mb-3 col-md-6">
+					<label class="form-label" for="username">Company/Name</label>
+					<br />
+					<span><%= currentUser.username %></span>
+				</div>
+
+				<h5>E-mail: <%= currentUser.email %></h5>
+				<h5>Username: <%= currentUser.username %></h5>
+			</form>
+
 			<h5>
 				My reviews:
 				<a
@@ -53,18 +82,6 @@
 					class="validated-form mb-5"
 					novalidate
 				>
-					<div class="mb-3 col-md-6">
-						<input
-							class="form-control shadow-light"
-							type="text"
-							name="username"
-							id="username"
-							inputmode="verbatim"
-							aria-required="true"
-							value="<%=currentUser.username %>"
-							disabled
-						/>
-					</div>
 					<div class="mb-3 col-md-6">
 						<label class="form-label" for="password"> Password:</label>
 						<input

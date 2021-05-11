@@ -6,6 +6,8 @@ const { isLoggedIn, isAuthor, validateCampground } = require('../middleware');
 const multer = require('multer');
 const { storage } = require('../cloudinary');
 const upload = multer({ storage });
+const tinify = require('tinify');
+tinify.key = process.env.TINIFY_KEY;
 
 router
 	.route('/')
