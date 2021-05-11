@@ -10,7 +10,11 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
 	cloudinary,
 	params: {
-		folder: `campinguru/campgrounds/`,
+		folder: (req, file) => {
+			const titleFull = req.body.campground.title;
+			const title = titleFull.replace(/ /g, '-');
+			return `campinguru/campgrounds/${title}`;
+		},
 		allowedFormats: ['jpeg', 'png', 'jpg']
 	}
 });
