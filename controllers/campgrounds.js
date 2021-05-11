@@ -156,9 +156,16 @@ module.exports.updateCampground = async (req, res) => {
 module.exports.deleteCampground = async (req, res) => {
 	const { id } = req.params;
 	const campground = await Campground.findById(id);
-	campground.images.forEach(function (img) {
-		cloudinary.uploader.destroy(img.filename);
-	});
+	for (let image of campground.images) {
+		await cloudinary.uploader.destroy(image.filename);
+	}
+
+	const fullPath = campground.images[0].filename;
+	const split = fullPath.split('/');
+	const folderSplit = split.slice(split.indexOf('campinguru'), split.length - 1);
+	const folderPath = folderSplit.join('/');
+	await cloudinary.api.delete_folder(folderPath);
+
 	await Campground.findByIdAndDelete(id);
 	req.flash('success', 'Campground deleted!');
 	res.redirect('/campgrounds');
