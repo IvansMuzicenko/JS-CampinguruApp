@@ -7,7 +7,7 @@ const { isLoggedIn, redirect } = require('../middleware');
 router
 	.route('/register')
 	.get(redirect, users.renderRegister)
-	.post(redirect, catchAsync(users.register));
+	.post(catchAsync(users.register));
 router.route('/register-check').post(users.registerCheck);
 router.post('/login-check', function (req, res, next) {
 	passport.authenticate('local', { session: false }, function (err, user, info) {
