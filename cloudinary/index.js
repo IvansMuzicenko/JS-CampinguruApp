@@ -10,7 +10,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
 	cloudinary,
 	params: {
-		folder: 'campinguru',
+		folder: `campinguru/campgrounds/`,
 		allowedFormats: ['jpeg', 'png', 'jpg']
 	}
 });
