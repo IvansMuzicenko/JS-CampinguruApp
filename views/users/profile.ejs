@@ -4,34 +4,74 @@
 	<div class="row">
 		<div class="col-md-6 mb-5">
 			<form
-				action="/changeProfile"
+				action="/api/changeProfile"
 				method="POST"
 				class="validated-form mb-5"
 				novalidate
 			>
-				<div id="span" class="mb-3 col-md-6">
-					<label class="form-label" for="username">Username:</label>
-					<br />
-					<span id="username" class="username"
-						><%= currentUser.username.slice(0, currentUser.username.indexOf("@"))
-						%></span
-					>
-					<input id="username" class="username none" type="text" value="<%=
-					currentUser.username.slice(0, currentUser.username.indexOf("@")) %>">
-				</div>
-				<div class="mb-3 col-md-6">
-					<label class="form-label" for="username">E-mail:</label>
-					<br />
-					<span><%= currentUser.username %></span>
-				</div>
-				<div class="mb-3 col-md-6">
-					<label class="form-label" for="username">Company/Name</label>
-					<br />
-					<span><%= currentUser.username %></span>
-				</div>
+				<button id="toggler" class="btn btn-outline-info mb-3">Edit Profile</button>
+				<div class="row">
+					<hr />
+					<div class="mb-4 col-md-6">
+						<label class="form-label" for="nickname">Username:</label>
+						<br />
+						<div id="nickname" class="nickname ml-2 py-2">
+							<%=currentUser.username.slice(0, currentUser.username.indexOf("@")) %>
+						</div>
 
-				<h5>E-mail: <%= currentUser.email %></h5>
-				<h5>Username: <%= currentUser.username %></h5>
+						<input id="nickname" class="nickname none form-control shadow-light"
+						type="text" value="<%= currentUser.username.slice(0,
+						currentUser.username.indexOf("@")) %>">
+						<hr />
+					</div>
+
+					<div class="mb-4 col-md-6">
+						<label class="form-label" for="username">E-mail:</label>
+						<br />
+						<div id="username" class="username ml-2 py-2">
+							<%=currentUser.username %>
+						</div>
+
+						<input
+							id="username"
+							class="username none form-control shadow-light"
+							type="text"
+							value="<%=currentUser.username%>"
+						/>
+						<hr />
+					</div>
+					<div class="mb-4 col-md-6">
+						<label class="form-label" for="username">Company/Name:</label>
+						<br />
+						<div id="name" class="name ml-2 py-2">Something</div>
+						<input
+							id="name"
+							class="name none form-control shadow-light"
+							type="text"
+							value=""
+						/>
+						<hr />
+					</div>
+					<div class="mb-4 col-md-6">
+						<label class="form-label" for="username">Company/Name:</label>
+						<br />
+						<div id="name" class="name ml-2 py-2">Something</div>
+						<input
+							id="name"
+							class="name none form-control shadow-light"
+							type="text"
+							value=""
+						/>
+						<hr />
+					</div>
+				</div>
+				<button
+					id="submitProfile"
+					type="submit"
+					class="btn btn-outline-success col-md-6 btn-block none w-50"
+				>
+					Submit
+				</button>
 			</form>
 
 			<h5>
@@ -44,7 +84,7 @@
 					aria-expanded="false"
 					aria-controls="collapseReviews"
 				>
-					<%= reviewCount %>
+					<%=reviewCount %>
 				</a>
 			</h5>
 			<h5>
@@ -57,7 +97,7 @@
 					aria-expanded="false"
 					aria-controls="collapseCampgrounds"
 				>
-					<%= campgroundCount %>
+					<%=campgroundCount %>
 				</a>
 			</h5>
 			<a class="btn btn-outline-success col-4" href="/campgrounds/new"
@@ -126,7 +166,7 @@
 						class="brn btn-outline-info bg p-2 rounded mb-3 col-12 col-md-6"
 						type="submit"
 					>
-						Change
+						Change password
 					</button>
 				</form>
 			</div>
@@ -150,19 +190,16 @@
 			<div class="col-12 col-lg-6 border">
 				<h4>
 					Campground:
-					<a class="white" href="/campgrounds/<%= campground._id %>">
-						<%= campground.title %>
+					<a class="white" href="/campgrounds/<%=campground._id %>">
+						<%=campground.title %>
 					</a>
 				</h4>
 				<h4>Review:</h4>
 				<p class="starability-result" data-rating="<%=review.rating%>">
-					Rated: <%= review.rating %> stars
+					Rated: <%=review.rating %> stars
 				</p>
-				<a
-					class="white"
-					href="/campgrounds/<%= campground._id %>#<%= review._id %>"
-				>
-					<p><%= review.body %></p>
+				<a class="white" href="/campgrounds/<%=campground._id %>#<%=review._id %>">
+					<p><%=review.body %></p>
 				</a>
 			</div>
 			<% } %> <% } %> <% } %> <% } %>
@@ -185,10 +222,12 @@
 				class="border col-6 col-sm-4 col-md-3"
 				href="/campgrounds/<%=campground._id%> "
 			>
-				<h5><%= campground.title %></h5>
-				<h6><%= campground.location %></h6>
+				<h5><%=campground.title %></h5>
+				<h6><%=campground.location %></h6>
 			</a>
 			<% } %>
 		</div>
 	</div>
 </div>
+
+<script src="/javascripts/profileChange.js"></script>
