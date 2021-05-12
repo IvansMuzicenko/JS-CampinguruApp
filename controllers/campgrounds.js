@@ -164,7 +164,9 @@ module.exports.deleteCampground = async (req, res) => {
 	const split = fullPath.split('/');
 	const folderSplit = split.slice(split.indexOf('campinguru'), split.length - 1);
 	const folderPath = folderSplit.join('/');
-	await cloudinary.api.delete_folder(folderPath);
+	await cloudinary.api.delete_folder(folderPath, function (error, result) {
+		if (err) console.log(error);
+	});
 
 	await Campground.findByIdAndDelete(id);
 	req.flash('success', 'Campground deleted!');
