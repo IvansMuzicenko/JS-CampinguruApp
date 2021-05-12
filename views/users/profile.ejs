@@ -10,9 +10,9 @@
 				novalidate
 			>
 				<button id="toggler" class="btn btn-outline-info mb-3">Edit Profile</button>
-				<div class="row">
+				<div class="row bg">
 					<hr />
-					<div class="mb-4 col-md-6">
+					<div class="col-md-6">
 						<label class="form-label" for="nickname">Username:</label>
 						<br />
 						<div id="nickname" class="nickname ml-2 py-2">
@@ -22,10 +22,10 @@
 						<input id="nickname" class="nickname none form-control shadow-light"
 						type="text" value="<%= currentUser.username.slice(0,
 						currentUser.username.indexOf("@")) %>">
-						<hr />
+						<hr class="mb-3" />
 					</div>
 
-					<div class="mb-4 col-md-6">
+					<div class="col-md-6">
 						<label class="form-label" for="username">E-mail:</label>
 						<br />
 						<div id="username" class="username ml-2 py-2">
@@ -38,10 +38,10 @@
 							type="text"
 							value="<%=currentUser.username%>"
 						/>
-						<hr />
+						<hr class="mb-3" />
 					</div>
-					<div class="mb-4 col-md-6">
-						<label class="form-label" for="username">Company/Name:</label>
+					<div class="col-md-6">
+						<label class="form-label" for="name">Company/Name:</label>
 						<br />
 						<div id="name" class="name ml-2 py-2">Something</div>
 						<input
@@ -52,23 +52,66 @@
 						/>
 						<hr />
 					</div>
-					<div class="mb-4 col-md-6">
-						<label class="form-label" for="username">Company/Name:</label>
+
+					<div id="telDiv" class="col-md-6 none">
+						<label class="form-label" for="tel">Telephone number:</label>
 						<br />
-						<div id="name" class="name ml-2 py-2">Something</div>
+						<div id="tel" class="tel ml-2 py-2">Something</div>
 						<input
-							id="name"
-							class="name none form-control shadow-light"
+							id="tel"
+							class="tel none form-control shadow-light"
+							type="text"
+							value=""
+						/>
+						<hr />
+					</div>
+
+					<div id="addressDiv" class="col-md-6 none">
+						<label class="form-label" for="address">Company address:</label>
+						<br />
+						<div id="address" class="address ml-2 py-2">Something</div>
+						<input
+							id="address"
+							class="address none form-control shadow-light"
+							type="text"
+							value=""
+						/>
+						<hr />
+					</div>
+
+					<div id="smthDiv" class="col-md-6 none">
+						<label class="form-label" for="something">Something:</label>
+						<br />
+						<div id="something" class="something ml-2 py-2">Something</div>
+						<input
+							id="something"
+							class="something none form-control shadow-light"
 							type="text"
 							value=""
 						/>
 						<hr />
 					</div>
 				</div>
+				<select
+					name="addSelect"
+					id="addSelect"
+					class="form-control form-control-sm none"
+				>
+					<option id="telOpt" value="tel">Telephone number</option>
+					<option id="addressOpt" value="address">Company address</option>
+					<option id="smthOpt" value="smth">Something</option>
+				</select>
+				<button
+					id="addBox"
+					type="button"
+					class="btn btn-outline-light col-md-6 mb-3 none"
+				>
+					+
+				</button>
 				<button
 					id="submitProfile"
 					type="submit"
-					class="btn btn-outline-success col-md-6 btn-block none w-50"
+					class="btn btn-outline-success btn-block none"
 				>
 					Submit
 				</button>
