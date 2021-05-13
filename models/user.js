@@ -7,6 +7,19 @@ const UserSchema = new Schema({
 		type: String,
 		required: true,
 		unique: true
+	},
+	nickname: {
+		type: String,
+		required: true
+	},
+	name: {
+		type: String
+	},
+	tel: {
+		type: String
+	},
+	address: {
+		type: String
 	}
 });
 

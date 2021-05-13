@@ -12,7 +12,8 @@ module.exports.renderRegister = (req, res) => {
 module.exports.register = async (req, res, next) => {
 	try {
 		const { username, password } = req.body;
-		const user = new User({ username });
+		const nickname = username.slice(0, username.indexOf('@'));
+		const user = new User({ username, nickname });
 		const registeredUser = await User.register(user, password);
 		req.login(registeredUser, (err) => {
 			if (err) return next(err);
