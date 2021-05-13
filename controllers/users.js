@@ -100,6 +100,18 @@ module.exports.renderProfile = async (req, res, next) => {
 		campgroundCount
 	});
 };
+module.exports.changeprofile = async (req, res, next) => {
+	try {
+		const user = await User.findByIdAndUpdate(
+			req.user._id,
+			{ ...req.body },
+			{ new: true }
+		);
+	} catch (e) {
+		req.flash('error', e.message);
+		res.redirect('/register');
+	}
+};
 
 module.exports.passChange = async (req, res, next) => {
 	try {

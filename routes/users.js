@@ -33,6 +33,8 @@ router
 	.get(isLoggedIn, users.renderProfile)
 	.post(isLoggedIn, users.passChange);
 
+router.route('/changeprofile').post(isLoggedIn, users.changeprofile);
+
 router.get('/logout', users.logout);
 
 module.exports = router;

@@ -20,6 +20,9 @@ const UserSchema = new Schema({
 	},
 	address: {
 		type: String
+	},
+	something: {
+		type: String
 	}
 });
 
