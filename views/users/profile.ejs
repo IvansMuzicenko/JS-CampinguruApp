@@ -49,13 +49,13 @@
 					<div class="col-md-6">
 						<label class="form-label" for="nameInput">Company/Name:</label>
 						<br />
-						<div id="nameDiv" class="name ml-2 py-2">Company/Name</div>
+						<div id="nameDiv" class="name ml-2 py-2"><%= currentUser.name %></div>
 						<input
 							id="nameInput"
 							name="name"
 							class="name none form-control shadow-light"
 							type="text"
-							value=""
+							value="<%= currentUser.name %>"
 						/>
 						<hr />
 					</div>

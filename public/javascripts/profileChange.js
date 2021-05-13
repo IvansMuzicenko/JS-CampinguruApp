@@ -24,23 +24,28 @@ toggler.addEventListener('click', (e) => {
 	addressSwitch.forEach((el) => el.classList.toggle('none'));
 	somethingSwitch.forEach((el) => el.classList.toggle('none'));
 	submit.classList.toggle('none');
-	addBox.classList.toggle('none');
-	addSelect.classList.toggle('none');
+	if (addSelect.length) {
+		addBox.classList.toggle('none');
+		addSelect.classList.toggle('none');
+	}
 });
 
 addBox.addEventListener('click', () => {
 	const addValue = addSelect.value;
+	const telOpt = document.getElementById('telOpt');
+	const addressOpt = document.getElementById('addressOpt');
+	const smthOpt = document.getElementById('smthOpt');
 	if (addValue == 'tel') {
 		telDiv.classList.remove('none');
-		document.getElementById('telOpt').remove();
+		telOpt.remove();
 	}
 	if (addValue == 'address') {
 		addressDiv.classList.remove('none');
-		document.getElementById('addressOpt').remove();
+		addressOpt.remove();
 	}
 	if (addValue == 'smth') {
 		smthDiv.classList.remove('none');
-		document.getElementById('smthOpt').remove();
+		smthOpt.remove();
 	}
 	if (!addSelect.innerText.length) {
 		addSelect.remove();
@@ -60,10 +65,10 @@ profileForm.addEventListener('submit', (e) => {
 
 	const body = {};
 	if (nicknameInput.value) body.nickname = nicknameInput.value;
-	if (nameInput.value) body.name = nameInput.value;
-	if (telInput.value) body.tel = telInput.value;
-	if (addressInput.value) body.address = addressInput.value;
-	if (somethingInput.value) body.something = somethingInput.value;
+	body.name = nameInput.value;
+	body.tel = telInput.value;
+	body.address = addressInput.value;
+	body.something = somethingInput.value;
 
 	fetch('/changeprofile', {
 		method: 'POST',
