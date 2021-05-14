@@ -10,59 +10,31 @@
 			aria-label="Toggle navigation"
 		>
 			<span class=""
-				><img
-					id="nav-images"
-					class="m-0"
-					src="https://res.cloudinary.com/cateyken/image/upload/v1619003422/campinguru/Images/campfire_1_aekxn1.png"
-					alt=""
+				><img id="nav-images" class="m-0" src="/src/Mini_fire.png" alt=""
 			/></span>
 		</button>
 		<a class="navbar-brand mx-auto mt-3" href="/"
-			><img
-				class="m-0"
-				id="nav-images"
-				src="https://res.cloudinary.com/cateyken/image/upload/v1620224794/campinguru/Images/CampinguruLogo_pc3l3h.png"
-				alt=""
+			><img class="m-0" id="nav-images" src="/src/CampinguruLogo.png" alt=""
 		/></a>
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<hr />
 			<div class="navbar-nav"></div>
 			<div id="navlinks" class="navbar-nav ml-auto">
 				<a class="nav-link mr-4" href="/"
-					><img
-						class="icon"
-						src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/tent_f6yzdg.svg"
-						alt=""
-					/>
-					Home</a
+					><img class="icon" src="/src/tent.svg" alt="" /> Home</a
 				>
 				<a class="nav-link collapse-link" href="/campgrounds"
-					><img
-						class="icon"
-						src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/list_zmiikx.svg"
-						alt=""
-					/>Camps List</a
+					><img class="icon" src="/src/list.svg" alt="" />Camps List</a
 				>
 				<a class="nav-link collapse-link" href="/campgrounds/map"
-					><img
-						class="icon"
-						src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/map_sklko0.svg"
-						alt=""
-					/>Camps Map</a
+					><img class="icon" src="/src/map.svg" alt="" />Camps Map</a
 				>
 				<a class="nav-link collapse-link mr-4" href="/campgrounds/new">
-					<img
-						class="icon"
-						src="https://res.cloudinary.com/cateyken/image/upload/v1620230839/campinguru/Images/new_zhh0xh.svg"
-						alt=""
-					/>Create Camp</a
+					<img class="icon" src="/src/new.svg" alt="" />Create Camp</a
 				>
 				<div id="campDropdown" class="btn-group mr-4">
 					<a href="/campgrounds" class="nav-link"
-						><img
-							class="icon"
-							src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/list_zmiikx.svg"
-							alt="" />Campgrounds<a
+						><img class="icon" src="/src/list.svg" alt="" />Campgrounds<a
 							type="button"
 							class="nav-link dropdown-toggle"
 							data-toggle="dropdown"
@@ -74,45 +46,26 @@
 
 					<div class="dropdown-menu dropdown-menu-right bg white mt-3">
 						<a class="dropdown-item white" href="/campgrounds"
-							><img
-								class="icon"
-								src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/list_zmiikx.svg"
-								alt=""
-							/>Campgrounds List</a
+							><img class="icon" src="/src/list.svg" alt="" />Campgrounds List</a
 						>
 						<a class="dropdown-item white" href="/campgrounds/map"
-							><img
-								class="icon"
-								src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/map_sklko0.svg"
-								alt=""
-							/>Campgrounds Map</a
+							><img class="icon" src="/src/map.svg" alt="" />Campgrounds Map</a
 						>
 						<a class="dropdown-item white" href="/campgrounds/new"
-							><img
-								class="icon"
-								src="https://res.cloudinary.com/cateyken/image/upload/v1620230839/campinguru/Images/new_zhh0xh.svg"
-								alt=""
-							/>New Campground</a
+							><img class="icon" src="/src/new.svg" alt="" />New Campground</a
 						>
 					</div>
 				</div>
 				<% if(!currentUser) { %>
 				<a href="/login" class="nav-link login"
-					><img
-						class="icon"
-						src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/login_oslgsf.svg"
-						alt=""
-					/>Login</a
+					><img class="icon" src="/src/login.svg" alt="" />Login</a
 				>
 				<a href="/register" class="nav-link">Register</a>
 				<% } else {%>
 				<div class="btn-group">
 					<a id="user" href="/profile" class="nav-link"
-						><img
-							class="icon"
-							src="https://res.cloudinary.com/cateyken/image/upload/v1620230007/campinguru/Images/user_r8bzmm.svg"
-							alt=""
-						/><%= currentUser.nickname %></a
+						><img class="icon" src="/src/user.svg" alt="" /><%= currentUser.nickname
+						%></a
 					>
 					<a
 						type="button"
@@ -124,19 +77,11 @@
 					</a>
 					<div class="dropdown-menu dropdown-menu-right bg white mt-3">
 						<a class="dropdown-item white" href="/profile"
-							><img
-								class="icon"
-								src="https://res.cloudinary.com/cateyken/image/upload/v1620230007/campinguru/Images/user_r8bzmm.svg"
-								alt=""
-							/>My profile</a
+							><img class="icon" src="/src/user.svg" alt="" />My profile</a
 						>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item white logout" href="/logout"
-							><img
-								class="icon"
-								src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/logout_mwjuyj.svg"
-								alt=""
-							/>Log out</a
+							><img class="icon" src="/src/logout.svg" alt="" />Log out</a
 						>
 					</div>
 				</div>

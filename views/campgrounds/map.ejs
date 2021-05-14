@@ -31,69 +31,36 @@
 					aria-haspopup="true"
 					aria-expanded="false"
 				>
-					<img
-						class="m-0"
-						id="nav-images"
-						src="https://res.cloudinary.com/cateyken/image/upload/v1620224794/campinguru/Images/CampinguruLogo_pc3l3h.png"
-						alt=""
-					/>
+					<img class="m-0" id="nav-images" src="/src/CampinguruLogo.png" alt="" />
 				</button>
 				<div class="dropdown-menu bg">
 					<nav class="navbar navbar-dark">
 						<div class="container-fluid">
 							<div id="navlinks" class="navbar-nav">
 								<a class="dropdown-item white" href="/"
-									><img
-										class="icon"
-										src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/tent_f6yzdg.svg"
-										alt=""
-									/>Home</a
+									><img class="icon" src="/src/tent.svg" alt="" />Home</a
 								>
 								<a class="dropdown-item white mr-5" href="/campgrounds"
-									><img
-										class="icon"
-										src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/list_zmiikx.svg"
-										alt=""
-									/>Camps List</a
+									><img class="icon" src="/src/list.svg" alt="" />Camps List</a
 								>
 								<a class="dropdown-item white active" href="/campgrounds/map"
-									><img
-										class="icon"
-										src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/map_sklko0.svg"
-										alt=""
-									/>Camps Map</a
+									><img class="icon" src="/src/map.svg" alt="" />Camps Map</a
 								>
 								<a href="/campgrounds/new" class="dropdown-item white mr-5">
-									<img
-										class="icon"
-										src="https://res.cloudinary.com/cateyken/image/upload/v1620230839/campinguru/Images/new_zhh0xh.svg"
-										alt=""
-									/>Create Camp</a
+									<img class="icon" src="/src/new.svg" alt="" />Create Camp</a
 								>
 								<% if(!currentUser) { %>
 								<a href="/login" class="dropdown-item white"
-									><img
-										class="icon"
-										src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/login_oslgsf.svg"
-										alt=""
-									/>Login</a
+									><img class="icon" src="/src/login.svg" alt="" />Login</a
 								>
 								<a href="/register" class="dropdown-item white">Register</a>
 								<% } else {%>
 								<a class="dropdown-item white" href="/profile"
-									><img
-										class="icon"
-										src="https://res.cloudinary.com/cateyken/image/upload/v1620230007/campinguru/Images/user_r8bzmm.svg"
-										alt=""
-									/>My profile</a
+									><img class="icon" src="/src/user.svg" alt="" />My profile</a
 								>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item white" href="/logout"
-									><img
-										class="icon"
-										src="https://res.cloudinary.com/cateyken/image/upload/v1620230006/campinguru/Images/logout_mwjuyj.svg"
-										alt=""
-									/>Log out</a
+									><img class="icon" src="/src/logout.svg" alt="" />Log out</a
 								>
 								<% } %>
 							</div>
