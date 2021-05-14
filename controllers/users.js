@@ -108,6 +108,8 @@ module.exports.changeprofile = async (req, res, next) => {
 			{ new: true }
 		);
 
+		await user.save();
+
 		res.send(user);
 	} catch (e) {
 		req.flash('error', e.message);
