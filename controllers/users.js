@@ -107,9 +107,11 @@ module.exports.changeprofile = async (req, res, next) => {
 			{ ...req.body },
 			{ new: true }
 		);
+
+		res.send(user);
 	} catch (e) {
 		req.flash('error', e.message);
-		res.redirect('/register');
+		res.redirect('/profile');
 	}
 };
 

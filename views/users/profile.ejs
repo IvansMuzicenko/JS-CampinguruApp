@@ -3,20 +3,14 @@
 	<h2 class="text-center mt-3 mb-5">My profile</h2>
 	<div class="row">
 		<div class="col-md-6 mb-5">
-			<form
-				id="profileForm"
-				action="/changeprofile"
-				method="POST"
-				class="validated-form mb-5"
-				novalidate
-			>
+			<form id="profileForm" class="validated-form mb-5" novalidate>
 				<button id="toggler" class="btn btn-outline-info mb-3">Edit Profile</button>
 				<div class="row bg">
 					<hr />
 					<div class="col-md-6">
 						<label class="form-label" for="usernameInput">E-mail:</label>
 						<br />
-						<div id="usernameDiv" class="username ml-2 py-2">
+						<div id="usernameText" class="username ml-2 py-2">
 							<%=currentUser.username %>
 						</div>
 
@@ -32,7 +26,7 @@
 					<div class="col-md-6">
 						<label class="form-label" for="nicknameInput">Username:</label>
 						<br />
-						<div id="nicknameDiv" class="nickname ml-2 py-2">
+						<div id="nicknameText" class="nickname ml-2 py-2">
 							<%=currentUser.nickname %>
 						</div>
 
@@ -49,7 +43,7 @@
 					<div class="col-md-6">
 						<label class="form-label" for="nameInput">Company/Name:</label>
 						<br />
-						<div id="nameDiv" class="name ml-2 py-2"><%= currentUser.name %></div>
+						<div id="nameText" class="name ml-2 py-2"><%= currentUser.name %></div>
 						<input
 							id="nameInput"
 							name="name"
@@ -63,7 +57,7 @@
 					<div id="telDiv" class="col-md-6 <%if(!currentUser.tel){%>none<%}%>">
 						<label class="form-label" for="telInput">Telephone number:</label>
 						<br />
-						<div id="telDiv" class="tel ml-2 py-2"><%= currentUser.tel %></div>
+						<div id="telText" class="tel ml-2 py-2"><%= currentUser.tel %></div>
 						<input
 							id="telInput"
 							name="tel"
@@ -80,15 +74,15 @@
 					>
 						<label class="form-label" for="addressInput">Company address:</label>
 						<br />
-						<div id="addressDiv" class="address ml-2 py-2">
-							<%= currentUser.address %>
+						<div id="addressText" class="address ml-2 py-2">
+							<%=currentUser.address%>
 						</div>
 						<input
 							id="addressInput"
 							name="address"
 							class="address none form-control shadow-light"
 							type="text"
-							value="<%= currentUser.address %>"
+							value="<%=currentUser.address%>"
 						/>
 						<hr />
 					</div>
@@ -99,7 +93,7 @@
 					>
 						<label class="form-label" for="somethingInput">Something:</label>
 						<br />
-						<div id="somethingDiv" class="something ml-2 py-2">
+						<div id="somethingText" class="something ml-2 py-2">
 							<%= currentUser.something %>
 						</div>
 						<input
@@ -107,7 +101,7 @@
 							name="something"
 							class="something none form-control shadow-light"
 							type="text"
-							value="<%= currentUser.something %>"
+							value="<%=currentUser.something%>"
 						/>
 						<hr />
 					</div>
@@ -117,13 +111,10 @@
 					id="addSelect"
 					class="form-control form-control-sm none w-50 mb-3"
 				>
-					<%if(!currentUser.tel){%>
+					<option id="selected" selected>---Choose field to add---</option>
 					<option id="telOpt" value="tel">Telephone number</option>
-					<%}%> <%if(!currentUser.address){%>
 					<option id="addressOpt" value="address">Company address</option>
-					<%}%> <%if(!currentUser.something){%>
 					<option id="smthOpt" value="smth">Something</option>
-					<%}%>
 				</select>
 				<button
 					id="addBox"
@@ -298,3 +289,9 @@
 </div>
 
 <script src="/javascripts/profileChange.js"></script>
+//
+<script>
+	// 	window.onload = toggler.click();
+	// 	window.onload = document.getElementById('submitProfile').click();
+	//
+</script>
