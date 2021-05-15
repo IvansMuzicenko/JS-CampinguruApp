@@ -58,7 +58,13 @@
 					<div id="telDiv" class="col-md-6 <%if(!currentUser.tel){%>none<%}%>">
 						<label class="form-label" for="telInput">Telephone number:</label>
 						<br />
-						<div id="telText" class="tel ml-2 py-2"><%= currentUser.tel %></div>
+						<div
+							id="telText"
+							class="tel ml-2 py-2"
+							data-text="<%= currentUser.tel %>"
+						>
+							<%= currentUser.tel %>
+						</div>
 						<input
 							id="telInput"
 							name="tel"
@@ -75,7 +81,11 @@
 					>
 						<label class="form-label" for="addressInput">Company address:</label>
 						<br />
-						<div id="addressText" class="address ml-2 py-2">
+						<div
+							id="addressText"
+							class="address ml-2 py-2"
+							data-text="<%= currentUser.address %>"
+						>
 							<%=currentUser.address%>
 						</div>
 						<input
@@ -94,7 +104,11 @@
 					>
 						<label class="form-label" for="somethingInput">Something:</label>
 						<br />
-						<div id="somethingText" class="something ml-2 py-2">
+						<div
+							id="somethingText"
+							class="something ml-2 py-2"
+							data-text="<%= currentUser.something %>"
+						>
 							<%= currentUser.something %>
 						</div>
 						<input
@@ -290,8 +304,3 @@
 </div>
 
 <script src="/javascripts/profileChange.js"></script>
-<script>
-	// 	window.onload = toggler.click();
-	// 	window.onload = document.getElementById('submitProfile').click();
-	//
-</script>

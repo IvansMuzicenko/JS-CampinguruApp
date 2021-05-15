@@ -35,8 +35,6 @@ const smthDiv = document.getElementById('smthDiv');
 
 const selectedString = '---Choose field to add---';
 
-let executed = false;
-
 toggler.addEventListener('click', (e) => {
 	e.preventDefault();
 	document.getElementById('selected').selected = true;
@@ -50,17 +48,17 @@ toggler.addEventListener('click', (e) => {
 	addBox.classList.toggle('none');
 	addSelect.classList.toggle('none');
 
-	if (!telText.innerText.length) {
+	if (!telText.dataset.text.length) {
 		telDiv.classList.add('none');
 		telOpt.classList.remove('none');
 	} else telOpt.classList.add('none');
 
-	if (!addressText.innerText.length) {
+	if (!addressText.dataset.text.length) {
 		addressDiv.classList.add('none');
 		addressOpt.classList.remove('none');
 	} else addressOpt.classList.add('none');
 
-	if (!somethingText.innerText.length) {
+	if (!somethingText.dataset.text.length) {
 		smthDiv.classList.add('none');
 		smthOpt.classList.remove('none');
 	} else smthOpt.classList.add('none');
@@ -109,19 +107,13 @@ profileForm.addEventListener('submit', (e) => {
 	})
 		.then((response) => response.json())
 		.then((json) => {
-			nicknameText.innerHTML = json.nickname;
-			nameText.innerHTML = json.name;
-			telText.innerHTML = json.tel;
-			addressText.innerHTML = json.address;
-			somethingText.innerHTML = json.something;
+			nicknameText.innerHTML = nicknameText.dataset.text = json.nickname;
+			nameText.innerHTML = nameText.dataset.text = json.name;
+			telText.innerHTML = telText.dataset.text = json.tel;
+			addressText.innerHTML = addressText.dataset.text = json.address;
+			somethingText.innerHTML = somethingText.dataset.text = json.something;
 
 			toggler.click();
 		})
 		.catch((err) => console.log(err));
 });
-
-if (!executed) {
-	submit.click();
-	toggler.click();
-	executed = true;
-}
