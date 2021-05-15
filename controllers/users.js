@@ -119,6 +119,10 @@ module.exports.changeprofile = async (req, res, next) => {
 
 module.exports.passChange = async (req, res, next) => {
 	try {
+		if (req.cookies.passChange) {
+			req.flash('error', 'Password can be changed once in 1 hour');
+			return res.redirect('/profile');
+		}
 		const { password, newPassword, confirmPassword } = req.body;
 		if (!newPassword) {
 			req.flash('error', 'Must provide new password');
@@ -151,6 +155,7 @@ module.exports.passChange = async (req, res, next) => {
 		});
 
 		req.flash('success', 'Password changed!');
+		res.cookie('passChange', 'changed', { maxAge: 3600000 });
 		res.redirect('/profile');
 	} catch (e) {
 		req.flash('error', e.message);

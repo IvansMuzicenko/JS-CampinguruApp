@@ -12,6 +12,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
+const cookieParser = require('cookie-parser');
 
 const User = require('./models/user');
 const ExpressError = require('./utils/ExpressError');
@@ -61,6 +62,8 @@ app.use(
 );
 
 const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
+
+app.use(cookieParser(secret));
 
 const sessionConfig = {
 	store: MongoStore.create({

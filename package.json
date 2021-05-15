@@ -15,6 +15,7 @@
     "cloudinary": "^1.25.1",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^4.4.1",
+    "cookie-parser": "^1.4.5",
     "custom-elements-es5-adapter": "^1.0.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
