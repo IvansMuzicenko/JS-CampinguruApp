@@ -74,13 +74,11 @@ const seedDB = async () => {
 				geometry,
 				images: [
 					{
-						url:
-							'https://res.cloudinary.com/cateyken/image/upload/v1618999000/campinguru/campfire_wbrg1s.jpg',
+						url: 'https://res.cloudinary.com/cateyken/image/upload/v1618999000/campinguru/campfire_wbrg1s.jpg',
 						filename: 'campinguru/campfire_wbrg1s.jpg'
 					},
 					{
-						url:
-							'https://res.cloudinary.com/cateyken/image/upload/v1618999002/campinguru/river_ayeamb.jpg',
+						url: 'https://res.cloudinary.com/cateyken/image/upload/v1618999002/campinguru/river_ayeamb.jpg',
 						filename: 'campinguru/river_ayeamb.jpg'
 					}
 				]

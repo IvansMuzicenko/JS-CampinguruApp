@@ -47,16 +47,18 @@
 	<div class="shadow-light mb-3 bg rounded">
 		<div class="row">
 			<div class="col-md-4">
-				<a href="/campgrounds/<%=campground._id%>">
+				<a class="cover" href="/campgrounds/<%=campground._id%>">
 					<% if (campground.images.length) { %>
 					<img
-						class="img-fluid rounded"
+						id="camp-image"
+						class="rounded cover"
 						src="<%= campground.images[0].url %>"
 						alt=""
 					/>
 					<% } else { %>
 					<img
-						class="img-fluid"
+						id="camp-image"
+						class="rounded cover"
 						src="https://res.cloudinary.com/cateyken/image/upload/v1618999000/campinguru/campfire_wbrg1s.jpg"
 						alt=""
 					/>

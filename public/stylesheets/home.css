@@ -1,35 +1,18 @@
 * {
-	box-sizing: border-box;
 	font-size: 20px;
 }
-
-#bg-video {
-	filter: blur(2px);
+body {
+	overflow: hidden;
 }
 
-#bg-image {
-	filter: blur(2px);
-}
-
-@media screen and (min-width: 1530px) {
-	#navbar {
-		padding: 0 15%;
-	}
-}
-
-#navlinks {
+.navlinks {
 	font-size: large;
 	font-weight: 900;
 	box-sizing: border-box;
 }
-#navlinks a:hover {
-	border-bottom: 5px solid white;
-}
-#navlinks a.active {
-	border-bottom: 5px solid white;
-}
+
 #nav-images {
-	height: 2.5em;
+	height: 3em;
 }
 
 #info {
@@ -38,9 +21,6 @@
 	color: white;
 }
 
-#logo {
-	height: 5rem;
-}
 .btn {
 	font-weight: 900;
 }
