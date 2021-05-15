@@ -1,3 +1,4 @@
+const Campground = require('../models/campground');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
@@ -14,7 +15,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
 	cloudinary,
 	params: {
-		folder: (req, file) => {
+		folder: async (req, file) => {
 			// const files = Object.entries(file);
 			// // console.log(files);
 			// // console.log(files[1][1]);
@@ -32,8 +33,22 @@ const storage = new CloudinaryStorage({
 			// 		// ...
 			// 	});
 			// });
-
-			const titleFull = req.body.campground.title;
+			let pathModifier = 0;
+			let modifiedTitle = req.body.campground.title;
+			let result = await cloudinary.api.sub_folders(
+				'campinguru/campgrounds',
+				function (error, result) {
+					return result;
+				}
+			);
+			for (let folder of result.folders) {
+				if ((modifiedTitle = folder.name)) {
+					pathModifier++;
+					modifiedTitle = req.body.campground.title + '-' + pathModifier;
+				}
+			}
+			console.log(modifiedTitle);
+			const titleFull = modifiedTitle;
 			const title = titleFull.replace(/ /g, '-');
 			return `campinguru/campgrounds/${title}`;
 		},
