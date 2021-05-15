@@ -6,6 +6,7 @@
 />
 <% layout('layouts/boilerplate')%>
 <div class="row bg mt-5 rounded">
+	<h5><a class="my-1 col-12" href="/campgrounds">&larr;All Campgrounds</a></h5>
 	<div class="col-lg-6 my-3">
 		<div id="campgroundCarousel" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
@@ -38,12 +39,15 @@
 		</div>
 		<div class="card mb-3 black">
 			<div class="card-body">
-				<h5 class="card-title">
-					<%= campground.title %>
-					<p class="starability-result" data-rating="<%= campground.rating%>">
+				<div class="d-sm-flex">
+					<h5 class="card-title"><%= campground.title %></h5>
+					<p
+						class="starability-result ml-sm-5"
+						data-rating="<%= campground.rating%>"
+					>
 						Rated: <%= campground.rating %> stars
 					</p>
-				</h5>
+				</div>
 
 				<p class="card-text"><%= campground.description %></p>
 			</div>
@@ -72,7 +76,6 @@
 			<% } %>
 			<div class="card-footer text-muted">2 days ago</div>
 		</div>
-		<h5><a class="mb-1" href="/campgrounds">&larr;All Campgrounds</a></h5>
 	</div>
 	<div class="col-lg-6 my-3">
 		<div class="mb-3 black" id="map"></div>
@@ -119,8 +122,8 @@
 							class="form-control shadow-lg"
 							name="review[body]"
 							id="body"
-							cols="30"
-							rows="3"
+							rows="4"
+							maxlength="250"
 							required
 						></textarea>
 						<div class="invalid-feedback">Please provide a review!</div>
@@ -128,42 +131,47 @@
 					<button class="btn btn-success">Submit review</button>
 				</form>
 			</div>
-			<% } %> <% if (campground.reviews.length) { %> <% for(let review of
-			campground.reviews) { %>
-			<div class="card mb-3 black">
-				<div class="card-body">
+			<% } %>
+		</div>
+	</div>
+	<div class="container">
+		<% if (campground.reviews.length) { %> <% for(let review of
+		campground.reviews) { %>
+		<div class="card mb-3 black col-12">
+			<div class="card-body">
+				<div class="d-sm-flex">
 					<h5 id="<%= review._id %>" class="card-title">
 						By <%= review.author.username%>
 					</h5>
-					<p class="starability-result" data-rating="<%=review.rating%>">
+					<p class="starability-result ml-sm-5" data-rating="<%=review.rating%>">
 						Rated: <%= review.rating %> stars
 					</p>
-					<p class="card-text">
-						Review: <br />
-						<%= review.body %>
-					</p>
-					<% if(currentUser && review.author.equals(currentUser._id)) { %>
-					<form
-						action="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>?_method=DELETE"
-						method="POST"
-					>
-						<button class="btn btn-sm btn-danger">DELETE</button>
-					</form>
-					<% } %>
 				</div>
-			</div>
-			<% } %> <% } else { %>
-			<div class="mb-3">
-				<% if (currentUser) { %>
-				<h5 class="text-center">No reviews yet! Write and be first!</h5>
-				<% } else { %>
-				<h5 class="text-center">
-					No reviews yet! <a href="/login">Login</a>, write and be first!
-				</h5>
+				<p class="card-text">
+					Review: <br />
+					<%= review.body %>
+				</p>
+				<% if(currentUser && review.author.equals(currentUser._id)) { %>
+				<form
+					action="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>?_method=DELETE"
+					method="POST"
+				>
+					<button class="btn btn-sm btn-danger">DELETE</button>
+				</form>
 				<% } %>
 			</div>
+		</div>
+		<% } %> <% } else { %>
+		<div class="mb-3">
+			<% if (currentUser) { %>
+			<h5 class="text-center">No reviews yet! Write and be first!</h5>
+			<% } else { %>
+			<h5 class="text-center">
+				No reviews yet! <a href="/login">Login</a>, write and be first!
+			</h5>
 			<% } %>
 		</div>
+		<% } %>
 	</div>
 </div>
 
