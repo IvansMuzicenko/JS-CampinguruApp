@@ -9,13 +9,15 @@ const upload = multer({ storage });
 const tinify = require('tinify');
 tinify.key = process.env.TINIFY_KEY;
 
-router.route('/').get(catchAsync(campgrounds.index)).post(
-	isLoggedIn,
-
-	upload.array('image'),
-	validateCampground,
-	catchAsync(campgrounds.createCampground)
-);
+router
+	.route('/')
+	.get(catchAsync(campgrounds.index))
+	.post(
+		isLoggedIn,
+		upload.array('image'),
+		validateCampground,
+		catchAsync(campgrounds.createCampground)
+	);
 
 router.get('/new', isLoggedIn, campgrounds.renderNewForm);
 router.get('/map', catchAsync(campgrounds.map));
