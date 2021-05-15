@@ -16,6 +16,8 @@
 					type="text"
 					id="title"
 					name="campground[title]"
+					maxlength="40"
+					placeholder="Title (max 40 symbols)"
 					required
 				/>
 				<div class="invalid-feedback">Please provide a campground title!</div>
@@ -43,6 +45,7 @@
 						aria-label="price"
 						aria-describedby="price-label"
 						name="campground[price]"
+						maxlength="5"
 						required
 					/>
 					<div class="invalid-feedback">Please provide a price!</div>
@@ -55,6 +58,8 @@
 					type="text"
 					id="description"
 					name="campground[description]"
+					maxlength="250"
+					placeholder="Description (max. 250 symbols)"
 					required
 				></textarea>
 				<div class="invalid-feedback">Please provide a description!</div>

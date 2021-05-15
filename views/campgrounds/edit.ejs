@@ -18,12 +18,14 @@
 					id="title"
 					name="campground[title]"
 					value="<%= campground.title %>"
+					maxlength="40"
+					placeholder="Title (max 40 symbols)"
 					required
 				/>
 				<div class="invalid-feedback">Please provide a campground title!</div>
 			</div>
 			<div class="mb-3">
-				<label class="form-label" l for="location">Location</label>
+				<label class="form-label" for="location">Location</label>
 				<input
 					class="form-control shadow-light"
 					type="text"
@@ -46,6 +48,7 @@
 						aria-label="price"
 						aria-describedby="price-label"
 						name="campground[price]"
+						maxlength="5"
 						value="<%= campground.price %>"
 						required
 					/>
@@ -59,6 +62,8 @@
 					type="text"
 					id="description"
 					name="campground[description]"
+					maxlength="250"
+					placeholder="Description (max. 250 symbols)"
 					required
 				>
 <%= campground.description %></textarea
