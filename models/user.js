@@ -8,6 +8,7 @@ const UserSchema = new Schema({
 		required: true,
 		unique: true
 	},
+	passChange: Date,
 	nickname: {
 		type: String,
 		required: true
