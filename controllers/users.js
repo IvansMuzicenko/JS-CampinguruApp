@@ -120,9 +120,9 @@ module.exports.changeprofile = async (req, res, next) => {
 module.exports.passChange = async (req, res, next) => {
 	try {
 		const { username } = req.user;
-		const user = await User.findByUsername(username);
-		console.log(user, user.passChange + 1000 * 60 * 60);
-		if (Date.now() < user.passChange + 1000 * 60 * 60) {
+		const { passChange } = await User.findByUsername(username);
+
+		if (Date.now() < passChange.setHours(passChange.getHours() + 1)) {
 			req.flash('error', 'Password can be changed once in 1 hour');
 			return res.redirect('/profile');
 		}
@@ -151,7 +151,7 @@ module.exports.passChange = async (req, res, next) => {
 			if (sanitizedUser) {
 				sanitizedUser.changePassword(password, newPassword, async (err) => {
 					// User.findOneAndUpdate({ username }, { passChange: new Date() });
-					sanitizedUser.passChange = Date.now();
+					sanitizedUser.passChange = Date();
 					await sanitizedUser.save();
 					if (err) return next(err);
 				});
