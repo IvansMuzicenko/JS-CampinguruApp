@@ -11,7 +11,11 @@
 					<div class="col-md-6">
 						<label class="form-label" for="usernameInput">E-mail:</label>
 						<br />
-						<div id="usernameText" class="username ml-2 py-2">
+						<div
+							id="usernameText"
+							class="username ml-2 py-2"
+							data-text="<%= currentUser.username%>"
+						>
 							<%=currentUser.username %>
 						</div>
 
@@ -190,7 +194,8 @@
 			</h4>
 			<div class="collapse" id="collapseChangePass">
 				<form
-					action="/profile"
+					id="passForm"
+					action="/passChange"
 					method="POST"
 					class="validated-form mb-5"
 					novalidate
@@ -203,9 +208,11 @@
 							name="password"
 							id="password"
 							inputmode="verbatim"
-							aria-required="true"
 							autocomplete="off"
+							placeholder="Current password"
+							required
 						/>
+						<div id="invalidPassword" class="invalid-feedback"></div>
 					</div>
 					<div class="mb-3 col-md-6">
 						<label class="form-label" for="newPassword"> New password:</label>
@@ -216,9 +223,11 @@
 							id="newPassword"
 							inputmode="verbatim"
 							minlength="8"
-							aria-required="true"
 							autocomplete="new-password"
+							placeholder="New password(at least 8 characters)"
+							required
 						/>
+						<div id="invalidNewPassword" class="invalid-feedback"></div>
 					</div>
 					<div class="mb-3 col-md-6">
 						<label class="form-label" for="confirmPassword">
@@ -231,14 +240,13 @@
 							id="confirmPassword"
 							inputmode="verbatim"
 							minlength="8"
-							aria-required="true"
 							autocomplete="new-password"
+							placeholder="Confirm new password"
+							required
 						/>
+						<div id="invalidConfirmPassword" class="invalid-feedback"></div>
 					</div>
-					<button
-						class="brn btn-outline-info bg p-2 rounded mb-3 col-12 col-md-6"
-						type="submit"
-					>
+					<button class="brn btn-outline-info bg p-2 rounded mb-3 col-12 col-md-6">
 						Change password
 					</button>
 				</form>
@@ -304,3 +312,4 @@
 </div>
 
 <script src="/javascripts/profileChange.js"></script>
+<script src="/javascripts/passChange.js"></script>

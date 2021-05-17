@@ -28,10 +28,22 @@ router
 		users.login
 	);
 
-router
-	.route('/profile')
-	.get(isLoggedIn, users.renderProfile)
-	.post(isLoggedIn, users.passChange);
+router.route('/profile').get(isLoggedIn, users.renderProfile);
+
+router.route('/passChange').post(isLoggedIn, function (req, res, next) {
+	passport.authenticate('local', { session: false }, function (err, user, info) {
+		if (!user) {
+			return res.send([
+				{
+					input: 'password',
+					message: 'Incorrect password'
+				}
+			]);
+		} else {
+			users.passChange;
+		}
+	})(req, res, next);
+});
 
 router.route('/changeprofile').post(isLoggedIn, users.changeprofile);
 

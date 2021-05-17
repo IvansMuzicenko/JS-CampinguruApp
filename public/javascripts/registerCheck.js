@@ -42,13 +42,11 @@ const validate = (e) => {
 
 				json.forEach((el) => {
 					if (el.input == 'login') {
-						userInput.classList.remove('is-valid', 'is-invalid');
 						if (!invalidUser.innerHTML.includes(el.message))
 							invalidUser.innerHTML += el.message + '<br>';
 						userInput.classList.add('is-invalid');
 					}
 					if (el.input == 'password') {
-						passwordInput.classList.remove('is-valid', 'is-invalid');
 						if (!invalidPassword.innerHTML.includes(el.message))
 							invalidPassword.innerHTML += el.message + '<br>';
 						passwordInput.classList.add('is-invalid');
