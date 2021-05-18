@@ -15,6 +15,7 @@ const validate = (e) => {
 	const newPassword = newPasswordInput.value;
 	const confirmPassword = confirmPasswordInput.value;
 	const invalidPassword = document.getElementById('invalidPassword');
+	const passInvalid = document.getElementById('passInvalid');
 	const invalidNewPassword = document.getElementById('invalidNewPassword');
 	const invalidConfirmPassword = document.getElementById(
 		'invalidConfirmPassword'
@@ -46,12 +47,14 @@ const validate = (e) => {
 				passwordInput.classList.remove('is-valid', 'is-invalid');
 				newPasswordInput.classList.remove('is-valid', 'is-invalid');
 				confirmPasswordInput.classList.remove('is-valid', 'is-invalid');
+				passChange.classList.remove('is-valid', 'is-invalid');
 				invalidPassword.innerHTML = '';
 				invalidNewPassword.innerHTML = '';
 				invalidConfirmPassword.innerHTML = '';
 
 				json.forEach((el) => {
 					if (el.input == 'timer') {
+						passInvalid.innerHTML = el.message;
 						passChange.classList.add('is-invalid');
 					}
 					if (el.input == 'password') {

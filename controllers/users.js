@@ -122,16 +122,12 @@ module.exports.passChange = async (req, res, next) => {
 	const { passChange } = await User.findByUsername(username);
 	let response = [];
 
-	if (
-		passChange &&
-		Date.now() < passChange.setHours(passChange.getHours() + 1)
-	) {
-		const remaining =
-			(passChange.setHours(passChange.getHours() + 1) - Date.now()) / (1000 * 60);
-		console.log();
+	if (passChange && new Date() < passChange) {
+		const now = new Date();
+		const remaining = Math.round((passChange.getTime() - now.getTime()) / 60000);
 		response.push({
 			input: 'timer',
-			message: `Password can be changed once in 1 hour(${remaining})`
+			message: `You can change password after ${remaining} minutes`
 		});
 		return res.send(response);
 	}
@@ -174,7 +170,10 @@ module.exports.passChange = async (req, res, next) => {
 		User.findByUsername(username).then(function (sanitizedUser) {
 			if (sanitizedUser) {
 				sanitizedUser.changePassword(password, newPassword, async (err) => {
-					sanitizedUser.passChange = Date();
+					const expires = new Date();
+					expires.setHours(expires.getHours() + 1);
+					sanitizedUser.passChange = expires;
+					// console.log(sanitizedUser.passChange);
 					await sanitizedUser.save();
 					if (err) return next(err);
 				});
