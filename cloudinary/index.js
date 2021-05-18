@@ -15,6 +15,10 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
 	cloudinary,
 	params: {
+		// format: async (req, file) => {
+		// 	return '';
+		// },
+		transformation: [{ quality: 'auto' }],
 		folder: async (req, file) => {
 			// const files = Object.entries(file);
 			// // console.log(files);
