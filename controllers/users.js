@@ -52,7 +52,7 @@ module.exports.registerCheck = async (req, res, next) => {
 	if (password.length < 8) {
 		response.push({
 			input: 'password',
-			message: 'Password must be at least 8 characters long!'
+			message: 'Password must contain at least 8 characters'
 		});
 	}
 
@@ -118,65 +118,69 @@ module.exports.changeprofile = async (req, res, next) => {
 };
 
 module.exports.passChange = async (req, res, next) => {
-	try {
-		const { username } = req.user;
-		const { passChange } = await User.findByUsername(username);
-		let response = [];
+	const { username } = req.user;
+	const { passChange } = await User.findByUsername(username);
+	let response = [];
 
-		// if (Date.now() < passChange.setHours(passChange.getHours() + 1)) {
-		// 	req.flash('error', 'Password can be changed once in 1 hour');
-		// 	return res.redirect('/profile');
-		// }
-		const { password, newPassword, confirmPassword } = req.body;
-		if (!newPassword) {
-			response.push({
-				input: 'newPassword',
-				message: 'Must provide new password'
-			});
-		}
-
-		if (newPassword.length < 8) {
-			response.push({
-				input: 'newPassword',
-				message: 'Password must be at least 8 characters long'
-			});
-		}
-
-		if (newPassword.includes(username)) {
-			response.push({
-				input: 'newPassword',
-				message: 'Password can not contain e-mail'
-			});
-		}
-
-		if (!confirmPassword) {
-			response.push({
-				input: 'confirmPassword',
-				message: 'Must provide new password confirmation'
-			});
-		}
-
-		if (newPassword !== confirmPassword) {
-			response.push({
-				input: 'confirmPassword',
-				message: 'Confirm password does not match'
-			});
-		}
-		console.log(response);
-		// User.findByUsername(username).then(function (sanitizedUser) {
-		// 	if (sanitizedUser) {
-		// 		sanitizedUser.changePassword(password, newPassword, async (err) => {
-		// 			sanitizedUser.passChange = Date();
-		// 			await sanitizedUser.save();
-		// 			if (err) return next(err);
-		// 		});
-		// 	}
-		// });
-
-		req.flash('success', 'Password changed!');
+	if (
+		passChange &&
+		Date.now() < passChange.setHours(passChange.getHours() + 1)
+	) {
+		const remaining =
+			(passChange.setHours(passChange.getHours() + 1) - Date.now()) / (1000 * 60);
+		console.log();
+		response.push({
+			input: 'timer',
+			message: `Password can be changed once in 1 hour(${remaining})`
+		});
 		return res.send(response);
-	} catch (e) {
-		req.flash('error', e.message);
-		res.redirect('/profile');
 	}
+	const { password, newPassword, confirmPassword } = req.body;
+	if (!newPassword) {
+		response.push({
+			input: 'newPassword',
+			message: 'Must provide new password'
+		});
+	}
+
+	if (newPassword.length < 8) {
+		response.push({
+			input: 'newPassword',
+			message: 'Password must contain at least 8 characters'
+		});
+	}
+
+	if (newPassword.includes(username)) {
+		response.push({
+			input: 'newPassword',
+			message: 'Password can not contain e-mail'
+		});
+	}
+
+	if (!confirmPassword) {
+		response.push({
+			input: 'confirmPassword',
+			message: 'Must provide new password confirmation'
+		});
+	}
+
+	if (newPassword !== confirmPassword) {
+		response.push({
+			input: 'confirmPassword',
+			message: 'Confirm password does not match'
+		});
+	}
+	if (!response.length) {
+		User.findByUsername(username).then(function (sanitizedUser) {
+			if (sanitizedUser) {
+				sanitizedUser.changePassword(password, newPassword, async (err) => {
+					sanitizedUser.passChange = Date();
+					await sanitizedUser.save();
+					if (err) return next(err);
+				});
+			}
+		});
+	}
+
+	return res.send(response);
 };

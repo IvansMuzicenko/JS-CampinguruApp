@@ -1,15 +1,16 @@
 const passForm = document.getElementById('passForm');
 const username = document.getElementById('usernameText').dataset.text;
+const passChange = document.getElementById('passChange');
+const passwordInput = document.getElementById('password');
+const newPasswordInput = document.getElementById('newPassword');
+const confirmPasswordInput = document.getElementById('confirmPassword');
 
 const validate = (e) => {
 	e.preventDefault();
 
-	if (!passForm.checkValidity()) {
-		return;
-	}
-	const passwordInput = document.getElementById('password');
-	const newPasswordInput = document.getElementById('newPassword');
-	const confirmPasswordInput = document.getElementById('confirmPassword');
+	// if (!passForm.checkValidity()) {
+	// 	return;
+	// }
 	const password = passwordInput.value;
 	const newPassword = newPasswordInput.value;
 	const confirmPassword = confirmPasswordInput.value;
@@ -38,7 +39,8 @@ const validate = (e) => {
 				passwordInput.classList.add('is-valid');
 				newPasswordInput.classList.add('is-valid');
 				confirmPasswordInput.classList.add('is-valid');
-				return passForm.submit();
+				passChange.classList.add('is-valid');
+				return;
 			} else {
 				passForm.classList.remove('was-validated');
 				passwordInput.classList.remove('is-valid', 'is-invalid');
@@ -49,6 +51,9 @@ const validate = (e) => {
 				invalidConfirmPassword.innerHTML = '';
 
 				json.forEach((el) => {
+					if (el.input == 'timer') {
+						passChange.classList.add('is-invalid');
+					}
 					if (el.input == 'password') {
 						if (!invalidPassword.innerHTML.includes(el.message))
 							invalidPassword.innerHTML += el.message + '<br>';
@@ -71,3 +76,22 @@ const validate = (e) => {
 };
 
 passForm.addEventListener('submit', validate);
+
+const passwordShow = document.getElementById('passwordShow');
+const newShow = document.getElementById('newShow');
+const confirmShow = document.getElementById('confirmShow');
+
+passwordShow.onmousedown = () => {
+	passwordInput.type = 'text';
+};
+newShow.onmousedown = () => {
+	newPasswordInput.type = 'text';
+};
+confirmShow.onmousedown = () => {
+	confirmPasswordInput.type = 'text';
+};
+document.onmouseup = () => {
+	passwordInput.type = 'password';
+	newPasswordInput.type = 'password';
+	confirmPasswordInput.type = 'password';
+};

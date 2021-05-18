@@ -197,54 +197,78 @@
 					id="passForm"
 					action="/passChange"
 					method="POST"
-					class="validated-form mb-5"
+					class="mb-5"
 					novalidate
 				>
+					<input id="passChange" class="form-control shadow-light" hidden />
+					<div class="valid-feedback">Password changed</div>
+					<div class="invalid-feedback">Password can be changed once in 1 hour</div>
 					<div class="mb-3 col-md-6">
 						<label class="form-label" for="password"> Password:</label>
-						<input
-							class="form-control shadow-light"
-							type="password"
-							name="password"
-							id="password"
-							inputmode="verbatim"
-							autocomplete="off"
-							placeholder="Current password"
-							required
-						/>
-						<div id="invalidPassword" class="invalid-feedback"></div>
+						<div class="input-group mb-3">
+							<input
+								class="form-control shadow-light"
+								type="password"
+								name="password"
+								id="password"
+								inputmode="verbatim"
+								autocomplete="off"
+								placeholder="Current password"
+								required
+							/>
+							<div class="input-group-append">
+								<div
+									id="passwordShow"
+									class="input-group-text shadow-light showPass"
+								></div>
+							</div>
+							<div id="invalidPassword" class="invalid-feedback"></div>
+						</div>
 					</div>
 					<div class="mb-3 col-md-6">
 						<label class="form-label" for="newPassword"> New password:</label>
-						<input
-							class="form-control shadow-light"
-							type="password"
-							name="newPassword"
-							id="newPassword"
-							inputmode="verbatim"
-							minlength="8"
-							autocomplete="new-password"
-							placeholder="New password(at least 8 characters)"
-							required
-						/>
-						<div id="invalidNewPassword" class="invalid-feedback"></div>
+						<div class="input-group mb-3">
+							<input
+								class="form-control shadow-light"
+								type="password"
+								name="newPassword"
+								id="newPassword"
+								inputmode="verbatim"
+								minlength="8"
+								autocomplete="new-password"
+								placeholder="New password(at least 8 characters)"
+								required
+							/>
+							<div class="input-group-append">
+								<div id="newShow" class="input-group-text shadow-light showPass"></div>
+							</div>
+							<div id="invalidNewPassword" class="invalid-feedback"></div>
+						</div>
 					</div>
 					<div class="mb-3 col-md-6">
 						<label class="form-label" for="confirmPassword">
 							Confirm new password:</label
 						>
-						<input
-							class="form-control shadow-light"
-							type="password"
-							name="confirmPassword"
-							id="confirmPassword"
-							inputmode="verbatim"
-							minlength="8"
-							autocomplete="new-password"
-							placeholder="Confirm new password"
-							required
-						/>
-						<div id="invalidConfirmPassword" class="invalid-feedback"></div>
+						<div class="input-group mb-3">
+							<input
+								class="form-control shadow-light"
+								type="password"
+								name="confirmPassword"
+								id="confirmPassword"
+								inputmode="verbatim"
+								minlength="8"
+								autocomplete="new-password"
+								placeholder="Confirm new password"
+								required
+							/>
+							<div class="input-group-append">
+								<div
+									id="confirmShow"
+									class="input-group-text shadow-light showPass"
+								></div>
+							</div>
+							<div id="invalidConfirmPassword" class="invalid-feedback"></div>
+						</div>
 					</div>
 					<button class="brn btn-outline-info bg p-2 rounded mb-3 col-12 col-md-6">
 						Change password

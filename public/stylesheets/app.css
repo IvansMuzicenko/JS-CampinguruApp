@@ -175,6 +175,15 @@ a.scrollUp:hover {
 	max-width: 100%;
 	height: 300px;
 }
+
+.showPass {
+	width: 38px;
+	height: 100%;
+	background-image: url(/src/eye.svg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 25px;
+}
 /* ---------------------Bootstrap rewrite--------------------*/
 .dropdown-toggle {
 	cursor: pointer;

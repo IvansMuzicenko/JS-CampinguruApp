@@ -30,20 +30,28 @@ router
 
 router.route('/profile').get(isLoggedIn, users.renderProfile);
 
-router.route('/passChange').post(isLoggedIn, function (req, res, next) {
-	passport.authenticate('local', { session: false }, function (err, user, info) {
-		if (!user) {
-			return res.send([
-				{
-					input: 'password',
-					message: 'Incorrect password'
+router.route('/passChange').post(
+	isLoggedIn,
+	function (req, res, next) {
+		passport.authenticate(
+			'local',
+			{ session: false },
+			function (err, user, info) {
+				if (!user) {
+					return res.send([
+						{
+							input: 'password',
+							message: 'Incorrect password'
+						}
+					]);
+				} else {
+					next();
 				}
-			]);
-		} else {
-			users.passChange;
-		}
-	})(req, res, next);
-});
+			}
+		)(req, res, next);
+	},
+	users.passChange
+);
 
 router.route('/changeprofile').post(isLoggedIn, users.changeprofile);
 
