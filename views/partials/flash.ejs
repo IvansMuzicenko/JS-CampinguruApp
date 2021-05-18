@@ -21,15 +21,39 @@
 	</button>
 </div>
 <% } if(registered && registered.length) {%>
+<button
+	id="modalToggle"
+	type="button"
+	class="btn btn-primary"
+	data-toggle="modal"
+	data-target="#registeredModal"
+	hidden
+></button>
 <div
-	id="alert"
-	class="alert alert-success alert-dismissible fade show text-center"
-	role="alert"
+	class="modal fade bg"
+	id="registeredModal"
+	tabindex="-1"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true"
 >
-	Welcome to CampinGuru, visit <a href="/profile">your profile</a> and add more
-	information!
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		<span aria-hidden="true">&times;</span>
-	</button>
+	<div class="modal-dialog modal-dialog-centered black">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Welcome to CampinGuru!</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				Visit <a href="/profile">your profile</a> and add more information!
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">
+					Close
+				</button>
+				<a type="button" class="btn btn-primary white" href="/profile"> Profile </a>
+			</div>
+		</div>
+	</div>
 </div>
 <% } %>

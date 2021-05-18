@@ -37,4 +37,10 @@ window.onload = () => {
 		.forEach((el) => {
 			el.classList.toggle('active');
 		});
+
+	// Registered modal
+	const modalToggle = document.getElementById('modalToggle');
+	if (modalToggle) {
+		modalToggle.click();
+	}
 };
