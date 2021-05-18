@@ -3,9 +3,11 @@
 <div class="container shadow-light bg pt-3">
 	<h1 class="text-center mb-3">All Campgrounds</h1>
 	<div class="mx-2 mb-3 row">
+		<% if(currentUser && currentUser.accType == "Owner") {%>
 		<a class="btn btn-outline-success col-md-3 mb-3" href="/campgrounds/new"
 			>Add campground</a
 		>
+		<% } %>
 		<form class="col-md-6 ml-auto mb-3">
 			<div class="input-group">
 				<input

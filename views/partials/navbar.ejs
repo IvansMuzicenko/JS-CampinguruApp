@@ -35,9 +35,11 @@
 				<a class="nav-link collapse-link" href="/campgrounds/map"
 					><img class="icon" src="/src/map.svg" alt="" />Camps Map</a
 				>
+				<% if(currentUser && currentUser.accType == "Owner") {%>
 				<a class="nav-link collapse-link mr-4" href="/campgrounds/new">
 					<img class="icon" src="/src/new.svg" alt="" />Create Camp</a
 				>
+				<% } %>
 				<div id="campDropdown" class="btn-group mr-4">
 					<a href="/campgrounds" class="nav-link"
 						><img class="icon" src="/src/list.svg" alt="" />Campgrounds<a
@@ -57,9 +59,11 @@
 						<a class="dropdown-item white" href="/campgrounds/map"
 							><img class="icon" src="/src/map.svg" alt="" />Campgrounds Map</a
 						>
+						<% if(currentUser && currentUser.accType == "Owner") {%>
 						<a class="dropdown-item white" href="/campgrounds/new"
 							><img class="icon" src="/src/new.svg" alt="" />New Campground</a
 						>
+						<% } %>
 					</div>
 				</div>
 			</div>

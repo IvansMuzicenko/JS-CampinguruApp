@@ -150,7 +150,7 @@
 					Submit
 				</button>
 			</form>
-
+			<% if(currentUser.accType == "Guest") {%>
 			<h5>
 				My reviews:
 				<a
@@ -164,6 +164,7 @@
 					<%=reviewCount %>
 				</a>
 			</h5>
+			<% } %> <% if(currentUser && currentUser.accType == "Owner") {%>
 			<h5>
 				My campgrounds:
 				<a
@@ -180,6 +181,7 @@
 			<a class="btn btn-outline-success col-4" href="/campgrounds/new"
 				>Add campground</a
 			>
+			<% } %>
 		</div>
 		<div class="col-md-6 mb-5">
 			<h4>
@@ -277,6 +279,7 @@
 			</div>
 		</div>
 	</div>
+	<% if(currentUser.accType == "Guest") {%> <% if(reviewCount >= 1) {%>
 	<div class="bg border mb-5">
 		<button
 			type="button"
@@ -289,8 +292,8 @@
 			<h3>My reviews:</h3>
 		</button>
 		<div class="collapse row px-3" id="collapseReviews">
-			<% for(let campground of campgrounds) {%> <% if(campground.reviews.length)
-			{%> <% for(let review of campground.reviews) {%> <%
+			<% for(let campground of campgrounds) {%> <% if(campground.reviews.length){%>
+			<% for(let review of campground.reviews) {%> <%
 			if(review.author._id.toString() == currentUser._id.toString()) { %>
 			<div class="col-12 col-lg-6 border">
 				<h4>
@@ -310,6 +313,8 @@
 			<% } %> <% } %> <% } %> <% } %>
 		</div>
 	</div>
+	<% }} %> <% if(currentUser && currentUser.accType == "Owner") {%> <%
+	if(campgroundCount >= 1) {%>
 	<div class="bg border mb-5">
 		<button
 			type="button"
@@ -333,6 +338,7 @@
 			<% } %>
 		</div>
 	</div>
+	<% }} %>
 </div>
 
 <script src="/javascripts/profileChange.js"></script>
