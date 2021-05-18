@@ -3,6 +3,11 @@ const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const UserSchema = new Schema({
+	accType: {
+		type: String,
+		required: true,
+		default: 'Guest'
+	},
 	username: {
 		type: String,
 		required: true,

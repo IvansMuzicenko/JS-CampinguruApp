@@ -11,16 +11,13 @@ module.exports.renderRegister = (req, res) => {
 
 module.exports.register = async (req, res, next) => {
 	try {
-		const { username, password } = req.body;
+		const { username, password, accType } = req.body;
 		const nickname = username.slice(0, username.indexOf('@'));
-		const user = new User({ username, nickname });
+		const user = new User({ username, nickname, accType });
 		const registeredUser = await User.register(user, password);
 		req.login(registeredUser, (err) => {
 			if (err) return next(err);
-			req.flash(
-				'registered',
-				'Welcome to CampinGuru, visit and add more information!'
-			);
+			req.flash('registered', 'Welcome!');
 			const redirectUrl = req.session.returnTo || '/';
 			res.redirect(redirectUrl);
 		});
