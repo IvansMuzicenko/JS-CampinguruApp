@@ -1,4 +1,6 @@
 const registerForm = document.getElementById('registerForm');
+const userInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
 
 const validate = (e) => {
 	e.preventDefault();
@@ -7,8 +9,6 @@ const validate = (e) => {
 		return;
 	}
 
-	const userInput = document.getElementById('username');
-	const passwordInput = document.getElementById('password');
 	const username = userInput.value;
 	const password = passwordInput.value;
 	const invalidUser = document.getElementById('invalidUser');
@@ -59,3 +59,13 @@ const validate = (e) => {
 
 registerForm.addEventListener('focusout', validate);
 registerForm.addEventListener('submit', validate);
+
+const passwordShow = document.getElementById('passwordShow');
+const confirmShow = document.getElementById('confirmShow');
+
+passwordShow.onmousedown = () => {
+	passwordInput.type = 'text';
+};
+document.onmouseup = () => {
+	passwordInput.type = 'password';
+};

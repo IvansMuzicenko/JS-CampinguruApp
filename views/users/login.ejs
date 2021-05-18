@@ -10,6 +10,8 @@
 		class="validated-form"
 		novalidate
 	>
+		<input id="invalidInput" class="form-control" hidden />
+		<div id="invalidFeedback" class="invalid-feedback"></div>
 		<div class="mb-4">
 			<label for="username" class="form-label"> E-mail</label>
 			<input
@@ -20,19 +22,27 @@
 				placeholder="E-mail"
 				required
 			/>
-			<div id="invalidFeedback" class="invalid-feedback"></div>
 		</div>
 
 		<div class="mb-5">
 			<label for="password" class="form-label"> Password</label>
-			<input
-				type="password"
-				class="form-control shadow-light rounded"
-				id="password"
-				name="password"
-				placeholder="Password"
-				required
-			/>
+			<div class="input-group mb-3">
+				<input
+					type="password"
+					class="form-control shadow-light rounded"
+					id="password"
+					name="password"
+					placeholder="Password"
+					required
+				/>
+
+				<div class="input-group-append">
+					<div
+						id="passwordShow"
+						class="input-group-text shadow-light showPass"
+					></div>
+				</div>
+			</div>
 		</div>
 		<button id="loginCheck" class="btn btn-primary btn-block">Log-in</button>
 	</form>

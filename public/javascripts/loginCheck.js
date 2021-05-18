@@ -2,6 +2,7 @@ const loginCheck = document.getElementById('loginCheck');
 const loginForm = document.getElementById('loginForm');
 const passwordInput = document.getElementById('password');
 const userInput = document.getElementById('username');
+const invalidInput = document.getElementById('invalidInput');
 
 window.onload = () => {
 	loginForm.classList.remove('was-validated');
@@ -33,16 +34,20 @@ const validateLogin = (e) => {
 				invalidFeedback.innerHTML = '';
 				userInput.classList.remove('is-valid', 'is-invalid');
 				passwordInput.classList.remove('is-valid', 'is-invalid');
+				invalidInput.classList.remove('is-valid', 'is-invalid');
 				userInput.classList.add('is-valid');
 				passwordInput.classList.add('is-valid');
+				invalidInput.classList.add('is-valid');
 				return loginForm.submit();
 			}
 			invalidFeedback.innerHTML = 'Incorrect e-mail or password';
 			loginForm.classList.remove('was-validated');
 			userInput.classList.remove('is-valid', 'is-invalid');
 			passwordInput.classList.remove('is-valid', 'is-invalid');
+			invalidInput.classList.remove('is-valid', 'is-invalid');
 			userInput.classList.add('is-invalid');
 			passwordInput.classList.add('is-invalid');
+			invalidInput.classList.add('is-invalid');
 		})
 		.catch((err) => {
 			console.warn('Something went wrong.', err);
@@ -50,3 +55,12 @@ const validateLogin = (e) => {
 };
 
 loginForm.addEventListener('submit', validateLogin);
+
+const passwordShow = document.getElementById('passwordShow');
+
+passwordShow.onmousedown = () => {
+	passwordInput.type = 'text';
+};
+document.onmouseup = () => {
+	passwordInput.type = 'password';
+};

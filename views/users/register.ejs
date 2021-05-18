@@ -1,6 +1,17 @@
 <% layout('layouts/boilerplate') %>
 <div
-	class="col-xl-4 offset-xl-4 col-md-6 offset-md-3 card-body shadow-light rounded p-5 bg mt-5"
+	class="
+		col-xl-4
+		offset-xl-4
+		col-md-6
+		offset-md-3
+		card-body
+		shadow-light
+		rounded
+		p-5
+		bg
+		mt-5
+	"
 >
 	<h1 class="text-center mb-5">Register</h1>
 	<form
@@ -24,15 +35,24 @@
 		</div>
 		<div class="mb-5">
 			<label for="password" class="form-label"> Password</label>
-			<input
-				type="password"
-				class="form-control shadow-light"
-				id="password"
-				name="password"
-				placeholder="Password(at least 8 characters)"
-				required
-			/>
-			<div id="invalidPassword" class="invalid-feedback"></div>
+			<div class="input-group mb-3">
+				<input
+					type="password"
+					class="form-control shadow-light"
+					id="password"
+					name="password"
+					placeholder="Password(at least 8 characters)"
+					required
+				/>
+
+				<div class="input-group-append">
+					<div
+						id="passwordShow"
+						class="input-group-text shadow-light showPass"
+					></div>
+				</div>
+				<div id="invalidPassword" class="invalid-feedback"></div>
+			</div>
 		</div>
 		<button id="submitRegister" class="btn btn-success btn-block">
 			Register
