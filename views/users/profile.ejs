@@ -150,7 +150,7 @@
 					Submit
 				</button>
 			</form>
-			<% if(currentUser.accType == "Guest") {%>
+			<% if(currentUser && currentUser.accType == "Guest") {%>
 			<h5>
 				My reviews:
 				<a
@@ -279,7 +279,8 @@
 			</div>
 		</div>
 	</div>
-	<% if(currentUser.accType == "Guest") {%> <% if(reviewCount >= 1) {%>
+	<% if(currentUser && currentUser.accType == "Guest") {%> <% if(reviewCount >=
+	1) {%>
 	<div class="bg border mb-5">
 		<button
 			type="button"

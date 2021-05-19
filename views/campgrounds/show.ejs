@@ -91,7 +91,7 @@
 	<div class="col-lg-6 my-3">
 		<div id="reviews">
 			<h3 class="text-center">Reviews</h3>
-			<% if(currentUser) { %>
+			<% if(currentUser && currentUser.accType == "Guest") { %>
 			<div class="card black p-3 mb-3">
 				<h4>Leave a Review</h4>
 				<form
@@ -173,9 +173,9 @@
 		</div>
 		<% } %> <% } else { %>
 		<div class="mb-3">
-			<% if (currentUser) { %>
+			<% if (currentUser && currentUser.accType == "Guest") { %>
 			<h5 class="text-center">No reviews yet! Write and be first!</h5>
-			<% } else { %>
+			<% } if(!currentUser) { %>
 			<h5 class="text-center">
 				No reviews yet! <a href="/login">Login</a>, write and be first!
 			</h5>

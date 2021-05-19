@@ -2,7 +2,13 @@ const express = require('express');
 const router = express.Router({ mergeParams: true });
 const campgrounds = require('../controllers/campgrounds');
 const catchAsync = require('../utils/catchAsync');
-const { isLoggedIn, isAuthor, validateCampground } = require('../middleware');
+const {
+	isLoggedIn,
+	isAuthor,
+	validateCampground,
+	isOwner,
+	isGuest
+} = require('../middleware');
 const multer = require('multer');
 const { storage } = require('../cloudinary');
 const upload = multer({ storage });
@@ -14,12 +20,13 @@ router
 	.get(catchAsync(campgrounds.index))
 	.post(
 		isLoggedIn,
+		isOwner,
 		upload.array('image'),
 		validateCampground,
 		catchAsync(campgrounds.createCampground)
 	);
 
-router.get('/new', isLoggedIn, campgrounds.renderNewForm);
+router.get('/new', isOwner, isLoggedIn, campgrounds.renderNewForm);
 router.get('/map', catchAsync(campgrounds.map));
 
 router
@@ -27,17 +34,24 @@ router
 	.get(catchAsync(campgrounds.showCampground))
 	.put(
 		isLoggedIn,
+		isOwner,
 		isAuthor,
 		upload.array('image'),
 		validateCampground,
 		catchAsync(campgrounds.updateCampground)
 	)
-	.delete(isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground));
+	.delete(
+		isLoggedIn,
+		isOwner,
+		isAuthor,
+		catchAsync(campgrounds.deleteCampground)
+	);
 
 router.get(
 	'/:id/edit',
 	isLoggedIn,
 	isAuthor,
+	isOwner,
 	catchAsync(campgrounds.renderEditForm)
 );
 

@@ -12,20 +12,20 @@ module.exports.map = async (req, res) => {
 };
 
 module.exports.index = async (req, res) => {
-	const request = require('request');
-	const url = 'https://geolocation-db.com/json';
+	// const request = require('request');
+	// const url = 'https://geolocation-db.com/json';
 
-	request(
-		{
-			url: url,
-			json: true
-		},
-		function (error, response, body) {
-			if (!error && response.statusCode === 200) {
-				console.log(body);
-			}
-		}
-	);
+	// request(
+	// 	{
+	// 		url: url,
+	// 		json: true
+	// 	},
+	// 	function (error, response, body) {
+	// 		if (!error && response.statusCode === 200) {
+	// 			console.log(body);
+	// 		}
+	// 	}
+	// );
 	let pageCount = await Campground.countDocuments({});
 	const limit = 25;
 	pageCount = Math.ceil(pageCount / limit);

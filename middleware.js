@@ -59,3 +59,27 @@ module.exports.isReviewAuthor = async (req, res, next) => {
 	}
 	next();
 };
+
+module.exports.isOwner = async (req, res, next) => {
+	const redirectUrl = req.session.returnTo || '/';
+	if (req.user) {
+		const { accType } = req.user;
+
+		if (accType && accType !== 'Owner') {
+			return res.redirect(redirectUrl);
+		}
+	}
+	next();
+};
+
+module.exports.isGuest = async (req, res, next) => {
+	const redirectUrl = req.session.returnTo || '/';
+	if (req.user) {
+		const { accType } = req.user;
+
+		if (accType && accType !== 'Guest') {
+			return res.redirect(redirectUrl);
+		}
+	}
+	next();
+};
