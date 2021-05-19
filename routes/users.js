@@ -4,19 +4,13 @@ const passport = require('passport');
 const users = require('../controllers/users');
 const catchAsync = require('../utils/catchAsync');
 const { isLoggedIn, redirect } = require('../middleware');
+
 router
 	.route('/register')
 	.get(redirect, users.renderRegister)
 	.post(catchAsync(users.register));
-router.route('/register-check').post(users.registerCheck);
-router.post('/login-check', function (req, res, next) {
-	passport.authenticate('local', { session: false }, function (err, user, info) {
-		if (user) {
-			return res.send({});
-		}
-		return res.send(info);
-	})(req, res, next);
-});
+router.post('/register-check', users.registerCheck);
+
 router
 	.route('/login')
 	.get(redirect, users.renderLogin)
@@ -27,10 +21,21 @@ router
 		}),
 		users.login
 	);
+router.post('/login-check', function (req, res, next) {
+	passport.authenticate('local', { session: false }, function (err, user, info) {
+		if (user) {
+			return res.send({});
+		}
+		return res.send(info);
+	})(req, res, next);
+});
+
+router.get('/logout', users.logout);
 
 router.route('/profile').get(isLoggedIn, users.renderProfile);
 
-router.route('/passChange').post(
+router.post(
+	'/passChange',
 	isLoggedIn,
 	function (req, res, next) {
 		passport.authenticate(
@@ -53,8 +58,6 @@ router.route('/passChange').post(
 	users.passChange
 );
 
-router.route('/changeprofile').post(isLoggedIn, users.changeprofile);
-
-router.get('/logout', users.logout);
+router.post('/editProfile', isLoggedIn, users.editProfile);
 
 module.exports = router;

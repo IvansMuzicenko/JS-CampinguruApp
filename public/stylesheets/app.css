@@ -184,6 +184,7 @@ a.scrollUp:hover {
 	background-repeat: no-repeat;
 	background-size: 25px;
 	cursor: pointer;
+	border-radius: 0 0.25em 0.25em 0;
 }
 /* ---------------------Bootstrap rewrite--------------------*/
 .dropdown-toggle {

@@ -7,7 +7,7 @@ const {
 	isAuthor,
 	validateCampground,
 	isOwner,
-	isGuest
+	geoFind
 } = require('../middleware');
 const multer = require('multer');
 const { storage } = require('../cloudinary');
@@ -15,9 +15,11 @@ const upload = multer({ storage });
 const tinify = require('tinify');
 tinify.key = process.env.TINIFY_KEY;
 
+router.route('/').get(catchAsync(campgrounds.index));
+
 router
-	.route('/')
-	.get(catchAsync(campgrounds.index))
+	.route('/new')
+	.get(isOwner, isLoggedIn, campgrounds.renderNewForm)
 	.post(
 		isLoggedIn,
 		isOwner,
@@ -25,21 +27,11 @@ router
 		validateCampground,
 		catchAsync(campgrounds.createCampground)
 	);
-
-router.get('/new', isOwner, isLoggedIn, campgrounds.renderNewForm);
 router.get('/map', catchAsync(campgrounds.map));
 
 router
 	.route('/:id')
 	.get(catchAsync(campgrounds.showCampground))
-	.put(
-		isLoggedIn,
-		isOwner,
-		isAuthor,
-		upload.array('image'),
-		validateCampground,
-		catchAsync(campgrounds.updateCampground)
-	)
 	.delete(
 		isLoggedIn,
 		isOwner,
@@ -47,12 +39,16 @@ router
 		catchAsync(campgrounds.deleteCampground)
 	);
 
-router.get(
-	'/:id/edit',
-	isLoggedIn,
-	isAuthor,
-	isOwner,
-	catchAsync(campgrounds.renderEditForm)
-);
+router
+	.route('/:id/edit')
+	.get(isLoggedIn, isAuthor, isOwner, catchAsync(campgrounds.renderEditForm))
+	.put(
+		isLoggedIn,
+		isOwner,
+		isAuthor,
+		upload.array('image'),
+		validateCampground,
+		catchAsync(campgrounds.updateCampground)
+	);
 
 module.exports = router;
