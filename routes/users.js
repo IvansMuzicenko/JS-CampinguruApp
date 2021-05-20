@@ -3,18 +3,21 @@ const router = express.Router();
 const passport = require('passport');
 const users = require('../controllers/users');
 const catchAsync = require('../utils/catchAsync');
-const { isLoggedIn, redirect } = require('../middleware');
+const { isLoggedIn, redirect, geoFind } = require('../middleware');
+
+router.get('/', geoFind, users.home);
 
 router
 	.route('/register')
 	.get(redirect, users.renderRegister)
-	.post(catchAsync(users.register));
+	.post(geoFind, catchAsync(users.register));
 router.post('/register-check', users.registerCheck);
 
 router
 	.route('/login')
 	.get(redirect, users.renderLogin)
 	.post(
+		geoFind,
 		passport.authenticate('local', {
 			failureFlash: false,
 			failureRedirect: '/login'
@@ -32,7 +35,7 @@ router.post('/login-check', function (req, res, next) {
 
 router.get('/logout', users.logout);
 
-router.route('/profile').get(isLoggedIn, users.renderProfile);
+router.route('/profile').get(isLoggedIn, geoFind, users.renderProfile);
 
 router.post(
 	'/passChange',

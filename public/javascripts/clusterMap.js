@@ -1,9 +1,31 @@
+function getCookie(name) {
+	let matches = document.cookie.match(
+		new RegExp(
+			'(?:^|; )' +
+				name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') +
+				'=([^;]*)'
+		)
+	);
+	return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+const geoCookie = getCookie('geolocation');
+let geo;
+if (geoCookie) {
+	const cookieSlice = geoCookie.slice(2);
+	geo = JSON.parse(cookieSlice);
+}
+
+const geoLong = geoCookie ? geo.longitude : 34.566667;
+const geoLat = geoCookie ? geo.latitude : 40.866667;
+
+const zoom = geoCookie ? 7 : 1.5;
+
 mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
 	container: 'cluster-map',
 	style: 'mapbox://styles/vana02/cko2ik0or1v3p18le4vd6aqdo',
-	center: [34.566667, 40.866667],
-	zoom: 1.5,
+	center: [geoLong, geoLat],
+	zoom: zoom,
 	maxBounds: [
 		[-180, -85],
 		[180, 85]

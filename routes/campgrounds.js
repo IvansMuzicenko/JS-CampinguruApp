@@ -15,7 +15,7 @@ const upload = multer({ storage });
 const tinify = require('tinify');
 tinify.key = process.env.TINIFY_KEY;
 
-router.route('/').get(catchAsync(campgrounds.index));
+router.route('/').get(geoFind, catchAsync(campgrounds.index));
 
 router
 	.route('/new')
@@ -27,7 +27,7 @@ router
 		validateCampground,
 		catchAsync(campgrounds.createCampground)
 	);
-router.get('/map', catchAsync(campgrounds.map));
+router.get('/map', geoFind, catchAsync(campgrounds.map));
 
 router
 	.route('/:id')

@@ -5,6 +5,9 @@ const ExpressError = require('../utils/ExpressError');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
+module.exports.home = (req, res) => {
+	res.render('home');
+};
 module.exports.renderRegister = (req, res) => {
 	res.render('users/register');
 };
@@ -97,7 +100,7 @@ module.exports.renderProfile = async (req, res, next) => {
 		campgroundCount
 	});
 };
-module.exports.changeprofile = async (req, res, next) => {
+module.exports.editProfile = async (req, res, next) => {
 	try {
 		const user = await User.findByIdAndUpdate(
 			req.user._id,

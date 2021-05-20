@@ -12,20 +12,6 @@ module.exports.map = async (req, res) => {
 };
 
 module.exports.index = async (req, res) => {
-	// const request = require('request');
-	// const url = 'https://geolocation-db.com/json';
-
-	// request(
-	// 	{
-	// 		url: url,
-	// 		json: true
-	// 	},
-	// 	function (error, response, body) {
-	// 		if (!error && response.statusCode === 200) {
-	// 			console.log(body);
-	// 		}
-	// 	}
-	// );
 	let pageCount = await Campground.countDocuments({});
 	const limit = 25;
 	pageCount = Math.ceil(pageCount / limit);
@@ -175,8 +161,11 @@ module.exports.deleteCampground = async (req, res) => {
 	}
 
 	const fullPath = campground.images[0].filename;
-	const split = fullPath.split('/');
-	const folderSplit = split.slice(split.indexOf('campinguru'), split.length - 1);
+	const splited = fullPath.split('/');
+	const folderSplit = splited.slice(
+		splited.indexOf('campinguru'),
+		splited.length - 1
+	);
 	const folderPath = folderSplit.join('/');
 	await cloudinary.api.delete_folder(folderPath, function (error, result) {
 		if (error) console.log(error);

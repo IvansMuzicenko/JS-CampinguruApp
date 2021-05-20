@@ -1,3 +1,6 @@
+const request = require('request');
+const rp = require('request-promise');
+const cookieParser = require('cookie-parser');
 const { campgroundSchema, reviewSchema } = require('./schemas.js');
 const ExpressError = require('./utils/ExpressError');
 const Campground = require('./models/campground');
@@ -80,6 +83,29 @@ module.exports.isGuest = async (req, res, next) => {
 		if (accType && accType !== 'Guest') {
 			return res.redirect(redirectUrl);
 		}
+	}
+	next();
+};
+
+module.exports.geoFind = async (req, res, next) => {
+	if (!req.cookies.geolocation) {
+		await rp({
+			url: 'https://geolocation-db.com/json',
+			headers: {
+				'User-Agent': 'Request-Promise'
+			},
+			resolveWithFullResponse: true,
+			json: true
+		})
+			.then(function (response) {
+				console.log('cookie added');
+				res.cookie('geolocation', response.body, {
+					maxAge: 3600000
+				});
+			})
+			.catch(function (err) {
+				console.log('Geolocation failed');
+			});
 	}
 	next();
 };

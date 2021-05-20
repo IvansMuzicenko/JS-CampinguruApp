@@ -7,9 +7,9 @@ const ImageSchema = new Schema({
 	filename: String
 });
 
-ImageSchema.virtual('thumbnail').get(function () {
-	return this.url.replace('/upload', '/upload/w_200');
-});
+// ImageSchema.virtual('thumbnail').get(function () {
+// 	return this.url.replace('/upload', '/upload/w_200');
+// });
 
 const opts = { toJSON: { virtuals: true } };
 
