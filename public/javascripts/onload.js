@@ -1,6 +1,6 @@
 let isMobile = false;
-const pagination = document.getElementById('pagination');
-const pagination2 = document.getElementById('pagination2');
+const pagination = document.querySelectorAll('.pagnav');
+const pagination2 = document.querySelectorAll('.pagnav2');
 
 if (window.innerWidth < 768) {
 	isMobile = true;
@@ -8,9 +8,13 @@ if (window.innerWidth < 768) {
 
 if (pagination) {
 	if (isMobile) {
-		pagination2.classList.remove('none');
+		pagination2.forEach((el) => {
+			el.classList.remove('none');
+		});
 	} else {
-		pagination.classList.remove('none');
+		pagination.forEach((el) => {
+			el.classList.remove('none');
+		});
 	}
 }
 window.onload = () => {
