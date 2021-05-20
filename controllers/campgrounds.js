@@ -15,18 +15,27 @@ module.exports.map = async (req, res) => {
 module.exports.index = async (req, res) => {
 	const query = req.query;
 	// let search = req.cookies.geolocation
-	search = {};
+	let search = {};
 	if (req.query.q) {
 		const keyObj = query.s;
 		const value = query.q;
-		search[keyObj] = value;
+		search[keyObj] = { $regex: value, $options: 'i' };
+		if (req.query.s == 'all') {
+			search = {
+				$or: [
+					{ title: { $regex: value, $options: 'i' } },
+					{ location: { $regex: value, $options: 'i' } },
+					{ description: { $regex: value, $options: 'i' } }
+				]
+			};
+		}
 	}
 	let currentReq = req.url;
 	currentReq = currentReq.slice(currentReq.indexOf('/') + 1);
 	currentReq = currentReq.slice(currentReq.indexOf('?') + 1);
 	currentReq = currentReq.split('&');
 	if (currentReq[currentReq.length - 1].includes('page=')) {
-		currentReq = currentReq.pop();
+		currentReq = currentReq.slice(0, currentReq.length - 1);
 	}
 	if (typeof currentReq == 'object' || typeof currentReq == 'array') {
 		currentReq = currentReq.join('&');
@@ -45,11 +54,11 @@ module.exports.index = async (req, res) => {
 	if (page > pageCount) {
 		page = 1;
 	}
-	const campgrounds = await Campground.find(
+	let campgrounds = await Campground.find(
 		search,
 		{},
 		{ skip: (page - 1) * limit, limit: limit }
-	).populate('popupText');
+	);
 
 	if (page < 6) {
 		pagination = pages.slice(0, 10);
