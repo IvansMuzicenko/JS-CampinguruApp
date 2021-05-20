@@ -1,29 +1,45 @@
 <nav id="pagination" class="none">
 	<ul class="pagination justify-content-center">
 		<li class="page-item">
-			<a class="page-link" href="?page=<%= pages[0] %> " aria-label="First">
+			<a
+				class="page-link"
+				href="?<%= currentReq %>page=<%= pages[0] %> "
+				aria-label="First"
+			>
 				<span aria-hidden="true">&laquo;</span>
 			</a>
 		</li>
 		<li class="page-item">
-			<a class="page-link" href="?page=<%= prevPage %> " aria-label="Previous">
+			<a
+				class="page-link"
+				href="?<%= currentReq %>page=<%= prevPage %> "
+				aria-label="Previous"
+			>
 				<span aria-hidden="true">&lsaquo;</span>
 			</a>
 		</li>
 		<% for (let n = 0; n < pagination.length; n++) { %>
 		<li class="page-item <% if (pagination[n] == page) { %>active<%}%>">
-			<a class="page-link" href="?page=<%= pagination[n] %> "
+			<a class="page-link" href="?<%= currentReq %>page=<%= pagination[n] %> "
 				><%= pagination[n] %>
 			</a>
 		</li>
 		<% } %>
 		<li class="page-item">
-			<a class="page-link" href="?page=<%= nextPage %> " aria-label="Next">
+			<a
+				class="page-link"
+				href="?<%= currentReq %>page=<%= nextPage %> "
+				aria-label="Next"
+			>
 				<span aria-hidden="true">&rsaquo;</span>
 			</a>
 		</li>
 		<li class="page-item">
-			<a class="page-link" href="?page=<%= pageCount %> " aria-label="Next">
+			<a
+				class="page-link"
+				href="?<%= currentReq %>page=<%= pageCount %> "
+				aria-label="Next"
+			>
 				<span aria-hidden="true">&raquo;</span>
 			</a>
 		</li>
@@ -33,29 +49,45 @@
 <nav id="pagination2" class="none">
 	<ul class="pagination justify-content-center">
 		<li class="page-item">
-			<a class="page-link" href="?page=<%= pages[0] %> " aria-label="First">
+			<a
+				class="page-link"
+				href="?<%= currentReq %>page=<%= pages[0] %>"
+				aria-label="First"
+			>
 				<span aria-hidden="true">&laquo;</span>
 			</a>
 		</li>
 		<li class="page-item">
-			<a class="page-link" href="?page=<%= prevPage %> " aria-label="Previous">
+			<a
+				class="page-link"
+				href="?<%= currentReq %>page=<%= prevPage %>"
+				aria-label="Previous"
+			>
 				<span aria-hidden="true">&lsaquo;</span>
 			</a>
 		</li>
 		<% for (let n = 0; n < pagination2.length; n++) { %>
 		<li class="page-item <% if (pagination2[n] == page) { %>active<%}%>">
-			<a class="page-link" href="?page=<%= pagination2[n] %> "
+			<a class="page-link" href="?<%= currentReq %>page=<%= pagination2[n] %>"
 				><%= pagination2[n] %>
 			</a>
 		</li>
 		<% } %>
 		<li class="page-item">
-			<a class="page-link" href="?page=<%= nextPage %> " aria-label="Next">
+			<a
+				class="page-link"
+				href="?<%= currentReq %>page=<%= nextPage %> "
+				aria-label="Next"
+			>
 				<span aria-hidden="true">&rsaquo;</span>
 			</a>
 		</li>
 		<li class="page-item">
-			<a class="page-link" href="?page=<%= pageCount %> " aria-label="Next">
+			<a
+				class="page-link"
+				href="?<%= currentReq %>page=<%= pageCount %> "
+				aria-label="Next"
+			>
 				<span aria-hidden="true">&raquo;</span>
 			</a>
 		</li>

@@ -4,6 +4,7 @@ const mapBoxToken = process.env.MAPBOX_TOKEN;
 
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary, storage } = require('../cloudinary');
+const { search } = require('../routes/campgrounds');
 
 module.exports.map = async (req, res) => {
 	const campgrounds = await Campground.find({}).populate('popupText');
@@ -12,7 +13,29 @@ module.exports.map = async (req, res) => {
 };
 
 module.exports.index = async (req, res) => {
-	let pageCount = await Campground.countDocuments({});
+	const query = req.query;
+	// let search = req.cookies.geolocation
+	search = {};
+	if (req.query.q) {
+		const keyObj = query.s;
+		const value = query.q;
+		search[keyObj] = value;
+	}
+	let currentReq = req.url;
+	currentReq = currentReq.slice(currentReq.indexOf('/') + 1);
+	currentReq = currentReq.slice(currentReq.indexOf('?') + 1);
+	currentReq = currentReq.split('&');
+	if (currentReq[currentReq.length - 1].includes('page=')) {
+		currentReq = currentReq.pop();
+	}
+	if (typeof currentReq == 'object' || typeof currentReq == 'array') {
+		currentReq = currentReq.join('&');
+	}
+	if (currentReq.length) {
+		currentReq = currentReq + '&';
+	}
+
+	let pageCount = await Campground.countDocuments(search);
 	const limit = 25;
 	pageCount = Math.ceil(pageCount / limit);
 	let pages = [...Array(pageCount).keys()].map((x) => ++x);
@@ -23,7 +46,7 @@ module.exports.index = async (req, res) => {
 		page = 1;
 	}
 	const campgrounds = await Campground.find(
-		{},
+		search,
 		{},
 		{ skip: (page - 1) * limit, limit: limit }
 	).populate('popupText');
@@ -60,7 +83,9 @@ module.exports.index = async (req, res) => {
 		pagination2,
 		prevPage,
 		nextPage,
-		pageCount
+		pageCount,
+		query,
+		currentReq
 	});
 };
 

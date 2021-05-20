@@ -3,29 +3,36 @@
 <div class="container shadow-light bg pt-3">
 	<h1 class="text-center mb-3">All Campgrounds</h1>
 	<div class="mx-2 mb-3 row">
-		<% if(currentUser && currentUser.accType == "Owner") {%>
-		<a class="btn btn-outline-success col-md-3 mb-3" href="/campgrounds/new"
-			>Add campground</a
-		>
-		<% } %>
-		<form class="col-md-6 ml-auto mb-3">
+		<form class="col mb-3" action="?s">
 			<div class="input-group">
+				<div class="input-group-prepend">
+					<select class="form-control" name="s" id="">
+						<option value="all" <% if(query.s === "all") {%>selected<%}%> >All</option>
+						<option value="title" <% if(query.s === "title") {%>selected<%}%>>Title</option>
+						<option value="location" <% if(query.s === "location") {%>selected<%}%>>Location</option>
+						<option value="description" <% if(query.s === "description") {%>selected<%}%>>Description</option>
+					</select>
+					
+						
+				</div>
 				<input
 					id="search"
 					type="text"
+					name="q"
 					class="form-control bg border white"
 					placeholder="Search"
 					aria-label="Search"
 					aria-describedby="button-addon2"
+					value="<%= query.q %>"
 				/>
 				<div class="input-group-append">
-					<button class="btn btn-outline-light" type="button" id="button-addon2">
+					<button class="btn btn-outline-light" type="submit" id="button-addon2">
 						Search
 					</button>
 				</div>
 			</div>
 		</form>
-		<div id="filter" class="btn-group col-md-2 mb-3">
+		<div id="filter" class="btn-group col-md-4 mb-3">
 			<a
 				href="#filter"
 				type="button"
