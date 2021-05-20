@@ -100,7 +100,7 @@ profileForm.addEventListener('submit', (e) => {
 	body.address = addressInput.value;
 	body.something = somethingInput.value;
 
-	fetch('/changeprofile', {
+	fetch('/editProfile', {
 		method: 'POST',
 		body: JSON.stringify(body),
 		headers: { 'Content-type': 'application/json; charset=UTF-8' }
