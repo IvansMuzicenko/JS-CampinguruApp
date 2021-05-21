@@ -3,10 +3,10 @@
 <div class="container shadow-light bg pt-3">
 	<h1 class="text-center mb-3">All Campgrounds</h1>
 	<div class="mx-2 mb-3 row">
-		<form class="col mb-3" action="?s">
+		<form class="col mb-3" action="">
 			<div class="input-group">
 				<div class="input-group-prepend">
-					<select class="form-select" name="s" id="">
+					<select class="form-select" name="s">
 						<option value="all" <% if(query.s === "all") {%>selected<%}%> >All</option>
 						<option value="title" <% if(query.s === "title") {%>selected<%}%>>Title</option>
 						<option value="location" <% if(query.s === "location") {%>selected<%}%>>Location</option>
@@ -32,20 +32,49 @@
 				</div>
 			</div>
 		</form>
-		<div id="filter" class="btn-group col-md-4 mb-3">
+		<div class="btn-group col-md-4 mb-3">
 			<a
 				href="#filter"
 				type="button"
 				class="btn btn-secondary dropdown-toggle"
-				data-toggle="dropdown"
-				aria-haspopup="true"
+				id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside"
 				aria-expanded="false"
+
 			>
 				Filter
 			</a>
-			<div class="dropdown-menu dropdown-menu-right">
-				<button class="dropdown-item" type="button">Action</button>
-				<button class="dropdown-item" type="button">Another action</button>
+			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuClickableInside">
+				<div class="px-3 mb-3">
+					<label class="form-label" for="location">Location:</label>
+					<select id="country" class="form-select" name="country">
+						<option value="">Country</option>
+						<% for (let country of countries)  { %> 
+						<option ><%= country %> </option>
+						<% } %> 
+
+
+					</select>
+					<% for (let country of countries)  { %> 
+						<select id="<%= country %>" class="cityClass form-select mt-2" name="city" hidden>
+							<option value="">City</option>
+							<% for (let city of citiesObj[country])  { %> 
+								<option><%= city %></option>
+							
+							<% } %> 
+						</select>
+						<% } %> 
+					
+				</div>
+				<div class="px-3 mb-3"> 
+					<label for="priceRange" class="form-label">Price:</label>
+					<div class="row">
+						<span class="col-3 text-end">Min.</span>
+						<input id="priceMin" name="priceMin" class="priceInput col p-0 px-1" type="number" value="0">
+						<span class="col-1">-</span>
+						<input id="priceMax" name="priceMax" class="priceInput col p-0 px-1" type="number" value="300">
+						<span class="col-3 text-start">Max.</span>
+					</div>
+				</div>
 				<button class="dropdown-item" type="button">Something else here</button>
 			</div>
 		</div>
@@ -94,3 +123,4 @@
 	<% } %> 
 	<%- include('../partials/pagination') %>
 </div>
+<script src="/javascripts/campsFilter.js"></script>

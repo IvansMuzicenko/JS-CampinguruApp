@@ -98,7 +98,6 @@ module.exports.geoFind = async (req, res, next) => {
 			json: true
 		})
 			.then(function (response) {
-				console.log('cookie added');
 				res.cookie('geolocation', response.body, {
 					maxAge: 3600000
 				});

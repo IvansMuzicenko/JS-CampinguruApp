@@ -1,6 +1,7 @@
 const Campground = require('../models/campground');
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const mapBoxToken = process.env.MAPBOX_TOKEN;
+const fs = require('fs');
 
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary, storage } = require('../cloudinary');
@@ -13,8 +14,22 @@ module.exports.map = async (req, res) => {
 };
 
 module.exports.index = async (req, res) => {
+	const citiesObj = JSON.parse(
+		fs.readFileSync(
+			'node_modules/all-countries-and-cities-json/countries.min.json'
+		)
+	);
+	let countries = [];
+	for (const [country, city] of Object.entries(citiesObj)) {
+		countries.push(country);
+		const cityArr = [];
+		for (let i = 0; i < city.length; i++) {
+			const location = `${city[i]}, ${country}`;
+			// console.log(location);
+		}
+	}
+	//------------------
 	const query = req.query;
-	// let search = req.cookies.geolocation
 	let search = {};
 	if (req.query.q) {
 		const keyObj = query.s;
@@ -94,7 +109,9 @@ module.exports.index = async (req, res) => {
 		nextPage,
 		pageCount,
 		query,
-		currentReq
+		currentReq,
+		countries,
+		citiesObj
 	});
 };
 
