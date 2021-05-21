@@ -21,11 +21,10 @@ window.onload = () => {
 	// Background Image/video
 	const bgChange = document.getElementById('bgChange');
 	const backgrounds = [
-		'https://res.cloudinary.com/cateyken/video/upload/v1619159209/campinguru/Backgounds/BG-video1_we4c93.mp4',
-		'https://res.cloudinary.com/cateyken/video/upload/v1620107779/campinguru/Backgounds/Pexels_Videos_4100_arvbbe.mp4',
-		'https://res.cloudinary.com/cateyken/video/upload/v1620107780/campinguru/Backgounds/Pexels_Videos_4097_skricj.mp4',
-		'https://res.cloudinary.com/cateyken/video/upload/v1620107780/campinguru/Backgounds/Pexels_Videos_2330708_ktnute.mp4',
-		'https://res.cloudinary.com/cateyken/video/upload/v1620107795/campinguru/Backgounds/Pexels_Videos_2491282_mripfr.mp4'
+		'https://res.cloudinary.com/cateyken/video/upload/v1621595036/campinguru/Backgounds/BG-video1_febayi.mp4',
+		'https://res.cloudinary.com/cateyken/video/upload/v1621595035/campinguru/Backgounds/Pexels_Videos_2330708_tfonr4.mp4',
+		'https://res.cloudinary.com/cateyken/video/upload/v1621595035/campinguru/Backgounds/Pexels_Videos_4097_mc8s0f.mp4',
+		'https://res.cloudinary.com/cateyken/video/upload/v1621595034/campinguru/Backgounds/Pexels_Videos_4100_x2rsog.mp4'
 	];
 	const randomBg = Math.floor(Math.random() * backgrounds.length);
 
