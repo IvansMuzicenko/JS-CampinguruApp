@@ -15,7 +15,7 @@ body {
 	height: 100%;
 	opacity: 0.3;
 	object-fit: cover;
-	filter: blur(2px);
+	filter: blur(4px);
 	z-index: -10;
 }
 
@@ -32,7 +32,7 @@ body {
 	z-index: -10;
 }
 .bg {
-	background: rgba(0, 0, 0, 0.7);
+	background: rgba(0, 0, 0, 0.6);
 }
 
 @supports (backdrop-filter: blur()) {
