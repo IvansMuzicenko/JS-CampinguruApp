@@ -19,7 +19,7 @@ const valueChange = () => {
 		el.hidden = true;
 		el.value = '';
 	});
-	if (!country.value == '') {
+	if (country.value != '') {
 		city.hidden = false;
 	}
 };
@@ -42,10 +42,9 @@ if (geoCookie) {
 	const cookieSlice = geoCookie.slice(2);
 	geo = JSON.parse(cookieSlice);
 }
-country.value = geo.country_name;
+if (!document.location.search.includes('s=')) {
+	country.value = geo.country_name;
+}
 valueChange();
-
-const selectCity = document.getElementById(geo.country_name);
-selectCity.value = geo.city;
 
 country.addEventListener('change', valueChange);

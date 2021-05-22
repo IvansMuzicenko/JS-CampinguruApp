@@ -22,13 +22,11 @@ module.exports.index = async (req, res) => {
 	let countries = [];
 	for (const [country, city] of Object.entries(citiesObj)) {
 		countries.push(country);
-		const cityArr = [];
-		for (let i = 0; i < city.length; i++) {
-			const location = `${city[i]}, ${country}`;
-			// console.log(location);
-		}
 	}
 	//------------------
+
+	const geoCountry = req.cookies.geolocation.country_name;
+	const geoCity = req.cookies.geolocation.city;
 	const query = req.query;
 	let search = {};
 	if (req.query.q) {
@@ -45,6 +43,11 @@ module.exports.index = async (req, res) => {
 			};
 		}
 	}
+
+	if (!req.query.s) {
+		search = { location: { $regex: geoCountry, $options: 'i' } };
+	}
+
 	let currentReq = req.url;
 	currentReq = currentReq.slice(currentReq.indexOf('/') + 1);
 	currentReq = currentReq.slice(currentReq.indexOf('?') + 1);
@@ -111,7 +114,8 @@ module.exports.index = async (req, res) => {
 		query,
 		currentReq,
 		countries,
-		citiesObj
+		citiesObj,
+		search
 	});
 };
 
