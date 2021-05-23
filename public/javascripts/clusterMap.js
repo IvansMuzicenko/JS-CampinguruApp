@@ -8,16 +8,22 @@ function getCookie(name) {
 	);
 	return matches ? decodeURIComponent(matches[1]) : undefined;
 }
-const geoCookie = getCookie('geolocation') + '';
+function isJsonString(str) {
+	try {
+		JSON.parse(str);
+	} catch (e) {
+		return false;
+	}
+	return true;
+}
+const geoCookie = getCookie('geolocation');
 let geo;
 let geoCheck = false;
-if (geoCookie) {
-	geo = JSON.parse(JSON.stringify(geoCookie));
-	if (
-		geo.country_name != '' &&
-		geo.country_name != 'Not found' &&
-		typeof geo == 'object'
-	) {
+if (geoCookie && isJsonString(geoCookie)) {
+	geo = JSON.parse(geoCookie);
+	console.log(typeof geo);
+	console.log(geo);
+	if (geo.country_name !== '' && geo.country_name !== 'Not found') {
 		geoCheck = true;
 	}
 }
