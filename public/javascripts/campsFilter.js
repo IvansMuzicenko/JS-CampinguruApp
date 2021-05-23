@@ -1,26 +1,34 @@
 const country = document.getElementById('country');
 const countryValue = country.value;
 const countryChildren = country.children;
-const cityClass = document.querySelectorAll('.cityClass');
-let city = document.getElementById(country.value);
+const citiesSelect = document.querySelectorAll('.cityClass');
+let citySelect = document.getElementById(country.value);
+const fullSearchForm = document.getElementById('fullSearchForm');
+let searchQuery = document.location.search;
+console.log(searchQuery);
 
 if (!country.value == '') {
-	city.hidden = false;
+	citySelect.classList.remove('none');
+	citySelect.disabled = false;
 }
 
-cityClass.forEach((el) => {
+citiesSelect.forEach((el) => {
 	el.value = '';
+	el.classList.add('none');
+	el.disabled = true;
 });
 
 const valueChange = () => {
-	city = document.getElementById(country.value);
+	citySelect = document.getElementById(country.value);
 
-	cityClass.forEach((el) => {
-		el.hidden = true;
+	citiesSelect.forEach((el) => {
+		el.classList.add('none');
+		el.disabled = true;
 		el.value = '';
 	});
 	if (country.value != '') {
-		city.hidden = false;
+		citySelect.classList.remove('none');
+		citySelect.disabled = false;
 	}
 };
 
@@ -42,8 +50,13 @@ if (geoCookie) {
 	const cookieSlice = geoCookie.slice(2);
 	geo = JSON.parse(cookieSlice);
 }
+
+if (document.location.search.includes(`country=${geo.country_name}`)) {
+	country.value = geo.country_name;
+}
 if (!document.location.search.includes('s=')) {
 	country.value = geo.country_name;
+	fullSearchForm.submit();
 }
 valueChange();
 

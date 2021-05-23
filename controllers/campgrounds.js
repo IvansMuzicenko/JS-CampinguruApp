@@ -28,28 +28,33 @@ module.exports.index = async (req, res) => {
 	const geoCountry = req.cookies.geolocation.country_name;
 	const geoCity = req.cookies.geolocation.city;
 	const query = req.query;
+	const location = `${query.city ? `${query.city},` : ''} ${query.country}`;
 	let search = {};
 	if (req.query.q) {
 		const keyObj = query.s;
 		const value = query.q;
 		search[keyObj] = { $regex: value, $options: 'i' };
+		if (req.query.s == '') {
+		}
 		if (req.query.s == 'all') {
 			search = {
 				$or: [
 					{ title: { $regex: value, $options: 'i' } },
-					{ location: { $regex: value, $options: 'i' } },
+					{ location: { $regex: location, $options: 'i' } },
 					{ description: { $regex: value, $options: 'i' } }
 				]
 			};
 		}
 	}
-
-	if (!req.query.s) {
-		search = { location: { $regex: geoCountry, $options: 'i' } };
+	if (req.query.country) {
+		search.location = { $regex: location, $options: 'i' };
 	}
 
+	// if (!req.query.s) {
+	// 	search = { location: { $regex: geoCountry, $options: 'i' } };
+	// }
+
 	let currentReq = req.url;
-	currentReq = currentReq.slice(currentReq.indexOf('/') + 1);
 	currentReq = currentReq.slice(currentReq.indexOf('?') + 1);
 	currentReq = currentReq.split('&');
 	if (currentReq[currentReq.length - 1].includes('page=')) {
