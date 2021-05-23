@@ -89,8 +89,18 @@ module.exports.isGuest = async (req, res, next) => {
 
 module.exports.geoFind = async (req, res, next) => {
 	if (!req.cookies.geolocation) {
+		let ip = (
+			req.headers['x-forwarded-for'] ||
+			req.connection.remoteAddress ||
+			''
+		)
+			.split(',')[0]
+			.trim();
+
+		if (ip == '127.0.0.1') ip = '';
+
 		await rp({
-			url: 'https://geolocation-db.com/json',
+			url: `https://geolocation-db.com/json/${ip}`,
 			headers: {
 				'User-Agent': 'Request-Promise'
 			},
@@ -98,7 +108,8 @@ module.exports.geoFind = async (req, res, next) => {
 			json: true
 		})
 			.then(function (response) {
-				res.cookie('geolocation', response.body, {
+				const body = JSON.stringify(response.body);
+				res.cookie('geolocation', body, {
 					maxAge: 3600000
 				});
 			})

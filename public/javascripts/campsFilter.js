@@ -47,8 +47,7 @@ function getCookie(name) {
 const geoCookie = getCookie('geolocation');
 let geo;
 if (geoCookie) {
-	const cookieSlice = geoCookie.slice(2);
-	geo = JSON.parse(cookieSlice);
+	geo = JSON.parse(geoCookie);
 }
 
 if (document.location.search.includes(`country=${geo.country_name}`)) {

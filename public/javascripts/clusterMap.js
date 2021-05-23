@@ -8,17 +8,22 @@ function getCookie(name) {
 	);
 	return matches ? decodeURIComponent(matches[1]) : undefined;
 }
-const geoCookie = getCookie('geolocation');
+const geoCookie = getCookie('geolocation') + '';
 let geo;
+let geoCheck = false;
 if (geoCookie) {
-	const cookieSlice = geoCookie.slice(2);
-	geo = JSON.parse(cookieSlice);
+	geo = JSON.parse(JSON.stringify(geoCookie));
+	if (
+		geo.country_name != '' &&
+		geo.country_name != 'Not found' &&
+		typeof geo == 'object'
+	) {
+		geoCheck = true;
+	}
 }
-
-const geoLong = geoCookie ? geo.longitude : 34.566667;
-const geoLat = geoCookie ? geo.latitude : 40.866667;
-
-const zoom = geoCookie ? 7 : 1.5;
+const geoLong = geoCheck ? geo.longitude : 34.566667;
+const geoLat = geoCheck ? geo.latitude : 40.866667;
+const zoom = geoCheck ? 7 : 1.5;
 
 mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
