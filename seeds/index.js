@@ -78,7 +78,7 @@ const seedDB = async () => {
 						filename: 'campinguru/campfire_wbrg1s.jpg'
 					},
 					{
-						url: 'https://res.cloudinary.com/cateyken/image/upload/v1618999002/campinguru/river_ayeamb.jpg',
+						url: 'https://res.cloudinary.com/cateyken/image/upload/v1621864311/campinguru/river_ayeamb.jpg',
 						filename: 'campinguru/river_ayeamb.jpg'
 					}
 				]
@@ -112,7 +112,7 @@ const seedDB = async () => {
 // 				},
 // 				{
 // 					url:
-// 						'https://res.cloudinary.com/drhbngwfh/image/upload/v1618999002/campinguru/river_ayeamb.jpg',
+// 						'https://res.cloudinary.com/drhbngwfh/image/upload/v1621864311/campinguru/river_ayeamb.jpg',
 // 					filename: 'campinguru/river_ayeamb.jpg'
 // 				}
 // 			]

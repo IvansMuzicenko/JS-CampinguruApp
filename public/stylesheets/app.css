@@ -158,6 +158,11 @@ div.carousel-item img {
 	object-fit: cover;
 }
 
+.nearImages {
+	height: 100px !important;
+	width: 100px !important;
+}
+
 a.scrollUp {
 	display: none;
 	transition: all 0.1s;
@@ -207,6 +212,11 @@ a.scrollUp:hover {
 img.img-thumbnail {
 	width: 200px;
 	height: 150px;
+}
+
+.arrows {
+	height: 20px !important;
+	width: 30px !important;
 }
 
 /* -------------------------MAP CSS--------------------------*/

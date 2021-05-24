@@ -23,10 +23,17 @@ module.exports.index = async (req, res) => {
 	for (const [country, city] of Object.entries(citiesObj)) {
 		countries.push(country);
 	}
-	//------------------
+	//------------Geolocation cookie--
 
-	const geoCountry = req.cookies.geolocation.country_name;
-	const geoCity = req.cookies.geolocation.city;
+	let geoCountry;
+	let geoCity;
+	if (req.cookies.geolocation) {
+		const geoCookie = JSON.parse(req.cookies.geolocation);
+		geoCountry = await geoCookie.country_name;
+		geoCity = await geoCookie.city;
+	}
+
+	//------------Search------------------
 	const query = req.query;
 	const location = `${query.city ? `${query.city},` : ''} ${query.country}`;
 	let search = {};
@@ -40,7 +47,7 @@ module.exports.index = async (req, res) => {
 			search = {
 				$or: [
 					{ title: { $regex: value, $options: 'i' } },
-					{ location: { $regex: location, $options: 'i' } },
+					{ location: { $regex: value, $options: 'i' } },
 					{ description: { $regex: value, $options: 'i' } }
 				]
 			};
@@ -50,10 +57,7 @@ module.exports.index = async (req, res) => {
 		search.location = { $regex: location, $options: 'i' };
 	}
 
-	// if (!req.query.s) {
-	// 	search = { location: { $regex: geoCountry, $options: 'i' } };
-	// }
-
+	//------currentURL-------------
 	let currentReq = req.url;
 	currentReq = currentReq.slice(currentReq.indexOf('?') + 1);
 	currentReq = currentReq.split('&');
@@ -67,6 +71,7 @@ module.exports.index = async (req, res) => {
 		currentReq = currentReq + '&';
 	}
 
+	//--------------pageCount-------------------------
 	let pageCount = await Campground.countDocuments(search);
 	const limit = 25;
 	pageCount = Math.ceil(pageCount / limit);
@@ -81,6 +86,14 @@ module.exports.index = async (req, res) => {
 		search,
 		{},
 		{ skip: (page - 1) * limit, limit: limit }
+	);
+	let searchNear = { location: { $regex: geoCountry, $options: 'i' } };
+	let nearCamps = await Campground.find(
+		searchNear,
+		'title location price images',
+		{
+			limit: 10
+		}
 	);
 
 	if (page < 6) {
@@ -109,6 +122,7 @@ module.exports.index = async (req, res) => {
 
 	res.render('campgrounds/index', {
 		campgrounds,
+		nearCamps,
 		page,
 		pages,
 		pagination,
@@ -120,7 +134,9 @@ module.exports.index = async (req, res) => {
 		currentReq,
 		countries,
 		citiesObj,
-		search
+		search,
+		geoCountry,
+		geoCity
 	});
 };
 

@@ -107,9 +107,9 @@ module.exports.geoFind = async (req, res, next) => {
 			resolveWithFullResponse: true,
 			json: true
 		})
-			.then(function (response) {
+			.then(async (response) => {
 				const body = JSON.stringify(response.body);
-				res.cookie('geolocation', body, {
+				await res.cookie('geolocation', body, {
 					maxAge: 3600000
 				});
 			})
