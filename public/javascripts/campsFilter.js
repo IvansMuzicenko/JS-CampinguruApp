@@ -1,22 +1,20 @@
-const country = document.getElementById('country');
-const countryValue = country.value;
-const countryChildren = country.children;
 const citiesSelect = document.querySelectorAll('.cityClass');
 const fullSearchForm = document.getElementById('fullSearchForm');
-const currentCountry = document.getElementById('currentCountry');
+const selectedCountry = document.getElementById('currentCountry');
+const searchCollapse = document.getElementById('searchCollapse');
+const filterToggler = document.getElementById('filterToggler');
+const submitSearch = document.getElementById('submitSearch');
+
+const country = document.getElementById('country');
 let citySelect = document.getElementById(country.value);
-let searchQuery = document.location.search;
+const priceMin = document.getElementById('priceMin');
+const priceMax = document.getElementById('priceMax');
 
-if (!country.value == '') {
-	citySelect.classList.remove('none');
-	citySelect.disabled = false;
-}
-
-citiesSelect.forEach((el) => {
-	el.value = '';
-	el.classList.add('none');
-	el.disabled = true;
-});
+const searchParams = new URLSearchParams(document.location.search.substring(1));
+const searchCountry = searchParams.get('country');
+const searchCity = searchParams.get('city');
+const searchPriceMin = searchParams.get('priceMin');
+const searchPriceMax = searchParams.get('priceMax');
 
 const valueChange = () => {
 	citySelect = document.getElementById(country.value);
@@ -31,8 +29,6 @@ const valueChange = () => {
 		citySelect.disabled = false;
 	}
 };
-
-valueChange();
 
 function getCookie(name) {
 	let matches = document.cookie.match(
@@ -52,15 +48,51 @@ if (geoCookie) {
 	geo = JSON.parse(geoCookie);
 }
 
-currentCountry.innerHTML = geo.country_name;
+citiesSelect.forEach((el) => {
+	el.value = '';
+	el.classList.add('none');
+	el.disabled = true;
+});
 
-if (document.location.search.includes(`country=${geo.country_name}`)) {
-	country.value = geo.country_name;
+if (document.location.search.includes('country=')) {
+	searchCollapse.classList.remove('none');
+	country.disabled = false;
+	priceMin.disabled = false;
+	priceMax.disabled = false;
+	country.value = searchCountry;
+	valueChange();
+	citySelect.value = searchCity;
+	priceMin.value = searchPriceMin;
+	priceMax.value = searchPriceMax;
 }
-// if (!document.location.search.includes('s=')) {
-// 	country.value = geo.country_name;
-// 	fullSearchForm.submit();
-// }
-valueChange();
+
+if (!country.value == '') {
+	citySelect.classList.remove('none');
+	citySelect.disabled = false;
+}
 
 country.addEventListener('change', valueChange);
+
+filterToggler.addEventListener('click', (e) => {
+	searchCollapse.classList.toggle('none');
+	if (searchCollapse.className.includes('none')) {
+		country.disabled = true;
+		priceMin.disabled = true;
+		priceMax.disabled = true;
+
+		citiesSelect.forEach((el) => {
+			el.disabled = true;
+		});
+	} else {
+		country.disabled = false;
+		priceMin.disabled = false;
+		priceMax.disabled = false;
+		valueChange();
+	}
+});
+
+submitSearch.addEventListener('click', (e) => {
+	if (!citySelect.value.length) {
+		citySelect.disabled = true;
+	}
+});

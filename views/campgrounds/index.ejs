@@ -22,23 +22,20 @@
 					aria-describedby="button-addon2"
 					value="<%= query.q %>"
 				/>
-			</div>
-			<div class="px-3 col-md-4"> 
-				<label for="priceRange" class="form-label">Price:</label>
-				<div class="row">
-					<span class="col-3 text-end">Min.</span>
-					<input id="priceMin" name="priceMin" class="form-control priceInput col p-0 px-1" type="number" value="0">
-					<span class="col-1">-</span>
-					<input id="priceMax" name="priceMax" class="form-control priceInput col p-0 px-1" type="number" value="300">
-					<span class="col-3 text-start">Max.</span>
+				<div class="input-group-apend">
+					
 				</div>
 			</div>
 		</div>
-		<div class="row my-3">
-			<div class="col-md col-md-6">
+		<button id="filterToggler" class="btn btn-outline-info btn-sm my-2" type="button">
+			Add more filters
+		</button>
+		<br>
+		<div class="row my-3 none" id="searchCollapse">
+			<div class="col-md col-md-8">
 				<label class="form-label" for="location">Location:</label>
 				<div class="row px-2">
-					<select id="country" class="form-select col" name="country">
+					<select id="country" class="form-select col" name="country" disabled>
 						<option value="">-Country-</option>
 						<option id="currentCountry"><%= geoCountry %> </option>
 						<% for (let country of countries)  { %> 
@@ -55,64 +52,70 @@
 							<% } %> 
 						</select>
 					<% } %> 
+
 				</div>
 			</div>
-			<button class="btn btn-outline-light col-md-4 h-50 mt-md-auto mt-3 ml-auto" type="submit" id="button-addon2">
-				Search
-			</button>
+			<div class="px-3 col-md-4"> 
+				<label for="priceRange" class="form-label">Price:</label>
+				<div class="row mt-2">
+					<span class="col-3 text-end">Min.</span>
+					<input id="priceMin" name="priceMin" class="form-control priceInput col p-0 px-1" type="number" value="0" disabled>
+					<span class="col-1">-</span>
+					<input id="priceMax" name="priceMax" class="form-control priceInput col p-0 px-1" type="number" value="300" disabled>
+					<span class="col-3 text-start">Max.</span>
+				</div>
+			</div>
 		</div>
+		<button class="btn btn-outline-light" type="submit" id="submitSearch">
+			Search
+		</button>
 	</form>
-	<div id="nearPlaces" class="mt-5">
-		<hr>
-		<h3>Places near to you</h3>
-		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-			<div class="carousel-indicators">
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
-			</div>
-			<div class="carousel-inner">
-			<% for(let i = 0; i < nearCamps.length; i++) {%> 
-				<div class="carousel-item px-5 pb-5 <%= i == 0 ? "active" : "" %> ">
-					<div class="row">
-						<a href="/campgrounds/<%=nearCamps[i]._id%>" class="col-sm-6 row">
-							<img src="<%= nearCamps[i].images[0].url %> " class="col-2 nearImages cover" alt="">
-							<div class="col">
-								<h5><%= nearCamps[i].title %> </h5>
-								<p><%= nearCamps[i].location %> </p>
-								<p><%= nearCamps[i].price %> </p>
-							</div>
-							
-						</a>
-						<% i++ %> 
-						<a href="/campgrounds/<%=nearCamps[i]._id%>" class="col-sm-6 row">
-							<img src="<%= nearCamps[i].images[0].url %> " class="col-2 nearImages cover" alt="">
-							<div class="col">
-								<h5><%= nearCamps[i].title %> </h5>
-								<p><%= nearCamps[i].location %> </p>
-								<p><%= nearCamps[i].price %> </p>
-							</div>
-						</a>
+	<hr id="listStart">
+	<% if(showNearCheck) {%> 
+		<div id="nearPlaces" class="my-3">
+			<h3>Places near to you</h3>
+			<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+				<div class="carousel-inner">
+				<% for(let i = 0; i < nearCamps.length; i++) {%> 
+					<div class="carousel-item px-5 <%= i == 0 ? "active" : "" %> ">
+						<div class="row">
+							<a href="/campgrounds/<%=nearCamps[i]._id%>" class="col-md-6 row">
+								<img src="<%= nearCamps[i].images[0].url %> " class="col-3 nearImages cover" alt="">
+								<div class="col">
+									<h5><%= nearCamps[i].title %></h5>
+									<p><%= nearCamps[i].location %></p>
+									<p>$ <%= nearCamps[i].price %></p>
+								</div>
+								
+							</a>
+							<% i++ %> 
+							<a href="/campgrounds/<%=nearCamps[i]._id%>" class="col-md-6 row">
+								<img src="<%= nearCamps[i].images[0].url %> " class="col-3 nearImages cover" alt="">
+								<div class="col">
+									<h5><%= nearCamps[i].title %></h5>
+									<p><%= nearCamps[i].location %></p>
+									<p>$ <%= nearCamps[i].price %></p>
+								</div>
+							</a>
+						</div>
 					</div>
+				<% } %> 
+				
 				</div>
-			<% } %> 
+				<button class="arrows mt-5 carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="arrows mt-5 carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
 			
+			<a href='?country=<%= geoCountry%>#listStart' id="showNearMe" class="btn btn-outline-info">Show more</a>
 		</div>
-		<button class="arrows mt-5 carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		<span class="visually-hidden">Previous</span>
-		</button>
-		<button class="arrows mt-5 carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-		<span class="visually-hidden">Next</span>
-		</button>
-		</div>
-		
-		<button id="showNearMe" class="btn btn-outline-info">Show more</button>
-		<hr>
-	</div>
+	<% } %> 
+	<hr>
 
 	<%- include('../partials/pagination') %> 
 	<% for(let campground of campgrounds) { %>

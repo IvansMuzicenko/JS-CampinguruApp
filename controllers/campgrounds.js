@@ -25,8 +25,8 @@ module.exports.index = async (req, res) => {
 	}
 	//------------Geolocation cookie--
 
-	let geoCountry;
-	let geoCity;
+	let geoCountry = '';
+	let geoCity = '';
 	if (req.cookies.geolocation) {
 		const geoCookie = JSON.parse(req.cookies.geolocation);
 		geoCountry = await geoCookie.country_name;
@@ -87,14 +87,15 @@ module.exports.index = async (req, res) => {
 		{},
 		{ skip: (page - 1) * limit, limit: limit }
 	);
-	let searchNear = { location: { $regex: geoCountry, $options: 'i' } };
-	let nearCamps = await Campground.find(
-		searchNear,
-		'title location price images',
-		{
+
+	let nearCamps;
+	let searchNear;
+	if (geoCountry.length) {
+		searchNear = { location: { $regex: geoCountry, $options: 'i' } };
+		nearCamps = await Campground.find(searchNear, 'title location price images', {
 			limit: 10
-		}
-	);
+		});
+	}
 
 	if (page < 6) {
 		pagination = pages.slice(0, 10);
@@ -118,6 +119,14 @@ module.exports.index = async (req, res) => {
 
 	const nextPage = pages.concat(pages).slice(page, page + 1);
 
+	let showNearCheck = true;
+	if (
+		currentReq.includes(`country=${geoCountry}`) &&
+		!currentReq.includes(`city=`) &&
+		geoCountry.length
+	) {
+		showNearCheck = false;
+	}
 	req.session.returnTo = req.originalUrl;
 
 	res.render('campgrounds/index', {
@@ -136,7 +145,8 @@ module.exports.index = async (req, res) => {
 		citiesObj,
 		search,
 		geoCountry,
-		geoCity
+		geoCity,
+		showNearCheck
 	});
 };
 

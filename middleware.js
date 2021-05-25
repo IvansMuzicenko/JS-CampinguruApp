@@ -109,7 +109,7 @@ module.exports.geoFind = async (req, res, next) => {
 		})
 			.then(async (response) => {
 				const body = JSON.stringify(response.body);
-				await res.cookie('geolocation', body, {
+				res.cookie('geolocation', body, {
 					maxAge: 3600000
 				});
 			})
@@ -117,5 +117,6 @@ module.exports.geoFind = async (req, res, next) => {
 				console.log('Geolocation failed');
 			});
 	}
+
 	next();
 };
