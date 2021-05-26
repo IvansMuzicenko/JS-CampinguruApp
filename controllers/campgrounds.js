@@ -37,13 +37,13 @@ module.exports.index = async (req, res) => {
 	const query = req.query;
 	const location = `${query.city ? `${query.city},` : ''} ${query.country}`;
 	let search = {};
-	if (req.query.q) {
+	if (query.q) {
 		const keyObj = query.s;
 		const value = query.q;
 		search[keyObj] = { $regex: value, $options: 'i' };
-		if (req.query.s == '') {
+		if (query.s == '') {
 		}
-		if (req.query.s == 'all') {
+		if (query.s == 'all') {
 			search = {
 				$or: [
 					{ title: { $regex: value, $options: 'i' } },
@@ -53,10 +53,12 @@ module.exports.index = async (req, res) => {
 			};
 		}
 	}
-	if (req.query.country) {
+	if (query.country) {
 		search.location = { $regex: location, $options: 'i' };
 	}
-
+	if (query.priceMin || query.priceMax) {
+		search.price = { $gt: query.priceMin, $lt: query.priceMax };
+	}
 	//------currentURL-------------
 	let currentReq = req.url;
 	currentReq = currentReq.slice(currentReq.indexOf('?') + 1);
@@ -78,7 +80,7 @@ module.exports.index = async (req, res) => {
 	let pages = [...Array(pageCount).keys()].map((x) => ++x);
 	let all;
 	let pagination;
-	let page = parseInt(req.query.page) || 1;
+	let page = parseInt(query.page) || 1;
 	if (page > pageCount) {
 		page = 1;
 	}

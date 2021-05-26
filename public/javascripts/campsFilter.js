@@ -61,7 +61,7 @@ if (document.location.search.includes('country=')) {
 	priceMax.disabled = false;
 	country.value = searchCountry;
 	valueChange();
-	citySelect.value = searchCity;
+	if (country.value.length) citySelect.value = searchCity;
 	priceMin.value = searchPriceMin;
 	priceMax.value = searchPriceMax;
 }
@@ -94,5 +94,11 @@ filterToggler.addEventListener('click', (e) => {
 submitSearch.addEventListener('click', (e) => {
 	if (!citySelect.value.length) {
 		citySelect.disabled = true;
+	}
+	if (!priceMin.value.length) {
+		priceMin.disabled = true;
+	}
+	if (!priceMax.value.length) {
+		priceMax.disabled = true;
 	}
 });

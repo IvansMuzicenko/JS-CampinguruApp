@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/stylesheets/stars.css" />
 <% layout('layouts/boilerplate')%>
 <div class="container shadow-light bg pt-3">
-	<h1 class="text-center mb-3">All Campgrounds</h1>
+	<h1 class="text-center mb-3"><a href="/campgrounds" class="nav-link white">All Campgrounds</a></h1>
 	<form id="fullSearchForm" class="mx-2 mb-3" action="">
 		<div class="row">
 			<div class="input-group col-md h-50 mt-auto">
@@ -59,9 +59,9 @@
 				<label for="priceRange" class="form-label">Price:</label>
 				<div class="row mt-2">
 					<span class="col-3 text-end">Min.</span>
-					<input id="priceMin" name="priceMin" class="form-control priceInput col p-0 px-1" type="number" value="0" disabled>
+					<input id="priceMin" name="priceMin" class="form-control priceInput col p-0 px-1" type="number" value="" disabled>
 					<span class="col-1">-</span>
-					<input id="priceMax" name="priceMax" class="form-control priceInput col p-0 px-1" type="number" value="300" disabled>
+					<input id="priceMax" name="priceMax" class="form-control priceInput col p-0 px-1" type="number" value="" disabled>
 					<span class="col-3 text-start">Max.</span>
 				</div>
 			</div>
@@ -73,7 +73,7 @@
 	<hr id="listStart">
 	<% if(showNearCheck) {%> 
 		<div id="nearPlaces" class="my-3">
-			<h3>Places near to you</h3>
+			<h3><a href='?country=<%= geoCountry%>' class="nav-link white">Places near to you</a></h3>
 			<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
 				<div class="carousel-inner">
 				<% for(let i = 0; i < nearCamps.length; i++) {%> 
@@ -112,7 +112,7 @@
 				</button>
 			</div>
 			
-			<a href='?country=<%= geoCountry%>#listStart' id="showNearMe" class="btn btn-outline-info">Show more</a>
+			<a href='?country=<%= geoCountry%>' id="showNearMe" class="btn btn-outline-info">Show more</a>
 		</div>
 	<% } %> 
 	<hr>
