@@ -118,6 +118,9 @@
 	<hr>
 
 	<%- include('../partials/pagination') %> 
+	<div id="sortDiv" class="mb-1">
+		Sort by: <a id="sortTitle" href="?<%= currentReq %>sortTitle=desc" class="white">Title</a> | <a id="sortPrice" href="?<%= currentReq %>sortPrice=desc" class="white">Price</a> | <a id="sortRating" href="?<%= currentReq %>sortRating=desc" class="white">Rating</a>
+	</div>
 	<% for(let campground of campgrounds) { %>
 
 	<div class="shadow-light mb-3 bg rounded">

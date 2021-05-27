@@ -4,6 +4,9 @@ const selectedCountry = document.getElementById('currentCountry');
 const searchCollapse = document.getElementById('searchCollapse');
 const filterToggler = document.getElementById('filterToggler');
 const submitSearch = document.getElementById('submitSearch');
+const sortTitle = document.getElementById('sortTitle');
+const sortPrice = document.getElementById('sortPrice');
+const sortRating = document.getElementById('sortRating');
 
 const country = document.getElementById('country');
 let citySelect = document.getElementById(country.value);
@@ -102,3 +105,61 @@ submitSearch.addEventListener('click', (e) => {
 		priceMax.disabled = true;
 	}
 });
+//----------------------Sorting-------------
+if (searchParams.has('sortTitle')) {
+	const currSort = searchParams.get('sortTitle');
+	searchParams.delete('sortTitle');
+	searchParams.delete('sortPrice');
+	searchParams.delete('sortRating');
+	searchParams.delete('page');
+	sortPrice.href = '?' + searchParams + '&sortPrice=desc';
+	sortRating.href = '?' + searchParams + '&sortRating=desc';
+	if (currSort == 'desc') {
+		searchParams.set('sortTitle', 'asc');
+		sortTitle.innerHTML += ' &#x2B07';
+	} else if (currSort == 'asc') {
+		searchParams.set('sortTitle', 'desc');
+		sortTitle.innerHTML += ' &#x2B06';
+	}
+	sortTitle.href = `?${searchParams}`;
+} else if (searchParams.has('sortPrice')) {
+	const currSort = searchParams.get('sortPrice');
+	searchParams.delete('sortTitle');
+	searchParams.delete('sortPrice');
+	searchParams.delete('sortRating');
+	searchParams.delete('page');
+	sortTitle.href = '?' + searchParams + '&sortTitle=desc';
+	sortRating.href = '?' + searchParams + '&sortRating=desc';
+	if (currSort == 'desc') {
+		searchParams.set('sortPrice', 'asc');
+		sortPrice.innerHTML += ' &#x2B07';
+	} else if (currSort == 'asc') {
+		searchParams.set('sortPrice', 'desc');
+		sortPrice.innerHTML += ' &#x2B06';
+	}
+	sortPrice.href = `?${searchParams}`;
+} else if (searchParams.has('sortRating')) {
+	const currSort = searchParams.get('sortRating');
+	searchParams.delete('sortTitle');
+	searchParams.delete('sortPrice');
+	searchParams.delete('sortRating');
+	searchParams.delete('page');
+	sortTitle.href = '?' + searchParams + '&sortTitle=desc';
+	sortPrice.href = '?' + searchParams + '&sortPrice=desc';
+	if (currSort == 'desc') {
+		searchParams.set('sortRating', 'asc');
+		sortRating.innerHTML += ' &#x2B07';
+	} else if (currSort == 'asc') {
+		searchParams.set('sortRating', 'desc');
+		sortRating.innerHTML += ' &#x2B06';
+	}
+	sortRating.href = `?${searchParams}`;
+} else {
+	searchParams.delete('sortTitle');
+	searchParams.delete('sortPrice');
+	searchParams.delete('sortRating');
+	searchParams.delete('page');
+	sortTitle.href = '?' + searchParams + '&sortTitle=desc';
+	sortPrice.href = '?' + searchParams + '&sortPrice=desc';
+	sortRating.href = '?' + searchParams + '&sortRating=desc';
+}

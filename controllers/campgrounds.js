@@ -59,13 +59,28 @@ module.exports.index = async (req, res) => {
 	if (query.priceMin || query.priceMax) {
 		search.price = { $gt: query.priceMin, $lt: query.priceMax };
 	}
+	//--------------Sort--------
+	let sort = {};
+	if (query.sortTitle) {
+		sort = { title: query.sortTitle == 'asc' ? 1 : -1 };
+	}
+	if (query.sortPrice) {
+		sort = { price: query.sortPrice == 'asc' ? 1 : -1 };
+	}
+	if (query.sortRating) {
+		sort = { rating: query.sortRating == 'asc' ? 1 : -1 };
+	}
+
 	//------currentURL-------------
-	let currentReq = req.url;
+	let currentReq = req.url.slice(req.url.lastIndexOf('/') + 1);
 	currentReq = currentReq.slice(currentReq.indexOf('?') + 1);
 	currentReq = currentReq.split('&');
-	if (currentReq[currentReq.length - 1].includes('page=')) {
-		currentReq = currentReq.slice(0, currentReq.length - 1);
-	}
+	currentReq.forEach((el) => {
+		if (el.includes('page=')) {
+			currentReq.splice(currentReq.indexOf(el), 1);
+		}
+	});
+
 	if (typeof currentReq == 'object' || typeof currentReq == 'array') {
 		currentReq = currentReq.join('&');
 	}
@@ -88,7 +103,7 @@ module.exports.index = async (req, res) => {
 		search,
 		{},
 		{ skip: (page - 1) * limit, limit: limit }
-	);
+	).sort(sort);
 
 	let nearCamps;
 	let searchNear;
