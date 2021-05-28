@@ -105,7 +105,7 @@ module.exports.index = async (req, res) => {
 		{ skip: (page - 1) * limit, limit: limit }
 	).sort(sort);
 
-	let nearCamps;
+	let nearCamps = [];
 	let searchNear;
 	if (geoCountry.length) {
 		searchNear = { location: { $regex: geoCountry, $options: 'i' } };
@@ -113,7 +113,6 @@ module.exports.index = async (req, res) => {
 			limit: 10
 		});
 	}
-
 	if (page < 6) {
 		pagination = pages.slice(0, 10);
 	} else if (page > pageCount - 5) {
@@ -136,13 +135,13 @@ module.exports.index = async (req, res) => {
 
 	const nextPage = pages.concat(pages).slice(page, page + 1);
 
-	let showNearCheck = true;
+	let showNearCheck = false;
 	if (
-		currentReq.includes(`country=${geoCountry}`) &&
-		!currentReq.includes(`city=`) &&
-		geoCountry.length
+		(!currentReq.includes(`country=${geoCountry}`) ||
+			currentReq.includes(`city=`)) &&
+		nearCamps.length
 	) {
-		showNearCheck = false;
+		showNearCheck = true;
 	}
 	req.session.returnTo = req.originalUrl;
 
@@ -172,6 +171,10 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createCampground = async (req, res) => {
+	req.body.campground.title = req.body.campground.title.split('/');
+	req.body.campground.location = req.body.campground.location.split('/');
+	req.body.campground.title = req.body.campground.title.join('-');
+	req.body.campground.location = req.body.campground.location.join('-');
 	const campground = new Campground(req.body.campground);
 	const geoData = await geocoder
 		.forwardGeocode({
@@ -228,6 +231,10 @@ module.exports.renderEditForm = async (req, res) => {
 };
 
 module.exports.updateCampground = async (req, res) => {
+	req.body.campground.title = req.body.campground.title.split('/');
+	req.body.campground.location = req.body.campground.location.split('/');
+	req.body.campground.title = req.body.campground.title.join('-');
+	req.body.campground.location = req.body.campground.location.join('-');
 	const { id } = req.params;
 	const campground = await Campground.findByIdAndUpdate(
 		id,
@@ -263,16 +270,18 @@ module.exports.deleteCampground = async (req, res) => {
 		await cloudinary.uploader.destroy(image.filename);
 	}
 
-	const fullPath = campground.images[0].filename;
-	const splited = fullPath.split('/');
-	const folderSplit = splited.slice(
-		splited.indexOf('campinguru'),
-		splited.length - 1
-	);
-	const folderPath = folderSplit.join('/');
-	await cloudinary.api.delete_folder(folderPath, function (error, result) {
-		if (error) console.log(error);
-	});
+	if (campground.images.length) {
+		const fullPath = campground.images[0].filename;
+		const splited = fullPath.split('/');
+		const folderSplit = splited.slice(
+			splited.indexOf('campinguru'),
+			splited.length - 1
+		);
+		const folderPath = folderSplit.join('/');
+		await cloudinary.api.delete_folder(folderPath, function (error, result) {
+			if (error) console.log(error);
+		});
+	}
 
 	await Campground.findByIdAndDelete(id);
 	req.flash('success', 'Campground deleted!');

@@ -88,7 +88,11 @@ module.exports.isGuest = async (req, res, next) => {
 };
 
 module.exports.geoFind = async (req, res, next) => {
-	if (!req.cookies.geolocation) {
+	if (
+		!req.cookies.geolocation ||
+		typeof req.cookies.geolocation != 'object' ||
+		!req.cookies.geolocation.country.length
+	) {
 		let ip = (
 			req.headers['x-forwarded-for'] ||
 			req.connection.remoteAddress ||

@@ -3,9 +3,9 @@
 		<button
 			class="navbar-toggler mr-0"
 			type="button"
-			data-toggle="collapse"
-			data-target="#navbarNavAltMarkup"
-			aria-controls="navbarNavAltMarkup"
+			data-bs-toggle="collapse"
+			data-bs-target="#navbarCollapse"
+			aria-controls="navbarCollapse"
 			aria-expanded="false"
 			aria-label="Toggle navigation"
 		>
@@ -16,7 +16,7 @@
 		<a id="nav-collapse" class="navbar-brand mx-auto p-0" href="/">
 			<img class="m-0" id="nav-images" src="/src/CampinguruLogo.png" alt="" />
 		</a>
-		<div class="collapse navbar-collapse row" id="navbarNavAltMarkup">
+		<div class="collapse navbar-collapse row" id="navbarCollapse">
 			<div
 				class="
 					navbar-nav
@@ -42,17 +42,23 @@
 				<% } %>
 				<div id="campDropdown" class="btn-group mr-4">
 					<a href="/campgrounds" class="nav-link"
-						><img class="icon" src="/src/list.svg" alt="" />Campgrounds<a
+						><img class="icon" src="/src/list.svg" alt="" />Campgrounds
+						<a
 							type="button"
 							class="nav-link dropdown-toggle"
-							data-toggle="dropdown"
-							aria-haspopup="true"
+							type="button"
+							id="campgroundsDropdown"
+							data-bs-toggle="dropdown"
+							data-bs-auto-close="outside"
 							aria-expanded="false"
 						>
 						</a
 					></a>
 
-					<div class="dropdown-menu dropdown-menu-right bg white mt-3">
+					<div
+						id="campgroundsDropdown"
+						class="dropdown-menu dropdown-menu-right bg white"
+					>
 						<a class="dropdown-item white" href="/campgrounds"
 							><img class="icon" src="/src/list.svg" alt="" />Campgrounds List</a
 						>
@@ -99,12 +105,13 @@
 					<a
 						type="button"
 						class="nav-link dropdown-toggle"
-						data-toggle="dropdown"
-						aria-haspopup="true"
+						id="userDropdown"
+						data-bs-toggle="dropdown"
+						data-bs-auto-close="outside"
 						aria-expanded="false"
 					>
 					</a>
-					<div class="dropdown-menu dropdown-menu-right bg white mt-3">
+					<div id="userDropdown" class="dropdown-menu dropdown-menu-right bg white">
 						<a class="dropdown-item white" href="/profile"
 							><img class="icon" src="/src/user.svg" alt="" />My profile</a
 						>

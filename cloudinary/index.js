@@ -37,22 +37,30 @@ const storage = new CloudinaryStorage({
 			// 		// ...
 			// 	});
 			// });
-			let pathModifier = 0;
-			let modifiedTitle = req.body.campground.title;
-			let result = await cloudinary.api.sub_folders(
-				'campinguru/campgrounds',
-				function (error, result) {
-					return result;
-				}
-			);
-			for (let folder of result.folders) {
-				if ((modifiedTitle = folder.name)) {
-					pathModifier++;
-					modifiedTitle = req.body.campground.title + '-' + pathModifier;
-				}
-			}
-			console.log(modifiedTitle);
-			const titleFull = modifiedTitle;
+			// if (condition) {
+			// 	let result = cloudinary.api.sub_folders(
+			// 		'campinguru/campgrounds',
+			// 		function (error, result) {
+			// 			return result;
+			// 		}
+			// 	);
+			// }
+			// let pathModifier = 0;
+			// let modifiedTitle = req.body.campground.title;
+
+			// for (let i = 0; i < result.folders.length; i++) {
+			// 	if (modifiedTitle == result.folders[i].name) {
+			// 		pathModifier++;
+			// 		i = 0;
+			// 		modifiedTitle = req.body.campground.title + '-' + pathModifier;
+			// 	}
+			// }
+			let location = req.body.campground.location;
+
+			location = location.replace(',', '');
+
+			let titleFull = `${req.body.campground.title}_${location}`;
+			titleFull = titleFull.split('/').join('-');
 			const title = titleFull.replace(/ /g, '-');
 			return `campinguru/campgrounds/${title}`;
 		},
